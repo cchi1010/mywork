@@ -1,0 +1,75 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+
+$pj-autocomplete-item-size: (md, lg);
+
+$pj-autocomplete-item-font: (md: (leftLabel: $pj-body-2,
+    midLabel: $pj-label-lg,
+    rightLabel: $pj-tiny,
+  ),
+  lg: (leftLabel: $pj-body-1,
+    midLabel: $pj-label-xl,
+    rightLabel: $pj-tiny,
+  ));
+
+$pj-autocomplete-item-measurement: (md: (width: 474px,
+    height: 48px,
+    radius: 8px,
+    padding: 8px 8px 8px 8px,
+  ),
+  lg: (width: 474px,
+    height: 64px,
+    radius: 8px,
+    padding: 12px 12px 12px 12px,
+  ),
+);
+
+$pj-autocomplete-item-style: (leftLabel: (fg: map-get($pj-neutral, 600),
+  ),
+  midLabel: (fg: map-get($pj-neutral, 800),
+  ),
+  rightLabel: (fg: map-get($pj-neutral, 400),
+  ),
+  startLabel: (fg: map-get($pj-neutral, 800),
+  ),
+  hover: (fg: map-get($pj-secondary, 600),
+    bg: map-get($pj-secondary, 50),
+  ),
+  pressed: (fg: map-get($pj-secondary, 600),
+    bg: map-get($pj-secondary, 100),
+  ),
+);
+
+@each $itemSize in $pj-autocomplete-item-size {
+  .pj-autocomplete-item {
+    cursor: pointer;
+
+
+    & .leftLabel {
+      font: map-get-ext($pj-autocomplete-item-font, $itemSize, leftLabel);
+    }
+
+    & .midLabel {
+      font: map-get-ext($pj-autocomplete-item-font, $itemSize, midLabel);
+    }
+
+    & .rightLabel {
+      font: map-get-ext($pj-autocomplete-item-font, $itemSize, rightLabel);
+    }
+
+    &:hover {
+      @include pjColorWithMapExt($pj-autocomplete-item-style, hover);
+    }
+
+    &.pressed {
+      @include pjColorWithMapExt($pj-autocomplete-item-style, pressed);
+    }
+
+    &.#{$itemSize} {
+      @include pjMeasurementWithMapExt($pj-autocomplete-item-measurement, $itemSize);
+      @include pjColorWithMapExt($pj-autocomplete-item-style, $itemSize);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div class="pj-model-text-value flex flex-col gap-2 justify-start">
+  <div class="flex flex-row items-center gap-3">
+    <pj-icon *ngIf="hasIcon()" class="icon" iconName="{{getIconName()}}"></pj-icon>
+    <div class="title">{{getTitle()}}</div>
+  </div>
+  <div class="flex flex-row items-center gap-2">
+    <pj-image *ngIf="hasImage()" class="image" [imageData]="{imageSrc:getImageName(),width:34,height:24,imageType:'rectangle'}"></pj-image>
+    <div class="title">{{getSubTitle()}}</div>
+  </div>
+  <div class="flex flex-col justify-start">
+    <div class="fieldValue" *ngFor="let v of getFieldValues()">{{v}}</div>
+  </div>
+</div>

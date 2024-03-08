@@ -1,0 +1,5 @@
+<div class="pj-button flex flex-row items-center justify-center gap-1" [ngClass]="getBtnClass()" pjPressable pjDefaultSize="md"
+  pjDefaultColor="neutral" (click)="onFavoriteBtnClick()">
+  <pj-icon class="icon" [ngClass]="getIconClass()" [iconName]="getIconName()"></pj-icon>
+  <div class="label" *ngIf="hasLabel()">{{ getLabel() }}</div>
+</div>

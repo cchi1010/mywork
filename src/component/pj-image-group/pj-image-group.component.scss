@@ -1,0 +1,28 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+.pj-image-group {
+  cursor: inherit;
+  width: 100%;
+  margin: 0 auto;
+  & .title {
+    width: 100%;
+    font: $pj-strong-2;
+    color: map-get($pj-primary, 800);
+  }
+  & .newGroup {
+    background-color: map-get($pj-primary, 50);
+    border-radius: 8px;
+  }
+  & .description {
+    width: 100%;
+    font: $pj-body-2;
+    color: map-get($pj-primary, 600);
+  }
+  &.focused {
+    border: 2px solid map-get($pj-secondary, 500);
+    background-color: map-get($pj-secondary, 50);
+    border-radius: 8px;
+  }
+}

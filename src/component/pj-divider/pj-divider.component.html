@@ -1,0 +1,6 @@
+<div *ngIf="!hasLabel()" class="pj-divider" [ngClass]="getDividerClass()" [ngStyle]="getDividerStyle()"></div>
+<div *ngIf="hasLabel()" class="flex items-center gap-2" [ngClass]="getDirectionClass()">
+  <div class="flex-grow pj-divider" [ngClass]="getDividerClass()" [ngStyle]="getDividerStyle()"></div>
+  <div class="label" [ngClass]="getDividerClass()">{{ label }}</div>
+  <div class="flex-grow pj-divider" [ngClass]="getDividerClass()" [ngStyle]="getDividerStyle()"></div>
+</div>

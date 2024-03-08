@@ -1,0 +1,63 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-modal-win-font: (
+  sm: $pj-h6,
+  lg: $pj-h6,
+);
+$pj-modal-win-measurement: (
+  sm: (
+    radius: 16px,
+    border: 1px,
+    title: (padding: 8px 8px 8px 16px),
+    content: (
+      padding: 0px 0px 0px 0px,
+    ),
+  ),
+  lg: (
+    radius: 16px,
+    border: 1px,
+    title: (padding: 8px 8px 8px 16px),
+    content: (
+      padding: 0px 0px 0px 0px,
+    ),
+  ),
+);
+$pj-modal-win-style: (
+  bg: $pj-white,
+  bd: map-get($pj-neutral, 100),
+  sdA: map-get($pj-neutral-shadow, 6a),
+  sdB: map-get($pj-neutral-shadow, 6b),
+  title: ( fg: map-get($pj-neutral, 800))
+);
+
+.closeBtn {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+}
+
+.pj-modal-win {
+  @include pjColorWithMapExt($pj-modal-win-style);
+  border-style: solid;
+  width: fit-content;
+  z-index: map-get($zIndex, modalWin);
+  & .title {
+    @include pjColorWithMapExt($pj-modal-win-style, title);
+  }
+  &.sm {
+    @include pjMeasurementWithMapExt($pj-modal-win-measurement, sm);
+    & .title {
+      @include pjMeasurementWithMapExt($pj-modal-win-measurement, sm, title);
+      font: map-get($pj-modal-win-font, sm);
+    }
+  }
+  &.lg {
+    @include pjMeasurementWithMapExt($pj-modal-win-measurement, lg);
+    & .title {
+      font: map-get($pj-modal-win-font, lg);
+      @include pjMeasurementWithMapExt($pj-modal-win-measurement, lg, title);
+    }
+  }
+}

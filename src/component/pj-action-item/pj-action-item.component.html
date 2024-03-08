@@ -1,0 +1,12 @@
+<div class="pj-action-item flex flex-row gap-5 items-center justify-between cursor-pointer" pjDefaultSize="lg"
+  pjPressable>
+  <div *ngIf="!hasDescription()">
+    <div class="label">{{ actionItemData?.label }}</div>
+  </div>
+  <div *ngIf="hasDescription()" class="flex flex-col justify-start">
+    <div class="label">{{ actionItemData?.label }}</div>
+    <div class="description">{{ actionItemData?.description }}</div>
+  </div>
+  <pj-button-inline pjColor="secondary" pjSize="lg" [rightIconName]="'chevron_right'"
+    [label]="actionItemData?.actionLabel || ''"></pj-button-inline>
+</div>

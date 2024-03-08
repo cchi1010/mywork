@@ -1,0 +1,61 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-text-item-font: (
+  title: $pj-strong-1,
+  description: $pj-body-2,
+);
+
+$pj-text-item-style: (
+  bg: $pj-white,
+  title: (
+    fg: map-get($pj-primary, 700),
+  ),
+  description: (
+    fg: map-get($pj-primary, 600),
+  ),
+  hover: (
+    bg: map-get($pj-primary, 50),
+    description: (
+      fg: map-get($pj-secondary, 500),
+    ),
+  ),
+  focused: (
+    bg: map-get($pj-secondary, 50),
+  ),
+  pressed: (
+    bg: map-get($pj-primary, 100),
+  ),
+);
+
+$pj-text-item-measurement: (
+  padding: 8px 12px 8px 12px,
+  radius: 8px,
+);
+
+.pj-text-item {
+  cursor: default;
+  @include pjMeasurementWithMapExt($pj-text-item-measurement);
+  @include pjColorWithMapExt($pj-text-item-style);
+  &:hover {
+    @include pjColorWithMapExt($pj-text-item-style, hover);
+  }
+  &.focused {
+    @include pjColorWithMapExt($pj-text-item-style, focused);
+    & .description {
+      @include pjColorWithMapExt($pj-text-item-style, hover, description);
+    }
+  }
+  & .title {
+    @include pjColorWithMapExt($pj-text-item-style, title);
+    font: map-get($pj-text-item-font, title);
+  }
+  & .description {
+    @include pjColorWithMapExt($pj-text-item-style, description);
+    font: map-get($pj-text-item-font, description);
+  }
+  &.pressed {
+    @include pjColorWithMapExt($pj-text-item-style, pressed);
+  }
+}

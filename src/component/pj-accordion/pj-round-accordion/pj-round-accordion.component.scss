@@ -1,0 +1,107 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-accordion-size: (lg, xl);
+
+$pj-accordion-part: (label, icon, description);
+
+$pj-accordion-font: (
+  label: (lg: $pj-label-lg,xl: $pj-label-xl),
+  description: (lg: $pj-body-2, xl: $pj-body-2),
+  icon: (lg: 20px,xl: 24px),
+);
+
+$pj-accordion-measurement: (
+  lg: (padding: 12px 12px 12px 16px,border: 1px,radius: 12px),
+  xl: (padding: 16px 16px 16px 16px,border: 1px,radius: 16px),
+  condensed: (
+    lg: (height: fit-content),
+    xl: (height: fit-content),
+  ),
+  content: (
+    lg: (padding: 8px 0 0 0),
+    xl: (padding: 8px 0 0 0),
+  ),
+  expandIcon: (
+    lg: (padding: 8px),
+    xl: (padding: 8px),
+  ),
+);
+
+$pj-accordion-style: (bg: $pj-white,
+  bd: map-get($pj-neutral, 100),
+  hover: (bd: map-get($pj-neutral, 50),
+    sdA: map-get($pj-neutral-shadow, 4a),
+    sdB: map-get($pj-neutral-shadow, 4b)
+  ),
+  label: (fg: map-get($pj-neutral, 800)),
+  description: (fg: map-get($pj-neutral, 400)),
+  icon: (fg: map-get($pj-primary, 800)),
+  expandIcon: (fg: map-get($pj-neutral, 800)),
+);
+
+.pj-accordion {
+  @include pjColorWithMapExt($pj-accordion-style);
+
+  & .label {
+    @include pjColorWithMapExt($pj-accordion-style, label);
+  }
+
+  & .description {
+    @include pjColorWithMapExt($pj-accordion-style, description);
+  }
+
+  & .icon {
+    @include pjColorWithMapExt($pj-accordion-style, icon);
+  }
+
+  & .expandIcon {
+    @include pjColorWithMapExt($pj-accordion-style, expandIcon);
+
+  }
+
+  & .content {
+    cursor: default;
+    height: auto;
+  }
+
+  & .title {
+    cursor: pointer;
+  }
+
+  &.titleHover {
+    @include pjColorWithMapExt($pj-accordion-style, hover);
+  }
+
+  @each $size in $pj-accordion-size {
+    &.#{$size} {
+      @include pjMeasurementWithMapExt($pj-accordion-measurement, $size);
+
+      & .icon {
+        font-size: map-get-ext($pj-accordion-font, icon, $size);
+      }
+
+      & .expandIcon {
+        font-size: map-get-ext($pj-accordion-font, icon, $size);
+        @include pjMeasurementWithMapExt($pj-accordion-measurement, expandIcon, $size);
+      }
+
+      & .label {
+        font: map-get-ext($pj-accordion-font, label, $size);
+      }
+
+      & .description {
+        font: map-get-ext($pj-accordion-font, description, $size);
+      }
+
+      &.condensed {
+        @include pjMeasurementWithMapExt($pj-accordion-measurement, condensed, $size);
+      }
+
+      & .content {
+        @include pjMeasurementWithMapExt($pj-accordion-measurement, content, $size);
+      }
+    }
+  }
+}

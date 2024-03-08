@@ -1,0 +1,28 @@
+<div class="pj-notification flex flex-col" pjDefaultColor="info">
+  <div class="flex flex-row items-center gap-2">
+    <pj-icon
+      *ngIf="hasIcon()"
+      class="flex-grow-0 icon"
+      [iconName]="iconName"
+    ></pj-icon>
+    <div class="flex-grow title">{{ title }}</div>
+    <pj-button-cta
+      btnType="text"
+      pjColor="secondary"
+      pjSize="lg"
+      *ngIf="hasAction()"
+      [label]="actionLabel"
+    >
+    </pj-button-cta>
+    <pj-icon class="closeIcon" [iconName]="'close'"></pj-icon>
+  </div>
+  <div *ngIf="hasDescription()" class="flex flex-row items-center gap-2">
+    <pj-icon
+      *ngIf="hasIcon()"
+      class="flex-grow-0 icon invisible"
+      [iconName]="iconName"
+    ></pj-icon>
+    <div class="description">{{ description }}</div>
+    <pj-icon class="closeIcon invisible" [iconName]="'close'"></pj-icon>
+  </div>
+</div>

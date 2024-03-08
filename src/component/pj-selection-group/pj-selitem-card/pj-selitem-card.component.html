@@ -1,0 +1,13 @@
+<div class="pj-selitem-stacked-card flex flex-col" [ngClass]="getSelectedClass()">
+  <div class="flex flex-row items-start justify-between mb-6">
+    <pj-image [imageData]="{
+        imageSrc: getImageSrc(),
+        width: 80,
+        height: 80,
+        imageType: 'rectangle'
+      }"></pj-image>
+    <pj-icon class="icon" *ngIf="isFocused()" [iconName]="getCheckedName()"></pj-icon>
+  </div>
+  <div class="title">{{ getTitle() }}</div>
+  <div class="description">{{ getDescription() }}</div>
+</div>

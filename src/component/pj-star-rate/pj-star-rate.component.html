@@ -1,0 +1,18 @@
+<div class="pj-star-rate flex flex-col gap-1" pjDefaultSize="sm">
+  <div class="title" *ngIf="hasTitle()">{{ getTitle() }}</div>
+  <div class="flex flex-row items-center gap-1">
+    <div class="flex flex-row items-center">
+      <pj-icon class="rate-star" [ngClass]="getEmptyClass()" [iconName]="getStar(1)" (click)="onClick(1)"></pj-icon>
+      <pj-icon class="rate-star" [ngClass]="getEmptyClass()" [iconName]="getStar(2)" (click)="onClick(2)"></pj-icon>
+      <pj-icon class="rate-star" [ngClass]="getEmptyClass()" [iconName]="getStar(3)" (click)="onClick(3)"></pj-icon>
+      <pj-icon class="rate-star" [ngClass]="getEmptyClass()" [iconName]="getStar(4)" (click)="onClick(4)"></pj-icon>
+      <pj-icon class="rate-star" [ngClass]="getEmptyClass()" [iconName]="getStar(5)" (click)="onClick(5)"></pj-icon>
+    </div>
+    <div class="label" *ngIf="hasLabel" [ngClass]="getFocusedClass()">{{ getLabel() }}</div>
+    <div class="subLabel" *ngIf="hasSubLabel()">{{ getSubLabel() }}</div>
+    <pj-link type="inline" pjSize="lg" pjColor="secondary" *ngIf="hasLinkLabel()" [label]="getLinkLabel()" (click)="onLinkClick()"></pj-link>
+  </div>
+  <div class="description" *ngIf="hasDescription()">
+    {{ getRateDescription() }}
+  </div>
+</div>

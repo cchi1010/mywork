@@ -1,0 +1,15 @@
+<div class="pj-selitem-stacked-card flex flex-row items-center gap-4" [ngClass]="getSelectedClass()" pjDefaultSize="md">
+  <pj-icon class="check-icon" [iconName]="getCheckedName()"></pj-icon>
+  <div class="flex-grow flex flex-col items-start">
+    <div *ngIf="hasSubTitle()" class="subTitle">{{getSubTitle()}}</div>
+    <div class="self-stretch flex flex-row items-center justify-between">
+      <div class="title">{{ getTitle() }}</div>
+      <div *ngIf="hasValue()" class="value">{{ getValue() }}</div>
+    </div>
+    <div class="description">{{ getDescription() }}</div>
+  </div>
+  <div *ngIf="hasImage() || hasIcon()" class="illustration">
+    <pj-icon class="icon" *ngIf="!hasImage() && hasIcon()" [iconName]="getIconName()"></pj-icon>
+    <pj-image *ngIf="hasImage() && !hasIcon()" [imageData]="getImageData()"></pj-image>
+  </div>
+</div>

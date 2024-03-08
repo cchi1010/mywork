@@ -1,0 +1,25 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-data-value-font: (
+  title: $pj-strong-2,
+  value: $pj-body-2,
+);
+$pj-data-value-style: (
+  title: (
+    fg: map-get($pj-primary, 600),
+  ),
+  value: (
+    fg: map-get($pj-primary, 700),
+  ),
+);
+
+.pj-data-value {
+  @each $part in (title, value) {
+    & .#{$part} {
+      font: map-get($pj-data-value-font, $part);
+      @include pjColorWithMapExt($pj-data-value-style, $part);
+    }
+  }
+}

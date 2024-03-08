@@ -1,0 +1,8 @@
+<div class="pj-navbar-group flex flex-col">
+  <div class="flex flex-row items-center mb-4">
+    <div class="label mr-2">{{groupData?.label}}</div>
+    <pj-icon class="icon" [ngClass]="groupData?.iconColorType || ''" [iconName]="groupData?.iconName">
+    </pj-icon>
+  </div>
+  <pj-navbar-item *ngFor="let item of groupData?.items" [item]="item" (click)="onItemClick(item)"></pj-navbar-item>
+</div>

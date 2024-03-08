@@ -1,0 +1,14 @@
+<pj-panel [padding]="32">
+    <div class="pj-security-question flex flex-col">
+      <div class="label mb-12">Reset my password</div>
+      <pj-text-entry class="mb-12" [entryConfig]="{label: getQuestion()}" pjSize="lg"></pj-text-entry>
+      <pj-button-cta class="mb-3" pjSize="lg" pjColor="secondary" [label]="'Continue to reset'"
+        (click)="onContinueResetBtnClick()">
+        </pj-button-cta>
+        <pj-button-cta class="mb-8" btnType="outlined" pjSize="lg" pjColor="secondary" [label]="'Change question'"
+          (click)="onChangeQuestionBtnClick()"></pj-button-cta>
+        <pj-button-cta btnType="outlined" pjColor="neutral" pjSize="lg" [leftIconName]="'keyboard_return'"
+          [label]="'Go back'" (click)="onGoBackBtnClick()"></pj-button-cta>
+    </div>
+  </pj-panel>
+  

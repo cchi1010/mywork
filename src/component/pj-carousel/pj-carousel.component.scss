@@ -1,0 +1,28 @@
+.mask {
+  position: absolute;
+  z-index: 5;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 178px;
+  background-size: contain;
+  background-repeat: repeat-y;
+  background-image: url("/assets/image/overlaygradientline.png");
+}
+.arrowGroup {
+  position: absolute;
+  z-index: 10;
+  right: 0px;
+}
+
+.nonLoopBackArrow {
+  position: absolute;
+  left: 0px;
+  z-index: 10;
+}
+
+.nonLoopForwardArrow {
+  position: absolute;
+  right: 0px;
+  z-index: 10;
+}

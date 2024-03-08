@@ -1,0 +1,8 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+.description {
+    font: $pj-body-2;
+    color: map-get($pj-primary, 500);
+}

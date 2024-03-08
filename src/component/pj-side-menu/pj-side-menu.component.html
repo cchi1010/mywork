@@ -1,0 +1,2 @@
+<pj-side-menu-item *ngFor="let item of items" [size]="size" [indentationLevel]="hasIcon()?-1:0"
+  [leaveIconRoom]="hasIcon()" [item]="item" (itemClick)="onItemClick($event)" [type]="type"></pj-side-menu-item>

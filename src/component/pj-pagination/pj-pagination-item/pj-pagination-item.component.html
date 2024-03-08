@@ -1,0 +1,5 @@
+<button class="pj-pagination-item inline-flex justify-center items-center {{focusedClass}}" [disabled]="disabled"
+  pjPressable>
+  <pj-icon class="icon" *ngIf="hasIcon()" [iconName]="iconName"></pj-icon>
+  <span *ngIf="hasLabel()">{{label}}</span>
+</button>

@@ -1,0 +1,101 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-field-value-size: (md, lg, xl);
+
+$pj-field-value-font: (
+  md: (
+    label: $pj-label-md,
+    value: $pj-small,
+  ),
+  lg: (
+    label: $pj-label-lg,
+    value: $pj-body-2,
+  ),
+  xl: (
+    label: $pj-label-xl,
+    value: $pj-body-1
+  ),
+  mixMode: (
+    md: (
+      label: $pj-label-sm,
+      value: $pj-small,
+    ),
+    lg: (
+      label: $pj-label-md,
+      value: $pj-body-2,
+    ),
+    xl: (
+      label: $pj-label-lg,
+      value: $pj-body-1,
+    ),
+  ),
+  sameFont: (
+    md: (
+      label: $pj-small,
+      value: $pj-small,
+    ),
+    lg: (
+      label: $pj-label-md,
+      value: $pj-label-md,
+    ),
+    xl: (
+      label: $pj-body-1,
+      value: $pj-body-1,
+    ),
+  ),
+);
+
+$pj-field-value-style: (
+  label: (
+    fg: map-get($pj-neutral, 800),
+  ),
+  value: (
+    fg: map-get($pj-neutral, 600),
+  ),
+);
+.pj-field-value {
+  cursor: default;
+}
+@each $size in $pj-field-value-size {
+  .pj-field-value.#{$size} {
+    &.vertical {
+      & .label {
+        font: map-get-ext($pj-field-value-font, $size, label);
+      }
+      & .value {
+        font: map-get-ext($pj-field-value-font, $size, value);
+      }
+    }
+    &.horizontal {
+      & .label {
+        font: map-get-ext($pj-field-value-font, $size, label);
+      }
+      & .value {
+        font: map-get-ext($pj-field-value-font, $size, value);
+      }
+    }
+  }
+  .pj-field-value.mixMode.#{$size} {
+    & .label {
+      font: map-get-ext($pj-field-value-font, mixMode, $size, label);
+    }
+    & .value {
+      font: map-get-ext($pj-field-value-font, mixMode, $size, value);
+    }
+  }
+  .pj-field-value.sameFont.#{$size} {
+    & .label {
+      font: map-get-ext($pj-field-value-font, sameFont, $size, label);
+    }
+    & .value {
+      font: map-get-ext($pj-field-value-font, sameFont, $size, value);
+    }
+  }
+}
+@each $part in (label, value) {
+  .pj-field-value .#{$part} {
+    @include pjColorWithMapExt($pj-field-value-style, $part);
+  }
+}

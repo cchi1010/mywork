@@ -1,0 +1,7 @@
+<div class="pj-search-result flex flex-row items-center gap-4" pjPressable>
+    <div class="flex-grow flex flex-col gap-1" [ngStyle]="getWithStyle()">
+        <div class="title truncate-text-line-2">{{getTitle()}}</div>
+        <div class="description truncate-text-line-3">{{getDescription()}}</div>
+    </div>
+    <pj-icon class="icon" iconName="launch"></pj-icon>
+</div>

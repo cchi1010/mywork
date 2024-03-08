@@ -1,0 +1,7 @@
+<div class="pj-tab-text-item flex flex-row gap-2 items-center" pjPressable pjDefaultSize="lg"
+  ngClass="{{ getFocusedClass() }}" (mouseover)="onMouseOverElm()" (mouseleave)="onMouseLeaveElm()">
+  <pj-icon class="icon" *ngIf="hasIcon()" [iconName]="getIconName()"></pj-icon>
+  <div class="title cursor-pointer">{{ getTabTitle() }}</div>
+  <pj-badge *ngIf="hasBadge()" pjColor="{{ getBadgeColor() }}" [label]="getBadgeLabel()" pjSize="{{ getBadgeSize() }}">
+  </pj-badge>
+</div>

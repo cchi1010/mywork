@@ -1,0 +1,29 @@
+<div class="self-start flex flex-col gap-2 mb-4">
+  <div class="title">{{getSigninTitle()}}</div>
+  <div class="flex flex-row items-center gap-2">
+    <div class="noaccount">Don’t have an account?</div>
+    <pj-button-inline btnType="text" pjColor="secondary" pjSize="lg" label="Sign up" (click)="onSignupBtnClick()">
+    </pj-button-inline>
+  </div>
+</div>
+<pj-text-entry class="flex-1 mb-4" pjSize="lg" [entryConfig]="{label: 'Email', focused: true, labelled: true}"
+  (enterKeyPressed)="onLoginBtnClick()" [formControl]="getEmailFormControl()"></pj-text-entry>
+<div *ngIf="isShownPasswordEntry()" class="relative">
+  <pj-button-inline pjColor="secondary" label="Forgot password" (click)="onForgetPasswordBtnClick()"
+    class="forgotPasswordPos"></pj-button-inline>
+  <pj-text-entry class="flex-1 mb-10"
+    [entryConfig]="{label: 'Password', labelled: true, focused: true, passwordEnabled: true, error: passwordError}"
+    pjSize="lg" [formControl]="getPasswordFormControl()">
+  </pj-text-entry>
+</div>
+<div class="flex flex-col gap-4 mt-8">
+  <pj-button-inline *ngIf="!isShownPasswordEntry()" pjColor="secondary" label="Forgot password"
+    (click)="onForgetPasswordBtnClick()"></pj-button-inline>
+  <pj-button-cta *ngIf="!isPasswordEntry()" class="flex-1" btnType="filled" pjColor="secondary" pjSize="lg"
+    [label]="getSigninBtnLabel()" (click)="onLoginBtnClick()"></pj-button-cta>
+  <pj-button-cta *ngIf="isPasswordEntry()" class="flex-1" btnType="filled" pjColor="secondary" pjSize="lg"
+    [label]="getSigninBtnLabel()" PjCaptcha (captchaChanged)="onLoginCaptchaChanged($event)"></pj-button-cta>
+  <pj-button-cta *ngIf="isShownPasswordEntry()" btnType="outlined" pjColor="neutral" pjSize="lg"
+    label="Email me sign-in link" PjCaptcha (captchaChanged)="onCaptchaChanged($event)"></pj-button-cta>
+</div>
+<pj-term-notice [brandLabel]="brandLabel" (actionEvent)="onTermNoticeAction($event)"></pj-term-notice>

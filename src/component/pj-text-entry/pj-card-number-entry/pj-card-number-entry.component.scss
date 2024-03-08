@@ -1,0 +1,39 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-card-number-entry-size: (md, lg, xl);
+
+$pj-card-number-entry-config: (
+    md: ( 
+        cardIcon: (top: 32px, left: 8px, fontSize: 24px, color: map-get($pj-neutral, 150)),
+        cardImage: (top: 32px, left: 8px)
+    ),
+    lg: ( 
+        cardIcon: (top: 36px, left: 12px, fontSize: 24px, color: map-get($pj-neutral, 150)),
+        cardImage: (top: 36px, left: 12px)
+    ),
+    xl: ( 
+        cardIcon: (top: 40px, left: 16px, fontSize: 32px, color: map-get($pj-neutral, 150)),
+        cardImage: (top: 44px, left: 16px)
+    ),
+);
+:host {
+    @each $size in $pj-card-number-entry-size {
+        &.#{$size} {
+            & .cardIcon {
+                position: absolute;
+                top: map-get-ext($pj-card-number-entry-config, $size, cardIcon, top);
+                left: map-get-ext($pj-card-number-entry-config, $size, cardIcon, left);
+                font-size: map-get-ext($pj-card-number-entry-config, $size, cardIcon, fontSize);;
+                color: map-get-ext($pj-card-number-entry-config, $size, cardIcon, color);
+            }
+        
+            & .cardImage {
+                position: absolute;
+                top: map-get-ext($pj-card-number-entry-config, $size, cardImage, top);
+                right: map-get-ext($pj-card-number-entry-config, $size, cardImage, left);
+            }
+        }
+    }
+}

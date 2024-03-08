@@ -1,0 +1,46 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-progress-status-font: (
+  label: $pj-label-lg,
+);
+
+$pj-progress-status-measurement: (
+  bar: (height: 10px,radius: 16px),
+  current: (height: 10px,radius: 16px, margin: -22px 0 0 0)
+);
+
+$pj-progress-status-style: (
+  bar: (
+    bg: map-get($pj-neutral, 50),
+  ),
+  current: (bg: map-get($pj-secondary, 500)),
+  label: (
+    fg: map-get($pj-neutral, 200),
+    current: (
+      fg: map-get($pj-neutral, 800),
+    ),
+  ),
+);
+
+.pj-progress-status {
+  & .bar {
+    @include pjColorWithMapExt($pj-progress-status-style, bar);
+    @include pjMeasurementWithMapExt($pj-progress-status-measurement, bar);
+  }
+
+  & .pj-progress-current {
+    @include pjColorWithMapExt($pj-progress-status-style, current);
+    @include pjMeasurementWithMapExt($pj-progress-status-measurement, current);
+  }
+
+  & .label {
+    font: map-get($pj-progress-status-font, label);
+    @include pjColorWithMapExt($pj-progress-status-style, label);
+  }
+
+  & .label.current {
+    @include pjColorWithMapExt($pj-progress-status-style, label, current);
+  }
+}

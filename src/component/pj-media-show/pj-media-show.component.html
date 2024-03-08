@@ -1,0 +1,15 @@
+<div #amMediaShowElm class="pj-media-show flex flex-col gap-4">
+  <pj-image *ngIf="hasCurrentMedia()" [imageData]="getCurrentMedia()" ></pj-image>
+  <div *ngIf="!hasNavigationButtons()" class="flex flex-row gap-4">
+    <pj-image *ngFor="let imageData of medias" [imageData]="getThumbnailData(imageData)" (click)="onThumbnailClick(imageData)"></pj-image>
+  </div>
+  <pj-carousel *ngIf="hasNavigationButtons()" [autoplay]="false" [loop]="false" (arrowBtnClick)="onArrowBtnClick($event)" [withMask]="false">
+    <ng-template swiperItem *ngFor="let imageData of medias">
+      <pj-image [imageData]="getThumbnailData(imageData)" (click)="onThumbnailClick(imageData)"></pj-image>
+    </ng-template>
+  </pj-carousel>
+  <div *ngIf="hasAction()" class="flex flex-row justify-start items-center space-x-4">
+    <pj-button-cta class="flex-1" *ngFor="let action of actions" btnType="filled" pjColor="neutral" pjSize="lg"
+      [label]="action.label" [leftIconName]="action.iconName"></pj-button-cta>
+  </div>
+</div>

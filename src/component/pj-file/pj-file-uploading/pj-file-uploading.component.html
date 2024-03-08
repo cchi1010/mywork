@@ -1,0 +1,5 @@
+<div class="pj-file-uploading" PjDragDropUpload (dropedFiles)="onFilesDroped($event)">
+  <ng-content></ng-content>
+  <input class="hidden" #fileElm type="file" [multiple]="isMultipleFileSupportted()" accept="{{ getFileType() }}"
+    (change)="onFilesSelected($event)" />
+</div>

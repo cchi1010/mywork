@@ -1,0 +1,22 @@
+<div class="flex flex-row items-center" pjDefaultSize="sm">
+  <pj-button-icon class="flex-grow-0 mr-4" btnType="filled" [iconName]="'arrow_back'" pjSize="{{ getBackBtnSize() }}"
+    pjColor="neutral" (click)="onbackBtnClick()" *ngIf="hasBackBtn()"></pj-button-icon>
+  <div class="pj-search-bar flex-grow flex flex-row items-center" [ngClass]="getFocusedClass()"
+    (click)="onInputFocus(inputElm)" [dropdownElm]="searchResult">
+    <input #inputElm style="width: 200px" class="inputArea flex-grow" [formControl]="inputContent" type="text"
+      placeholder="{{getPlaceHolder()}}" (focus)="onInputFocus(inputElm)" (focusout)="onInputFocuseOut()"
+      (keydown.enter)="onSearchBtnClick(inputElm)" (keydown.escape)="onEscapeKeydown()" />
+    <pj-button-icon class="flex-grow-0" class="mr-2" btnType="text" [iconName]="'cancel'" pjColor="neutral" pjSize="sm"
+      (click)="onClearBtnClick()" [ngClass]="getClearBtnClass()"></pj-button-icon>
+    <pj-button-icon class="flex-grow-0" btnType="filled" [iconName]="'search'" pjSize="{{ getBtnSize() }}"
+      pjColor="secondary" (click)="onSearchBtnClick(inputElm)"></pj-button-icon>
+  </div>
+  <pj-dropdown-box #searchResult [openable]="hasSearchResult()">
+    <div class="flex flex-col">
+      <pj-search-history (actionClick)="onKeywordRemoveBtnClick($event)" *ngIf="isForHistory()"></pj-search-history>
+      <pj-keyword [keyword]="getKeyword()" [candidatedWord]="word" *ngFor="let word of getCandidatedWords()"
+        (actionClick)="onKeywordRemoveBtnClick($event)" [forHistory]="isForHistory()">
+      </pj-keyword>
+    </div>
+  </pj-dropdown-box>
+</div>

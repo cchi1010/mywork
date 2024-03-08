@@ -1,0 +1,23 @@
+<div class="pj-image-manage relative" [ngClass]="getImageManagementClass()" (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()" [ngStyle]="getComponentStyle()">
+  <pj-image *ngIf="hasImage()" [imageData]="getImageData()">
+  </pj-image>
+  <div *ngIf="!hasImage()" class="centerbutton flex flex-col items-center place-content-center gap-1">
+    <pj-icon class="pendingIcon" [iconName]="'pending.outlined'"></pj-icon>
+    <div class="fileName">{{ label }}</div>
+  </div>
+  <pj-button-icon class="iconButton" *ngIf="hasAction1() && isCornerLocation()" btnType="elevated" pjColor="neutral"
+    [iconName]="getAction1IconName()" pjSize="lg" (click)="onAction1BtnClick()"></pj-button-icon>
+  <div *ngIf="showCenterActionButton()" class="centerbutton flex flex-col items-center place-content-center gap-1">
+    <pj-button-cta class="self-stretch" *ngIf="hasAction1()" [leftIconName]="getAction1IconName()"
+      [label]="getAction1Label()" pjColor="secondary" pjSize="lg" btnType="elevated" (click)="onAction1BtnClick()">
+    </pj-button-cta>
+    <pj-button-cta class="self-stretch" *ngIf="hasAction2()" [leftIconName]="getAction2IconName()"
+      [label]="getAction2Label()" pjColor="neutral" pjSize="lg" btnType="elevated" (click)="onAction2BtnClick()">
+    </pj-button-cta>
+  </div>
+  <div *ngIf="statusAdded" class="statusAddedLabel flex flex-row items-center" [ngClass]="getMask()">
+    <pj-icon style="font-size: 16px" [iconName]="'check'"></pj-icon>
+    <div>Added</div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-navbar-style: (
+    bg: $pj-white,
+    sdA: map-get($pj-primary-shadow, 6a),
+    sdB: map-get($pj-primary-shadow, 6b),
+    footer: (bg: map-get($pj-primary, 10)),
+);
+
+.pj-navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    z-index: map-get($zIndex, navbar);
+    @include pjColorWithMapExt($pj-navbar-style);
+}
+

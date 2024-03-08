@@ -1,0 +1,35 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-dlg-remove-font: (
+  title: $pj-strong-1,
+  description: $pj-body-2,
+);
+
+$pj-dlg-remove-measurement: (width: 460px, radius: 16px, padding: 16px, border: 1px);
+
+$pj-dlg-remove-style: (
+  bg: $pj-white, bd: map-get($pj-neutral, 100),
+  sdA: map-get($pj-neutral-shadow, 6a),
+  sdB: map-get($pj-neutral-shadow, 6b),
+  title: (
+    fg: map-get($pj-neutral, 800),
+  ),
+  description: (
+    fg: map-get($pj-neutral, 600),
+  ),
+);
+
+.pj-dlg-remove {
+  border-style: solid;
+  @include pjMeasurementWithMapExt($pj-dlg-remove-measurement);
+  @include pjColorWithMapExt($pj-dlg-remove-style);
+
+  @each $part in (title, description) {
+    & .#{$part} {
+      font: map-get($pj-dlg-remove-font, $part);
+      @include pjColorWithMapExt($pj-dlg-remove-style, $part);
+    }
+  }
+}

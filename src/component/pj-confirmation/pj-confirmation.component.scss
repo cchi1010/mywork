@@ -1,0 +1,44 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-confirmation-part: (title, description, email);
+
+$pj-confirmation-font: (
+  title: $pj-strong-2,
+  description: $pj-body-2,
+  email: $pj-strong-2,
+);
+
+$pj-confirmation-measurement: (
+  padding: 16px 32px 32px 32px,
+  radius: 16px,
+  border: 1px,
+);
+
+$pj-confirmation-style: (
+  bg: map-get($pj-success, 10),
+  bd: map-get($pj-success, 100),
+  title: (
+    fg: map-get($pj-success, 700),
+  ),
+  description: (
+    fg: map-get($pj-primary, 600),
+  ),
+  email: (
+    fg: map-get($pj-primary, 600),
+  ),
+);
+
+.pj-confirmation {
+  cursor: default;
+  border-style: solid;
+  @include pjMeasurementWithMapExt($pj-confirmation-measurement);
+  @include pjColorWithMapExt($pj-confirmation-style);
+  @each $part in $pj-confirmation-part {
+    & .#{$part} {
+      font: map-get($pj-confirmation-font, $part);
+      @include pjColorWithMapExt($pj-confirmation-style, $part);
+    }
+  }
+}

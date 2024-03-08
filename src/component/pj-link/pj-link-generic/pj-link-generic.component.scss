@@ -1,0 +1,48 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-link-generic-size: (md, lg, xl);
+$pj-link-generic-type: (body, label, strong);
+$pj-link-generic-font: (
+  body: (md: $pj-small,lg: $pj-body-2,xl: $pj-body-1),
+  label: (md: $pj-label-md,lg: $pj-label-lg,xl: $pj-label-xl),
+  strong: (md: $pj-strong-3,lg: $pj-strong-2,xl: $pj-strong-1),
+);
+$pj-link-generic-style: (
+  neutral: (fg: map-get($pj-neutral, 800), hover: (fg: map-get($pj-secondary, 600)), pressed: (fg: map-get($pj-secondary, 800))),
+  secondary: (fg: map-get($pj-secondary, 600), hover: (fg: map-get($pj-secondary, 800)), pressed: (fg: map-get($pj-secondary, 900))),
+);
+
+.pj-link-generic {
+  cursor: pointer;
+  @each $type in $pj-link-generic-type {
+    @each $size in $pj-link-generic-size {
+      &.#{$type}.#{$size} {
+        font: map-get-ext($pj-link-generic-font, $type, $size);
+      }
+    }
+  }
+
+  @each $color in (neutral, secondary) {
+    &.#{$color} {
+      @include pjColorWithMapExt($pj-link-generic-style, $color);
+      &:hover {
+        @include pjColorWithMapExt($pj-link-generic-style, $color, hover);
+      }
+      &.pressed {
+        @include pjColorWithMapExt($pj-link-generic-style, $color, pressed);
+      }
+    }
+  }
+
+  // color: map-get($pj-secondary, 600);
+  // &:hover {
+  //   // text-decoration: underline;
+  //   color: map-get($pj-secondary, 500);
+  // }
+  // &.pressed {
+  //   // text-decoration: underline;
+  //   color: map-get($pj-secondary, 800);
+  // }
+}

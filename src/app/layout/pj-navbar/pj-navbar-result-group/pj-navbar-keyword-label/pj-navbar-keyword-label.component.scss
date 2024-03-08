@@ -1,0 +1,63 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-navbar-keyword-label-size: (sm, lg);
+
+$pj-navbar-keyword-label-font: (
+    sm: (keyword: $pj-body-2, otherPart: $pj-label-lg),
+    lg: (keyword: $pj-h5, otherPart: $pj-h5),
+);
+
+$pj-navbar-keyword-label-measurement: (
+    height: 40px,
+    padding: 8px 12px 8px 16px,
+    radius: 40px,
+);
+
+$pj-navbar-keyword-label-style: (
+    keyword: (fg: map-get($pj-neutral, 400)),
+    otherPart: (fg: map-get($pj-neutral, 800)),
+    hover: (
+        bg: map-get($pj-neutral, 50),
+        keyword: (fg: map-get($pj-neutral, 400)),
+        otherPart: (fg: map-get($pj-neutral, 800)),
+    ),
+    pressed: (
+        bg: map-get($pj-neutral, 100),
+        keyword: (fg: map-get($pj-neutral, 400)),
+        otherPart: (fg: map-get($pj-neutral, 800)),
+    ),
+);
+
+.pj-navbar-keyword-label {
+    cursor: pointer;
+    @include pjMeasurementWithMapExt($pj-navbar-keyword-label-measurement);
+    @each $size in $pj-navbar-keyword-label-size {
+        &.#{$size} {
+            & .keyword {
+                font: map-get($pj-navbar-keyword-label-font, $size, keyword);
+            }
+            & .otherPart {
+                font: map-get($pj-navbar-keyword-label-font, $size, otherPart);
+            }
+        }
+    }
+    &:hover {
+        @include pjColorWithMapExt($pj-navbar-keyword-label-style, hover);
+    }
+    &.pressed {
+        @include pjColorWithMapExt($pj-navbar-keyword-label-style, pressed);
+    }
+    @each $part in (keyword, otherPart) {
+        & .#{$part} {
+            @include pjColorWithMapExt($pj-navbar-keyword-label-style, $part);
+        }
+        &:hover .#{$part}{
+            @include pjColorWithMapExt($pj-navbar-keyword-label-style, hover, $part);
+        }
+        &.pressed .#{$part}{
+            @include pjColorWithMapExt($pj-navbar-keyword-label-style, pressed, $part);
+        }
+    }
+}

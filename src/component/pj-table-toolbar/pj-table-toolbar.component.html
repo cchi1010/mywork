@@ -1,0 +1,24 @@
+<div>
+    <div class="flex flex-row items-center gap-4">
+        <!-- <pj-dropdown-action pjSize="md" class="flex-grow" [item]="{iconName: 'person', label: 'UserAccount Menu'}"
+        [menuItems]="getDropDownActionItems()" [disabled]="false">
+        </pj-dropdown-action> -->
+      
+        <pj-dropdown-option pjSize="md" [menuItems]="getStatusDropDownOptionItems()"></pj-dropdown-option>
+        <p class="filter-active">2 filters</p>
+        <pj-dropdown-option pjSize="md" [menuItems]="getDateDropDownOptionItems()"></pj-dropdown-option>
+        <p class="filter-inactive">0 filter</p>
+    
+    </div>
+    
+    <div class="flex flex-row items-center gap-4">
+
+        <p class="showing">Showing</p>
+        <pj-dropdown-option pjSize="md" [menuItems]="getShowingDropDownOptionItems()"></pj-dropdown-option>
+        
+        <pj-dropdown-option pjSize="md" [menuItems]="getDateDropDownOptionItems()"></pj-dropdown-option>
+        <p class="filter-inactive">0 filter</p>
+    
+    </div>
+</div>
+

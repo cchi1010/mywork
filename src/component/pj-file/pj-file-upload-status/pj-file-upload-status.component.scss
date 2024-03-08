@@ -1,0 +1,54 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-file-upload-status-font: (
+  fileName: $pj-label-lg,
+  progressLabel: $pj-body-2,
+);
+
+$pj-file-upload-status-style: (
+  icon: (
+    fg: map-get($pj-primary, 600),
+  ),
+  uploading: (
+    fileName: (
+      fg: map-get($pj-primary, 800),
+    ),
+    progressLabel: (
+      fg: map-get($pj-primary, 600),
+    ),
+  ),
+  uploaded: (
+    fileName: (
+      fg: map-get($pj-secondary, 600),
+    ),
+  ),
+);
+
+.pj-file-upload-status {
+  cursor: default;
+  & .fileName {
+    font: map-get($pj-file-upload-status-font, fileName);
+  }
+  & .progressLabel {
+    font: map-get($pj-file-upload-status-font, progressLabel);
+  }
+  &.uploading {
+    & .fileName {
+      @include pjColorWithMapExt($pj-file-upload-status-style, uploading, fileName);
+    }
+    & .progressLabel {
+      @include pjColorWithMapExt($pj-file-upload-status-style, uploading, progressLabel);
+    }
+  }
+  &.uploaded {
+    & .icon {
+      font-size: 20px;
+      @include pjColorWithMapExt($pj-file-upload-status-style, icon);
+    }
+    & .fileName {
+      @include pjColorWithMapExt($pj-file-upload-status-style, uploaded, fileName);
+    }
+  }
+}

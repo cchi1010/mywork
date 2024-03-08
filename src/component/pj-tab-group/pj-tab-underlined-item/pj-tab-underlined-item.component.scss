@@ -1,0 +1,103 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-tab-underline-item-size: (md, lg, xl);
+
+$pj-tab-underline-item-measurement: (
+  md: (
+    height: 32px,
+    border: 0 0 2px 0,
+  ),
+  lg: (
+    height: 40px,
+    border: 0 0 2px 0,
+  ),
+  xl: (
+    height: 48px,
+    border: 0 0 2px 0,
+  ),
+);
+
+$pj-tab-underline-item-font: (
+  md: (
+    title: $pj-label-lg,
+    icon: 16px,
+  ),
+  lg: (
+    title: $pj-label-lg,
+    icon: 18px,
+  ),
+  xl: (
+    title: $pj-label-xl,
+    icon: 18px,
+  ),
+);
+
+$pj-tab-underline-item-style: (
+  fg: map-get($pj-neutral, 400),
+  bd: $pj-white,
+  icon: (
+    fg: map-get($pj-neutral, 400),
+  ),
+  hover: (
+    fg: map-get($pj-neutral, 400),
+    bd: map-get($pj-neutral, 100),
+    icon: (
+      fg: map-get($pj-neutral, 400),
+    ),
+  ),
+  focused: (
+    fg: map-get($pj-secondary, 600),
+    bd: map-get($pj-secondary, 400),
+    icon: (
+      fg: map-get($pj-secondary, 600),
+    ),
+  ),
+  pressed: (
+    fg: map-get($pj-neutral, 600),
+    bd: map-get($pj-neutral, 150),
+    icon: (
+      fg: map-get($pj-neutral, 600),
+    ),
+  ),
+);
+
+.pj-tab-underline-item {
+  cursor: pointer;
+  border-bottom-style: solid;
+  @each $size in $pj-tab-underline-item-size {
+    &.#{$size} {
+      @include pjMeasurementWithMapExt($pj-tab-underline-item-measurement, $size);
+      & .title {
+        font: map-get-ext($pj-tab-underline-item-font, $size, title);
+      }
+      & .icon {
+        font-size: map-get-ext($pj-tab-underline-item-font, $size, icon);
+      }
+    }
+  }
+  @include pjColorWithMapExt($pj-tab-underline-item-style);
+  & .icon {
+    @include pjColorWithMapExt($pj-tab-underline-item-style, icon);
+  }
+  &:hover {
+    @include pjColorWithMapExt($pj-tab-underline-item-style, hover);
+    & .icon {
+      @include pjColorWithMapExt($pj-tab-underline-item-style, hover, icon);
+    }
+  }
+  &.focused {
+    pointer-events: none;
+    @include pjColorWithMapExt($pj-tab-underline-item-style, focused);
+    & .icon {
+      @include pjColorWithMapExt($pj-tab-underline-item-style, focused, icon);
+    }
+  }
+  &.pressed {
+    @include pjColorWithMapExt($pj-tab-underline-item-style, pressed);
+    & .icon {
+      @include pjColorWithMapExt($pj-tab-underline-item-style, pressed, icon);
+    }
+  }
+}

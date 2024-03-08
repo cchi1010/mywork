@@ -1,0 +1,21 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+.pj-navbar-group {
+    & .label {
+        font: $pj-h5;
+        color: map-get($pj-neutral, 800);
+        padding: 0 0 0 16px;
+    }
+    & .icon {
+        font-size: 24px;
+    }
+    & .icon.brand {
+        color: map-get($pj-brand, 500);
+    }
+    & .icon.secondary {
+        color: map-get($pj-secondary, 500);
+    }
+}
+

@@ -1,0 +1,6 @@
+<div *ngIf="opened" class="pj-side-panel-background" (click)="onBackgroundClick()" pjModalBg [@bgStates]="getBgState()">
+</div>
+<div *ngIf="isRightToLeftPanel()" class="pj-side-panel" [ngClass]="getSidePanelClass()"
+  [@rightSideOpenClose]="{ value: '', params: { left: calcLeftPosition() } }">
+  <ng-content></ng-content>
+</div>

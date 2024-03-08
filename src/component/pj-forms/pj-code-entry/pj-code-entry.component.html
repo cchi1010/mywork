@@ -1,0 +1,15 @@
+<div class="title mb-3">Continue sign-in</div>
+<div class="loginEmail">{{loginEmail}}</div>
+
+<pj-button-inline class="self-center" pjColor="secondary" pjSize="lg" [label]="'Not you? Switch email'"
+  (click)="onChangeEmailBtnClick()"></pj-button-inline>
+<pj-button-cta class="flex-1 self-center mb-10" btnType="outlined" pjColor="neutral" pjSize="lg"
+  [label]="'Login with password'" (click)="onPasswordVerificationBtnClick()"></pj-button-cta>
+<pj-codebox class="self-center" #codeboxElm></pj-codebox>
+<div class="self-center messageSentNotice">We’ve sent a 6-digit verification code to your email</div>
+<pj-button-cta class="self-center mb-10" btnType="outlined" pjColor="neutral" pjSize="lg" PjCountdown [countTotal]="60"
+  [label]="getCountdownLabel()" [disabled]="isResendDisabled()" (click)="onResendCodeBtnClick()">
+</pj-button-cta>
+<pj-button-cta class="flex-1  mb-3" btnType="filled" pjColor="secondary" pjSize="lg" [label]="'Log into my account'"
+  (click)="onLoginBntClick(codeboxElm.charValues)"></pj-button-cta>
+<pj-term-notice [brandLabel]="brandLabel" (actionEvent)="onTermNoticeAction($event)"></pj-term-notice>

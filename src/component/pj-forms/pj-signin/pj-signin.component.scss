@@ -1,0 +1,41 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-signin-part: (title, noaccount);
+$pj-signin-font: (
+    title: $pj-h4,
+    noaccount: $pj-body-2,
+);
+$pj-signin-measurement: (
+    width: 400px,
+    padding: 32px,
+    radius: 12px,
+    border: 1px,
+);
+$pj-signin-style: (
+    bg: $pj-white,
+    bd: map-get($pj-neutral, 50),
+    sdA: map-get($pj-neutral-shadow, 4a),
+    sdB: map-get($pj-neutral-shadow, 4b),
+    title: (fg: map-get($pj-secondary, 900)),
+    noaccount: (fg: map-get($pj-secondary, 900)),
+);
+
+.forgotPasswordPos {
+  position: absolute;
+  right: 0px;
+}
+
+:host {
+    border-style: solid;
+    @include pjMeasurementWithMapExt($pj-signin-measurement);
+    @include pjColorWithMapExt($pj-signin-style);
+
+    @each $part in $pj-signin-part {
+        & .#{$part} {
+            font: map-get($pj-signin-font, $part);
+            @include pjColorWithMapExt($pj-signin-style, $part);
+        }
+    }
+}

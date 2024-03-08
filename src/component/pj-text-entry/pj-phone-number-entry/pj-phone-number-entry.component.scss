@@ -1,0 +1,269 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-phone-entry-size: (md, lg, xl);
+
+$pj-phone-entry-font: (
+  inputArea: $pj-label-lg,
+  placeholder: $pj-label-lg,
+  assistiveText: $pj-small,
+  label: $pj-body-2,
+  leftPerfixSign:$pj-body-2,
+);
+
+$pj-phone-entry-measurement: (
+  md: (height: 32px,
+    padding: 4px 8px 4px 8px,
+    border: 1px,
+    assistiveText: 8px,
+    radius: 6px,
+    leftType:(radius: 0px 6px 6px 0px),
+    leftPerfixSign:(height: 32px,
+      border:1px 0px 1px 1px,
+      radius:6px 0px 0px 6px,
+      padding: 3px 8px 3px 8px,
+    ),
+  ),
+  lg: (height: 40px,
+    padding: 8px 12px 8px 12px,
+    border: 1px,
+    assistiveText: 12px,
+    radius: 8px,
+    leftType:(radius: 0px 8px 8px 0px),
+    leftPerfixSign:(height: 40px,
+      border:1px 0px 1px 1px,
+      radius:8px 0px 0px 8px,
+      padding: 7px 12px 7px 12px,
+    ),
+  ),
+  xl: (height: 56px,
+    padding: 12px 16px 12px 16px,
+    border: 1px,
+    assistiveText: 16px,
+    radius: 10px,
+    leftType:(radius: 0px 10px 10px 0px),
+    leftPerfixSign:(height: 56px,
+      border:1px 0px 1px 1px,
+      radius:10px 0px 0px 10px,
+      padding: 15px 16px 15px 16px,
+    ),
+
+  ),
+);
+
+$pj-phone-entry-style:(
+    icon: map-get($pj-error, 500),  
+    normal: (bg: $pj-white,
+    bd: map-get($pj-neutral, 100),
+    sdA: map-get($pj-neutral-shadow, 1a),
+    sdB: map-get($pj-neutral-shadow, 1b),
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    inputArea: (fg: map-get($pj-neutral, 800),
+    ),
+    leftPerfixSign:(fg:map-get($pj-neutral, 400),
+      bg:$pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b)),
+    placeholder: (bg: $pj-white,
+      fg: map-get($pj-neutral, 200),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+    focused: (bg: $pj-white,
+      bd: map-get($pj-secondary, 500),
+      sdA: $pj-input-shadow,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 400),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    filled: (bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    error: (bg: map-get($pj-error, 10),
+      bd: map-get($pj-error, 500),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      inputArea: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      placeholder: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      assistiveText: (fg: map-get($pj-error, 600),
+      ),
+    ),
+    disabled: (bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: none,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+  ),
+);
+
+
+
+.inputArea {
+  width: 100%;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: default;
+  color: map-get($pj-phone-entry-style, icon);
+}
+
+.showPasswordIcon {
+  font-size: 20px;
+  color: map-get($pj-neutral, 200);
+  cursor: pointer;
+}
+
+.label {
+  @include pjColorWithMapExt($pj-phone-entry-style, label);
+
+  @each $status in (filled, error, focused, disabled) {
+    &.#{$status} {
+      @include pjColorWithMapExt($pj-phone-entry-style, $status, label);
+    }
+  }
+}
+
+@each $textEntryType in (normal) {
+  .pj-phone-entry {
+    border-style: solid;
+    &.disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    @each $part in (leftPerfixSign) {
+      & .#{$part} {
+
+        @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, $part);
+      }
+    }
+  }
+
+  .assistiveText {
+    pointer-events: none;
+    @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, assistiveText);
+  
+    @each $status in (filled, error, focused, disabled) {
+      &.#{$status} {
+        @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, $status, assistiveText);
+      }
+    }
+  }
+
+  .pj-phone-entry-box.#{$textEntryType} {
+    border-style: solid;
+    cursor: text;
+
+    & input:focus {
+      outline: none;
+    }
+
+    &.notInput {
+      border: 1px solid map-get($pj-error, 300);
+    }
+
+    @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType);
+
+    @each $part in (inputArea) {
+      & .#{$part} {
+        @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, $part);
+      }
+    }
+
+    & input::placeholder {
+      @include pjColorWithMapExt($pj-phone-entry-style, placeholder);
+    }
+    &:hover{
+      @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, hover);
+    }
+    @each $status in (filled, error, focused, disabled) {
+      &.#{$status} {
+        @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, $status);
+
+        @each $part in (inputArea) {
+          & .#{$part} {
+            @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, $status, $part);
+          }
+        }
+
+        & input::placeholder {
+          @include pjColorWithMapExt($pj-phone-entry-style, $textEntryType, $status, placeholder);
+        }
+      }
+    }
+
+  }
+}
+
+
+@each $part in (inputArea, label, assistiveText, leftPerfixSign) {
+  .pj-phone-entry {
+    & .#{$part} {
+      font: map-get($pj-phone-entry-font, $part);
+    }
+
+    & input::placeholder {
+      font: map-get($pj-phone-entry-font, placeholder);
+    }
+  }
+}
+
+@each $size in $pj-phone-entry-size {
+  .pj-phone-entry.#{$size} {
+    & .pj-phone-entry-box {
+      @include pjMeasurementWithMapExt($pj-phone-entry-measurement, $size);
+
+      @each $type in (leftType) {
+        &.#{$type} {
+          @include pjMeasurementWithMapExt($pj-phone-entry-measurement, $size, $type);
+        }
+      }
+    }
+
+    @each $part in (leftPerfixSign) {
+      & .#{$part} {
+        @include pjMeasurementWithMapExt($pj-phone-entry-measurement, $size, $part);
+      }
+    }
+  }
+
+  .assistiveText.#{$size} {
+    padding-left: map-get-ext($pj-phone-entry-measurement, $size, assistiveText);
+  }
+}
+

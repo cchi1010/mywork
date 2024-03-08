@@ -1,0 +1,7 @@
+<div class="pj-autocomplete-group flex flex-col" pjPressable pjDefaultSize="md" pjDefaultColor="primary">
+  <pj-search-bar pjSize="md" (actionClick)="onSearchBarActionClick($event)"></pj-search-bar>
+  <pj-autocomplete [open]="isOpen()" [searchItem]="getSearchItem()" [resultItems]="getResults()"
+    [shopItem]="getShopItem()" [upperLabel]="getUpperLabel()" [divided]="hasDivider()" [lowerLabel]="getLowerLabel()">
+  </pj-autocomplete>
+
+</div>

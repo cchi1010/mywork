@@ -1,0 +1,41 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+.pj-side-collapsible {
+  &.full {
+    & .label {
+      display: block;
+    }
+    & .closeBtn {
+      display: block;
+    }
+    & .sidebarContent {
+      display: block;
+      min-height: calc(100vh - 72px - 64px - 56px);
+      max-height: calc(100vh - 72px - 64px - 56px);
+    }
+  }
+  &.condensed {
+    & .label {
+      display: none;
+    }
+    & .closeBtn {
+      display: none;
+    }
+    & .sidebarContent {
+      display: none;
+    }
+  }
+  & .label {
+    font: $pj-h5;
+    color: map-get($pj-primary, 800);
+  }
+  padding: 8px;
+  border-radius: 0 4px 4px 0;
+  box-shadow: map-get($pj-primary-shadow, 2a), map-get($pj-primary-shadow, 2b);
+  min-height: calc(100vh - 72px - 64px);
+  max-height: calc(100vh - 72px - 64px);
+  margin-bottom: 8px;
+  background-color: $pj-white;
+}

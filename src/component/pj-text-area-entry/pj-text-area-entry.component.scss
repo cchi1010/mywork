@@ -1,0 +1,98 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-text-area-entry-font: (label: $pj-body-2, inputArea: $pj-label-lg);
+
+$pj-text-area-entry-measurement: (
+  width: 100%,
+  radius: 8px,
+  border: 1px,
+  padding: 8px 12px 8px 8px,
+  margin: 0px 12px 0px 0px,
+);
+
+$pj-text-area-entry-style: (
+  placeholder: ( fg: map-get($pj-neutral, 200)),
+  label: (
+    fg: map-get($pj-neutral, 800),
+    error: (
+      fg: map-get($pj-error, 800)
+    ),
+    disabled: (
+      fg: map-get($pj-neutral, 100)
+    )
+  ),
+  inputArea: (
+    bg: $pj-white,
+    fg: map-get($pj-neutral, 800),
+    bd: map-get($pj-neutral, 100),
+    sdA: map-get($pj-neutral-shadow, 1a),
+    sdB: map-get($pj-neutral-shadow, 1b),
+    focused: (
+      bd: map-get($pj-secondary, 500),
+      sdA: $pj-input-shadow,
+    ),
+    error: (
+      fg: map-get($pj-error, 800),
+      bd: map-get($pj-error, 500),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+    ),
+    disabled: (
+      fg: map-get($pj-neutral, 100),
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+    )
+  ),
+);
+
+.pj-text-area-entry {
+  & textarea:focus {
+    outline: none;
+  }
+
+  & .label {
+    @include pjColorWithMapExt($pj-text-area-entry-style, label);
+    font: map-get($pj-text-area-entry-font, label);
+    &.error {
+      @include pjColorWithMapExt($pj-text-area-entry-style, label, error);
+    }
+
+    &.disabled {
+      pointer-events: none;
+      @include pjColorWithMapExt($pj-text-area-entry-style, label, disabled);
+    }
+  }
+
+  & .inputArea {
+    @include pjColorWithMapExt($pj-text-area-entry-style, inputArea);
+    font: map-get($pj-text-area-entry-font, inputArea);
+    border-style: solid;
+    @include pjMeasurementWithMapExt($pj-text-area-entry-measurement);
+
+    &::placeholder {
+      font: map-get($pj-text-area-entry-font, placeholder);
+      @include pjColorWithMapExt($pj-text-area-entry-style, placeholder);
+    }
+    &.focused {
+      @include pjColorWithMapExt($pj-text-area-entry-style, inputArea, focused);
+    }
+
+    &.error {
+      @include pjColorWithMapExt($pj-text-area-entry-style, inputArea, error);
+    }
+
+    &.disabled {
+      pointer-events: none;
+      @include pjColorWithMapExt($pj-text-area-entry-style, inputArea, disabled);
+    }
+  }
+
+  & .charLeft {
+    font: $pj-label-md;
+    color: map-get($pj-primary, 600);
+    padding: 0px 4px 0px 0px;
+  }
+}

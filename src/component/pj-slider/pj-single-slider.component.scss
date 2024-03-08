@@ -1,0 +1,80 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-slider-measurement: (
+  height: 24px,
+  thumb: (width: 20px, height: 20px, radius: 20px, margin: -4px 0 4px 0),
+  track: (width: 100%, height: 12px, radius: 10px),
+  valueLabel: (height: 24px, radius: 8px, padding: 3px 4px 3px 4px),
+);
+$pj-slider-font :( valueRange: $pj-label-lg, valueLabel: $pj-label-md );
+$pj-slider-style:(
+  valueRange: (fg: map-get($pj-neutral, 600)),
+  valueLabel: (fg: $pj-white, bg: map-get($pj-neutral, 800)),
+  thumb: (
+    bg: $pj-white,
+    sdA: map-get($pj-neutral-shadow, 4a),
+    sdB: map-get($pj-neutral-shadow, 4b),
+    hover: (bg: map-get($pj-secondary, 500)),
+    pressed: (bg: map-get($pj-secondary, 700)),
+  ),
+  track: (bg: map-get($pj-neutral, 50)),
+  progress: (
+    bg: map-get($pj-secondary, 300),
+  ),
+);
+
+.pj-slider {
+  cursor: default;
+  & .valueRange {
+    font: map-get($pj-slider-font, valueRange);
+    @include pjColorWithMapExt($pj-slider-style, valueRange);
+  }
+  & .valueLabel {
+    position: relative;
+    left: var(--labelLoc);
+    font: map-get($pj-slider-font, valueLabel);
+    min-width: 40px;
+    width: fit-content;
+    @include pjMeasurementWithMapExt($pj-slider-measurement, valueLabel);
+    @include pjColorWithMapExt($pj-slider-style, valueLabel);
+  }
+
+  & .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  & .slider::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+  }
+
+  & .slider {
+    --range: calc(var(--max) - var(--min));
+    --ratio: calc((var(--value) - var(--min)) / var(--range));
+    --sx: calc(0.5 * 32px + var(--ratio) * (100% - 32px));
+    @include pjMeasurementWithMapExt($pj-slider-measurement);
+  }
+
+  @each $browserFlag in (webkit-slider, moz-range, ms) {
+    & .slider::-#{$browserFlag}-thumb {
+      cursor: pointer;
+      @include pjMeasurementWithMapExt($pj-slider-measurement, thumb);
+      @include pjColorWithMapExt($pj-slider-style, thumb);
+    }
+    & .slider:hover::-#{$browserFlag}-thumb {
+      @include pjColorWithMapExt($pj-slider-style, thumb, hover);
+    }
+    & .slider.pressed::-#{$browserFlag}-thumb {
+      @include pjColorWithMapExt($pj-slider-style, thumb, pressed);
+    }
+  }
+  @each $browserFlag in (webkit-slider-runnable, moz-range, ms) {
+    & .slider::-#{$browserFlag}-track {
+      // transition: all .2s ease;
+      @include pjMeasurementWithMapExt($pj-slider-measurement, track);
+      background: linear-gradient(map-get-ext($pj-slider-style, progress, bg), 
+        map-get-ext($pj-slider-style, progress, bg)) 0/var(--sx) 100% no-repeat, 
+        map-get-ext($pj-slider-style, track, bg);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<div class="pj-arrow-group flex flex-row items-center">
+  <pj-button-icon [ngStyle]="getSpaceStyle()" [btnType]="getBtnType()" pjColor="neutral" pjSize="{{ getBtnSize() }}"
+    [iconName]="'arrow_back'" (click)="onLeftBtnClick()" [disabled]="isBackwardDisabled()"></pj-button-icon>
+  <pj-button-icon [btnType]="getBtnType()" pjColor="neutral" pjSize="{{ getBtnSize() }}" [iconName]="'arrow_forward'"
+    (click)="onRightBtnClick()" [disabled]="isForwardDisabled()"></pj-button-icon>
+</div>

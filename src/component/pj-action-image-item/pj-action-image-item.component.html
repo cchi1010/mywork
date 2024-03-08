@@ -1,0 +1,20 @@
+<div class="pj-action-item flex flex-row items-center justify-between cursor-pointer" pjDefaultSize="lg" pjPressable 
+[ngClass]="getDisabledClass()">
+  <div class="flex flex-row items-center">
+    <div class="iconImage mr-4">
+      <pj-icon class="icon" *ngIf="!hasImage() && hasIcon()" [iconName]="getIconName()"></pj-icon>
+      <pj-image *ngIf="hasImage() && !hasIcon()" [imageData]="getImageData()"></pj-image>
+    </div>
+    <div class="flex flex-col justify-center">
+      <div *ngIf="!hasDescription()">
+        <div class="title">{{ actionItemData?.label }}</div>
+      </div>
+      <div *ngIf="hasDescription()">
+        <div class="label">{{ actionItemData?.label }}</div>
+        <div class="description flex flex-col justify-center">
+          {{ actionItemData?.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

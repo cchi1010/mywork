@@ -1,0 +1,27 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-model-text-value-font: (
+    icon: 24px,
+    title: $pj-label-lg,
+    fieldValue: $pj-body-2,
+);
+$pj-model-text-value-style: (
+    icon: (fg: map-get($pj-neutral, 800)),
+    title: (fg: map-get($pj-neutral, 800)),
+    fieldValue: (fg: map-get($pj-neutral, 600)),
+);
+
+.pj-model-text-value {
+    & .icon {
+        font-size: map-get($pj-model-text-value-font, icon);
+        @include pjColorWithMapExt($pj-model-text-value-style, icon);
+    }
+    @each $part in (title, fieldValue) {
+        & .#{$part} {
+            font: map-get($pj-model-text-value-font, $part);
+            @include pjColorWithMapExt($pj-model-text-value-style, $part);
+        }
+    }
+}

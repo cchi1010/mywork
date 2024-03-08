@@ -1,0 +1,24 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-file-info-item-font: (fileName: $pj-label-lg, fileDesc: $pj-small, fileSize: $pj-small);
+
+$pj-file-info-item-measurement: (height: 48px, padding: 0px);
+
+$pj-file-info-item-style: (
+  fileName: (fg: map-get($pj-neutral, 800)),
+  fileDesc: (fg: map-get($pj-neutral, 400)),
+  fileSize: (fg: map-get($pj-neutral, 400))
+);
+
+:host {
+  @include pjMeasurementWithMapExt($pj-file-info-item-measurement);
+
+  @each $part in (fileName, fileDesc, fileSize) {
+    & .#{$part} {
+      font: map-get-ext($pj-file-info-item-font, $part);
+      @include pjColorWithMapExt($pj-file-info-item-style, $part);
+    }
+  }
+}

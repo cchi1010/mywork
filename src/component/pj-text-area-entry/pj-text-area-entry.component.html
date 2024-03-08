@@ -1,0 +1,9 @@
+<div class="pj-text-area-entry flex flex-col gap-1">
+  <div *ngIf="hasLabel(inputElm)" class="label" [ngClass]="getTextClass()">
+    {{ getLabel() }}
+  </div>
+  <textarea #inputElm class="inputArea" [ngClass]="getInputAreaClass()" [ngStyle]="getTextAreaStyle()" maxlength="{{maxLength}}"
+    [formControl]="inputContent" (focus)="onFocus()" value="{{defaultValue}}" (blur)="onUnfocus()"
+    [placeholder]="placeholder"></textarea>
+  <div class="self-end charLeft">{{getCharLeft()}}</div>
+</div>

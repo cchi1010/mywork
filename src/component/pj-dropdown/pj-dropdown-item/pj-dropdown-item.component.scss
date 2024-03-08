@@ -1,0 +1,151 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-dropdown-menu-item-size: (md, lg, xl);
+
+$pj-dropdown-menu-item-font: (
+  label: (
+    md: $pj-label-md,
+    lg: $pj-label-lg,
+    xl: $pj-label-xl,
+  ),
+  description: (
+    md: $pj-tiny,
+    lg: $pj-small,
+    xl: $pj-body-2,
+  ),
+);
+
+$pj-dropdown-menu-item-icon-size: (
+  md: 16px,
+  lg: 18px,
+  xl: 20px,
+);
+
+$pj-dropdown-menu-item-measurement: (
+  md: (
+    radius: 8px,
+    padding: 8px,
+    image: (
+      width: 18px,
+      height: 14px,
+    ),
+  ),
+  lg: (
+    radius: 8px,
+    padding: 8px,
+    image: (
+      width: 20px,
+      height: 16px,
+    ),
+  ),
+  xl: (
+    radius: 8px,
+    padding: 12px,
+    image: (
+      width: 24px,
+      height: 18px,
+    ),
+  ),
+);
+
+$pj-dropdown-menu-item-style: (
+  bg: $pj-white,
+  icon: (
+    fg: map-get($pj-neutral, 400),
+  ),
+  label: (
+    fg: map-get($pj-neutral, 800),
+  ),
+  description: (
+    fg: map-get($pj-neutral, 600),
+  ),
+  hover: (
+    fg: map-get($pj-secondary, 600),
+    bg: map-get($pj-secondary, 50),
+  ),
+  pressed: (
+    fg: map-get($pj-secondary, 600),
+    bg: map-get($pj-secondary, 100),
+  ),
+  disabled: (
+    fg: map-get($pj-neutral, 200),
+    bg: $pj-white,
+  ),
+);
+
+.pj-dropdown-item {
+  cursor: pointer;
+  @include pjColorWithMapExt($pj-dropdown-menu-item-style);
+  & .label {
+    @include pjColorWithMapExt($pj-dropdown-menu-item-style, label);
+  }
+  & .icon {
+    @include pjColorWithMapExt($pj-dropdown-menu-item-style, icon);
+  }
+  & .description {
+    @include pjColorWithMapExt($pj-dropdown-menu-item-style, description);
+  }
+  &:hover {
+    @include pjColorWithMapExt($pj-dropdown-menu-item-style, hover);
+    & .label {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, hover);
+    }
+    & .icon {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, hover);
+    }
+    & .description {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, hover);
+    }
+  }
+  &.pressed {
+    @include pjColorWithMapExt($pj-dropdown-menu-item-style, pressed);
+    & .label {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, pressed);
+    }
+    & .icon {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, pressed);
+    }
+    & .description {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, pressed);
+    }
+  }
+  &.disabled {
+    @include pjColorWithMapExt($pj-dropdown-menu-item-style, disabled);
+    & .label {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, disabled);
+    }
+    & .icon {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, disabled);
+    }
+    & .description {
+      @include pjColorWithMapExt($pj-dropdown-menu-item-style, disabled);
+    }
+  }
+}
+@each $size in $pj-dropdown-menu-item-size {
+  .pj-dropdown-item {
+    &.#{$size} {
+      @include pjMeasurementWithMapExt($pj-dropdown-menu-item-measurement, $size);
+      & .label {
+        font: map-get-ext($pj-dropdown-menu-item-font, label, $size);
+      }
+      & .description {
+        font: map-get-ext($pj-dropdown-menu-item-font, description, $size);
+      }
+      & .icon {
+        font-size: map-get($pj-dropdown-menu-item-icon-size, $size);
+      }
+      // & .labelOnly {
+      //   @include pjMeasurementWithMapExt($pj-dropdown-menu-item-measurement, $size, labelOnly);
+      // }
+      // & .withDescription {
+      //   @include pjMeasurementWithMapExt($pj-dropdown-menu-item-measurement,$size,withDescription);
+      // }
+      & .image {
+        @include pjMeasurementWithMapExt($pj-dropdown-menu-item-measurement, $size, image);
+      }
+    }
+  }
+}

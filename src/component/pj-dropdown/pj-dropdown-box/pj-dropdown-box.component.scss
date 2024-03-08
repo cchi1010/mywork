@@ -1,0 +1,29 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+.pj-dropdown-box {
+  position: absolute;
+  z-index: map-get($zIndex, dropdown);
+  min-width: 240px;
+  margin-top: 4px;
+  border-radius: 16px;
+  background-color: $pj-white;
+  &.border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: map-get($pj-neutral, 100);
+  }
+  &.padding {
+    padding: 8px;
+  }
+  box-shadow: map-get($pj-neutral-shadow, 4a), map-get($pj-neutral-shadow, 4b);
+  &.left {
+    left: 0;
+    right: auto;
+  }
+  &.right {
+    left: auto;
+    right: 0;
+  }
+}

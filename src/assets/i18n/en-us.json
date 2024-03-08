@@ -1,0 +1,50 @@
+{
+  "app": {
+    "browserTitle": "AmMall",
+    "appName": "AmMall",
+    "and": "and",
+    "or": "OR",
+    "btn": {
+        "help": "need help?"
+    }
+  },
+  "buyer": {
+    "btn": {
+      "signup": "Sign up",
+      "notyou": "Not you? Switch account",
+      "login": "Log into my account",
+      "resend": "Resend",
+      "withemailverification": "Login with email verification",
+      "withpassword": "Login with password",
+      "forgotpassword": "For got password",
+      "loginwithgoogle": "Continue with Google",
+      "loginwithapple": "Continue with Apple"
+    },
+    "link": {
+      "term": "Condition of Use",
+      "privacynotice": "Privacy Notice"
+    },
+    "text": {
+      "login.username.title": "Sign in to continue",
+      "login.password.title": "Continue Sign-In",
+      "login.verify.title": "Protect your account",
+      "login.verify.reason": "Looks like you've logged in from a new device/address {device}, we've sent a 6-digit code to your email",
+      "login.verify.ignore": "Do not require verification on this device", 
+      "login.password.keep": "Keep me logged in",
+      "login.noaccount": "Don't have an account?",
+      "login.notice": "By continuing, you agree to AmMall's",
+      "login.code.desc": "We've sent you a 6-digit verification code to your email",
+      "register": "",
+      "reset-password":""
+    }
+  },
+  "http": {
+    "3XX": "You have communication problem with server, should contact the IT department.",
+    "401": "Please login again to access system.",
+    "403": "You are not allowed to access this.",
+    "404": "Can not find this resource.",
+    "4XX": "You encounter issues, mostly because your action is not matching the server's requirement.",
+    "5XX": "Server has problems, should contact the IT department.",
+    "XXX": "Other problem, should contact the IT department."
+  }
+}

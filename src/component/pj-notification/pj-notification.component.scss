@@ -1,0 +1,67 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-notification-part: (title, description, closeIcon);
+$pj-notification-font: (
+  title: $pj-strong-2,
+  description: $pj-body-2,
+);
+$pj-notification-measurement: (
+  padding: 16px,
+  radius: 8px,
+);
+$pj-notification-style: (
+  sdA: map-get($pj-primary-shadow, 5a),
+  sdB: map-get($pj-primary-shadow, 5b),
+  icon: (
+    info: (
+      fg: map-get($pj-secondary, 500),
+    ),
+    success: (
+      fg: map-get($pj-success, 500),
+    ),
+    warn: (
+      fg: map-get($pj-warning, 500),
+    ),
+    error: (
+      fg: map-get($pj-error, 500),
+    ),
+  ),
+  closeIcon: (
+    fg: map-get($pj-primary, 400),
+  ),
+  title: (
+    fg: map-get($pj-primary, 800),
+  ),
+  description: (
+    fg: map-get($pj-primary, 600),
+  ),
+);
+.pj-notification {
+  cursor: default;
+  @include pjMeasurementWithMapExt($pj-notification-measurement);
+  & .icon {
+    font-size: 20px;
+  }
+  & .closeIcon {
+    font-size: 24px;
+  }
+}
+@each $color in (info, success, warn, error) {
+  .pj-notification.#{$color} {
+    @include pjColorWithMapExt($pj-notification-style);
+    @each $part in $pj-notification-part {
+      & .#{$part} {
+        font: map-get($pj-notification-font, $part);
+        @include pjColorWithMapExt($pj-notification-style, $part);
+      }
+      & .icon {
+        @include pjColorWithMapExt($pj-notification-style, icon, $color);
+      }
+    }
+    & .closeIcon {
+      @include pjColorWithMapExt($pj-notification-style, closeIcon);
+    }
+  }
+}

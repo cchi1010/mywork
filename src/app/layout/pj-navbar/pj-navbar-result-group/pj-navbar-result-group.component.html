@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-2">
+  <pj-navbar-keyword-label class="pointer-events-none cursor-pointer" keyword="{{getKeyword()}}"
+    candidatedWord="{{getCateLabel()}}" pjSize="lg">
+  </pj-navbar-keyword-label>
+  <div class="flex flex-col gap-2">
+    <pj-navbar-keyword-label *ngFor="let subItem of getItems()" keyword="{{getKeyword()}}"
+      candidatedWord="{{getCateLabel(subItem)}}" (click)="onItemClick(subItem)" pjSize="sm">
+    </pj-navbar-keyword-label>
+  </div>
+  <pj-divider dividerType="subtle"></pj-divider>
+</div>

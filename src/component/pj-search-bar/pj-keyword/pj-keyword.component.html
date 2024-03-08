@@ -1,0 +1,9 @@
+<div class="pj-keyword flex flex-row gap-4 items-center justify-between" pjPressable>
+  <div class="flex-grow flex flex-row items-center" (mouseup)="onKeywordClick()" (mousedown)="onKeywordMouseDown()">
+    <div class="otherPart" [ngClass]="getRightGap()">{{getWordBeforeKeyword()}}</div>
+    <div class="keyword">{{getKeyword()}}</div>
+    <div class="otherPart" [ngClass]="getLeftGap()">{{getWordAfterKeyword()}}</div>
+  </div>
+  <pj-button-icon *ngIf="isForHistory()" btnType="text" pjSize="md" iconName="close" (click)="onClearBtnClick($event)">
+  </pj-button-icon>
+</div>

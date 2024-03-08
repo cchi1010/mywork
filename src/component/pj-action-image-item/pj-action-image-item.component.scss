@@ -1,0 +1,140 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-action-item-size: (lg, xl);
+
+$pj-action-item-font: (
+  title: (
+    lg: $pj-label-lg,
+    xl: $pj-label-xl,
+  ),
+  label: (
+    lg: $pj-strong-2,
+    xl: $pj-strong-2,
+  ),
+  description: (
+    lg: $pj-body-2,
+    xl: $pj-body-2,
+  ),
+  icon: (
+    lg: 20px,
+    xl: 28px,
+  ),
+);
+
+$pj-action-item-style: (
+  bg: map-get($pj-neutral, 50),
+  hover: (
+    bg: map-get($pj-neutral, 100),
+  ),
+  pressed: (
+    bg: map-get($pj-neutral, 150),
+  ),
+  iconImage: (
+    fg: map-get($pj-secondary, 500),
+    bg: $pj-white,
+  ),
+  label: (
+    fg: map-get($pj-neutral, 800),
+  ),
+  description: (
+    fg: map-get($pj-neutral, 600),
+  ),
+  actionIcon: (
+    fg: map-get($pj-neutral, 200),
+  ),
+  disabled: (
+    label: (fg: map-get($pj-neutral, 200)),
+    title: (fg: map-get($pj-neutral, 200)),
+    description: (fg: map-get($pj-neutral, 200))
+  )
+);
+
+$pj-action-item-measurement: (
+  lg: (
+    padding: 12px,
+    radius: 16px,
+    iconImage: (
+      height: 40px,
+      width: 40px,
+      padding: 10px,
+      radius: 12px,
+    ),
+    description: (height: 48px),
+  ),
+  xl: (
+    padding: 16px,
+    radius: 16px,
+    iconImage: (
+      height: 56px,
+      width: 56px,
+      padding: 14px,
+      radius: 16px,
+    ),
+    description: (height: 48px),
+  ),
+);
+
+.pj-action-item {
+  cursor: pointer;
+  @each $size in $pj-action-item-size {
+    &.#{$size} {
+      @include pjMeasurementWithMapExt($pj-action-item-measurement, $size);
+      & .iconImage {
+        @include pjMeasurementWithMapExt($pj-action-item-measurement, $size, iconImage);
+      }
+      & .icon {
+        font-size: map-get-ext($pj-action-item-font, icon, $size);
+      }
+      & .label {
+        font: map-get-ext($pj-action-item-font, label, $size);
+      }
+      & .title {
+        font: map-get-ext($pj-action-item-font, title, $size);
+      }
+      & .description {
+        font: map-get-ext($pj-action-item-font, description, $size);
+        @include pjMeasurementWithMapExt($pj-action-item-measurement, $size, description);
+      }
+    }
+  }
+
+  @include pjColorWithMapExt($pj-action-item-style);
+  & .label {
+    @include pjColorWithMapExt($pj-action-item-style, label);
+  }
+  & .title {
+    @include pjColorWithMapExt($pj-action-item-style, label);
+  }
+  & .description {
+    @include pjColorWithMapExt($pj-action-item-style, description);
+  }
+  &:hover {
+    @include pjColorWithMapExt($pj-action-item-style, hover);
+  }
+  &.pressed {
+    @include pjColorWithMapExt($pj-action-item-style, pressed);
+  }
+  & .iconImage {
+    @include pjColorWithMapExt($pj-action-item-style, iconImage);
+  }
+  & .actionIcon {
+    font-size: 24px;
+    @include pjColorWithMapExt($pj-action-item-style, actionIcon);
+  }
+
+  &.disabled {
+    pointer-events: none;
+    & .label {
+      @include pjColorWithMapExt($pj-action-item-style, disabled, label);
+    }
+    & .title {
+      @include pjColorWithMapExt($pj-action-item-style, disabled, title);
+    }
+  
+    & .description {
+      @include pjColorWithMapExt($pj-action-item-style, disabled, description);
+    }
+  }
+}

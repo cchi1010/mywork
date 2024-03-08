@@ -1,0 +1,11 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+.pj-choice-group {
+    & .bordered {
+        border: 1px solid map-get($pj-neutral, 100);
+        padding: 8px;
+        border-radius: 8px;
+    }
+}

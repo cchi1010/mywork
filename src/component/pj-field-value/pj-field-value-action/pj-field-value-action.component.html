@@ -1,0 +1,9 @@
+<div class="pj-field-value" [ngClass]="getFieldValueClass()" pjDefaultSize="md">
+  <div class="flex flex-row items-center label">
+    <div>{{ getLabel() }}</div>
+    <div *ngIf="hasColon()">:</div>
+  </div>
+  <pj-button-inline pjColor="secondary" pjSize="getButtonSize()" [label]="getButtonLabel()"
+    rightIconName="{{getIconName()}}" leftIconName="{{getLeftIconName()}}" (click)="onActionBtnClick()">
+  </pj-button-inline>
+</div>

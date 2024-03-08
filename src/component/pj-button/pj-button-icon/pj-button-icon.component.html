@@ -1,0 +1,7 @@
+<div class="pj-button-icon flex flex-row gap-1 items-center relative" [ngClass]="getBtnClass()" pjPressable
+  pjDefaultSize="sm" pjDefaultColor="neutral">
+  <pj-icon class="icon" [iconName]="getIconName()"></pj-icon>
+  <pj-badge [ngClass]="getBadgeClass()" *ngIf="hasBadge()" [label]="getBadgeLabel()" pjColor="{{ getBadgeColor() }}"
+    pjSize="{{ getBadgeSize() }}">
+  </pj-badge>
+</div>

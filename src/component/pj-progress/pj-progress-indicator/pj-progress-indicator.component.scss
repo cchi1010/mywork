@@ -1,0 +1,76 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-progress-indicator-size: (sm, md, lg);
+
+$pj-progress-indicator-measurement: (
+  radius: 50%,
+  sm: (
+    width: 48px, height: 48px,
+    line: ( border: 4px ),
+    logoImage: (top: 14px, left: 14px),
+  ),
+  md: (
+    width: 96px, height: 96px,
+    line: ( border: 6px ),
+    logoImage: (top: 28px, left: 28px),
+  ),
+  lg: (
+    width: 120px, height: 120px,
+    line: ( border: 9px ),
+    logoImage: (top: 28px, left: 28px),
+  ),
+);
+.line {
+  display: inline-block;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-radius: 50%;
+  animation: pj-progress-indicator 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: map-get($pj-secondary, 500) map-get($pj-secondary, 100) map-get($pj-secondary, 100) map-get($pj-secondary, 100);
+}
+
+.pj-progress-indicator {
+  position: relative;
+  & .outer {
+    & div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    & div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    & div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+  }
+}
+
+@each $size in $pj-progress-indicator-size {
+  .pj-progress-indicator.#{$size} {
+    @include pjMeasurementWithMapExt($pj-progress-indicator-measurement, $size);
+    & .logoImage {
+      position: absolute;
+      top: map-get-ext($pj-progress-indicator-measurement, $size, logoImage, top); 
+      left: map-get-ext($pj-progress-indicator-measurement, $size, logoImage, left); 
+    }
+      & .line {
+      @include pjMeasurementWithMapExt($pj-progress-indicator-measurement, $size, line);
+    }
+    & .outer {
+      & .line {
+        @include pjMeasurementWithMapExt($pj-progress-indicator-measurement, $size);
+      }
+    }
+  }
+}
+@keyframes pj-progress-indicator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

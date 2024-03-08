@@ -1,0 +1,57 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-divider-font: $pj-emphasis;
+
+// $pj-divider-measurement: (
+//   horizontal: (
+//     border: 0 0 1px 0,
+//   ),
+//   vertical: (
+//     border: 0 0 0 1px,
+//   ),
+// );
+$pj-divider-style: (
+  strong: (
+    bd: map-get($pj-neutral, 100),
+    label: (
+      fg: map-get($pj-neutral, 150),
+    ),
+  ),
+  subtle: (
+    bd: map-get($pj-neutral, 50),
+    label: (
+      fg: map-get($pj-neutral, 100),
+    ),
+  ),
+);
+
+.label {
+  font: $pj-divider-font;
+  &.strong {
+    @include pjColorWithMapExt($pj-divider-style, strong, label);
+  }
+  &.subtle {
+    @include pjColorWithMapExt($pj-divider-style, subtle, label);
+  }
+}
+.vertical {
+  height: 100%;
+}
+.pj-divider {
+  &.strong {
+    @include pjColorWithMapExt($pj-divider-style, strong);
+  }
+  &.subtle {
+    @include pjColorWithMapExt($pj-divider-style, subtle);
+  }
+  &.horizontal {
+    width: 100%;
+    // @include pjMeasurementWithMapExt($pj-divider-measurement, horizontal);
+  }
+  &.vertical {
+    height: 100%;
+    // @include pjMeasurementWithMapExt($pj-divider-measurement, vertical);
+  }
+}

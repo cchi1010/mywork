@@ -1,0 +1,73 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-progress-linear-font: (
+  normal: $pj-label-lg,
+  focused: $pj-label-lg,
+);
+
+$pj-progress-linear-measurement: (height: 24px,radius: 8px,padding: 0px 8px 0px 8px,);
+
+$pj-progress-linear-style: (
+  bg: $pj-white,
+  label: (fg: map-get($pj-primary, 800)),
+  percent: (fg: map-get($pj-primary, 600)),
+  hover: (
+    bg: map-get($pj-secondary, 50),
+    label: (fg: map-get($pj-secondary, 600)),
+    percent: (fg: map-get($pj-secondary, 600)),
+  ),
+  pressed: (
+    bg: map-get($pj-secondary, 100),
+    label: (fg: map-get($pj-secondary, 600)),
+    percent: (fg: map-get($pj-secondary, 600)),
+  ),
+  focused: (
+    label: (fg: map-get($pj-secondary, 600)),
+    percent: (fg: map-get($pj-secondary, 600)),
+  ),
+);
+
+.pj-progress-linear {
+  @include pjMeasurementWithMapExt($pj-progress-linear-measurement);
+  font: map-get($pj-progress-linear-font, normal);
+  &:hover {
+    cursor: pointer;
+    @include pjColorWithMapExt($pj-progress-linear-style, hover);
+    & .label {
+      @include pjColorWithMapExt($pj-progress-linear-style, hover, label);
+    }
+    & .percent {
+      @include pjColorWithMapExt($pj-progress-linear-style, hover, percent);
+    }
+    &.focused {
+      cursor: default;
+      @include pjColorWithMapExt($pj-progress-linear-style);
+      & .label {
+        @include pjColorWithMapExt($pj-progress-linear-style, focused, label);
+      }
+      & .percent {
+        @include pjColorWithMapExt($pj-progress-linear-style, focused, percent);
+      }
+    }
+  }
+  &.pressed {
+    @include pjColorWithMapExt($pj-progress-linear-style, pressed);
+  }
+  & .label {
+    @include pjColorWithMapExt($pj-progress-linear-style, label);
+  }
+  & .percent {
+    @include pjColorWithMapExt($pj-progress-linear-style, percent);
+  }
+  &.focused {
+    font: map-get($pj-progress-linear-font, focused);
+    & .label {
+      @include pjColorWithMapExt($pj-progress-linear-style, focused, label);
+    }
+    & .percent {
+      @include pjColorWithMapExt($pj-progress-linear-style, focused, percent);
+    }
+  }
+}

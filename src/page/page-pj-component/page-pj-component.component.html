@@ -1,0 +1,1794 @@
+<pj-layout-flex [flexClass]="'flex-row items-start gap-4 p-8'">
+  <pj-side-menu class="left-menu overflow-y-auto" [items]="getComponentMenu()" (itemChanged)="onItemClick($event)">
+  </pj-side-menu>
+  <div class="flex-grow">
+    <ng-content *ngTemplateOutlet="getSelectedComponentTemplateRef()"></ng-content>
+  </div>
+</pj-layout-flex>
+
+
+<ng-template templateName="componentLoading">
+  <pj-button-cta label="Open Loading" (click)="onOpenLoadingBtnClick()"></pj-button-cta>
+</ng-template>
+<ng-template templateName="componentFileInfoItem">
+  <div class="flex flex-row gap-8 items-center">
+    <pj-file-info-item class="flex-1" [fileInfoData]="getFileInfoData1()"></pj-file-info-item>
+    <pj-file-info-item class="flex-1" [fileInfoData]="getFileInfoData2()"></pj-file-info-item>
+  </div>
+</ng-template>
+<ng-template templateName="componentProgressIndicator">
+  <div class="flex flex-col items-start gap-4">
+    <h2>Progress Indicator</h2>
+    <div class="flex flex-row items-start gap-4">
+      <pj-progress-indicator pjSize="sm"></pj-progress-indicator>
+      <pj-progress-indicator></pj-progress-indicator>
+      <pj-progress-indicator pjSize="lg"></pj-progress-indicator>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentLoginRegisterPassword">
+  <div class="flex flex-col items-start gap-4">
+    <h2>Login Password Register</h2>
+    <pj-email-entry></pj-email-entry>
+    <pj-change-password></pj-change-password>
+    <pj-code-entry></pj-code-entry>
+    <pj-password-entry></pj-password-entry>
+    <pj-password-reset-option></pj-password-reset-option>
+    <pj-phone-verification></pj-phone-verification>
+    <pj-register-form></pj-register-form>
+    <pj-email-verification></pj-email-verification>
+    <pj-reset-password></pj-reset-password>
+    <pj-security-question></pj-security-question>
+    <pj-term-notice></pj-term-notice>
+  </div>
+</ng-template>
+<ng-template templateName="componentEmptyStatus">
+  <div class="flex flex-col items-start gap-4">
+    <h2>Empty Status</h2>
+    <pj-empty-status
+      [config]="{borderWidth: 4, width: 260, height: 160, radius: '16px', iconName: 'add', label: 'New', emptyType: 'typeGeneric'}">
+    </pj-empty-status>
+    <pj-empty-status
+      [config]="{borderWidth: 0, width: 144, height: 144, radius: '16px', iconName: 'add', label: 'New', emptyType: 'typeMedia'}">
+    </pj-empty-status>
+    <div class="flex flex-row gap-4 items-center">
+      <pj-empty-status
+        [config]="{borderWidth: 0, width: 144, height: 144, radius: '16px', iconName: 'broken_image.outlined', iconSize: 32, emptyType: 'typeMedia'}">
+      </pj-empty-status>
+      <pj-empty-status
+        [config]="{borderWidth: 0, width: 144, height: 144, radius: '16px', iconName: 'link_off', iconSize: 32, emptyType: 'typeMedia'}">
+      </pj-empty-status>
+      <pj-empty-status
+        [config]="{borderWidth: 0, width: 144, height: 144, radius: '50%', iconName: 'broken_image.outlined', iconSize: 32, emptyType: 'typeMedia'}">
+      </pj-empty-status>
+      <pj-empty-status
+        [config]="{borderWidth: 0, width: 144, height: 144, radius: '50%', iconName: 'link_off', iconSize: 32, emptyType: 'typeMedia'}">
+      </pj-empty-status>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentDisplayModelData">
+  <div class="flex flex-col items-start gap-4">
+    <h2>Display Model Data</h2>
+    <pj-model-text-value modelName="Shipping address" modelIconName="place.outlined" [modelData]="getAddress1()">
+    </pj-model-text-value>
+  </div>
+</ng-template>
+<ng-template templateName="componentQuickEdit">
+  <div class="flex flex-col gap-4">
+    <h2>Quick Edit</h2>
+    <div class="description">show filed label, value and short description with a EDIT button</div>
+    <div class="description">After click button, will show input box or popup edit form.</div>
+    <pj-quick-edit fieldLabel="Name" fieldValue="Tony White" buttonLabel="Edit" (btnClick)="onQuickEditBtnClick()">
+    </pj-quick-edit>
+    <pj-quick-edit fieldLabel="Name" fieldValue="Tony White" fieldDescription="This name will be shown as profile name."
+      buttonLabel="Edit"></pj-quick-edit>
+    <pj-quick-edit fieldLabel="Name" fieldValue="Tony White"></pj-quick-edit>
+    <pj-quick-edit fieldLabel="Name" fieldValue="Tony White" [hideValue]="true" fieldDescription="No event emitted"
+      buttonLabel="Edit" [emitEvent]="false" (btnClick)="onQuickEditBtnClick()"></pj-quick-edit>
+    <pj-quick-edit fieldLabel="Name"
+      fieldDescription="This name will be shown as profile name. This name will be shown as profile name. This name will be shown as profile name."
+      buttonLabel="Manage"></pj-quick-edit>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentSearchResultBlock">
+  <div class="flex flex-col gap-4">
+    <h2>Search Result Block</h2>
+    <pj-layout-grid>
+      <pj-search-result
+        class="col-span-4 p:sm:col-span-6 p:md:col-span-8 p:lg:col-span-11 p:xl:col-span-10 p:xxl:col-span-9"
+        PjContainerItem title="{{getSearchResultTitle()}}" description="{{getSearchResultDescription()}}">
+      </pj-search-result>
+    </pj-layout-grid>
+  </div>
+</ng-template>
+<ng-template templateName="componentFeedbackBanner">
+  <div class="flex flex-col gap-4">
+    <h2>Feedback Banner</h2>
+    <h4>With Icon</h4>
+    <div class="flex flex-row gap-4">
+      <pj-button-cta [label]="'Show Neutral Banner'" (click)="onShowBannerBtnClick('Neutral')" PjBtnWaitable>
+      </pj-button-cta>
+      <pj-button-cta [label]="'Show Info Banner'" (click)="onShowBannerBtnClick('Info')"></pj-button-cta>
+      <pj-button-cta [label]="'Show Success Banner'" (click)="onShowBannerBtnClick('Success')" PjBtnWaitable>
+      </pj-button-cta>
+      <pj-button-cta [label]="'Show Error Banner'" (click)="onShowBannerBtnClick('Error')"></pj-button-cta>
+    </div>
+    <h4>With Image</h4>
+    <div class="flex flex-row gap-4">
+      <pj-button-cta [label]="'Show Neutral Banner'" (click)="onShowIamgeBannerBtnClick()"></pj-button-cta>
+    </div>
+    <!-- <pj-feedback-banner [closable]="true" [label]="'This is a feedback.'" [action]="getFeedbackAction()"></pj-feedback-banner> -->
+    <!-- <pj-feedback-banner [closable]="false" [label]="'This is a feedback.'" [action]="getFeedbackAction()"></pj-feedback-banner> -->
+  </div>
+</ng-template>
+<ng-template templateName="componentMediaShow">
+  <div class="flex flex-col gap-4">
+    <h2>Media Show</h2>
+    <div class="flex flex-row gap-4">
+      <pj-media-show class="w-80" [medias]="getMediaShowData()" [actions]="getActionsOnMediaShow()"></pj-media-show>
+      <pj-media-show class="w-80" [type]="'condensed'" [medias]="getMediaShowData()"
+        [actions]="getActionsOnMediaShow()"></pj-media-show>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentQuantityAdjustment">
+  <div class="flex flex-col gap-4">
+    <h2>Quantity Adjustment</h2>
+    <div class="flex flex-row gap-4">
+      <div class="flex flex-col gap-4">
+        <pj-quantity-adjustment [maximum]="9" class="self-start"></pj-quantity-adjustment>
+        <pj-quantity-adjustment [maximum]="99" class="self-start"></pj-quantity-adjustment>
+      </div>
+      <div class="flex flex-col gap-4">
+        <pj-quantity-adjustment [maximum]="9" class="self-start" pjSize="lg"></pj-quantity-adjustment>
+        <pj-quantity-adjustment [maximum]="99" class="self-start" pjSize="lg"></pj-quantity-adjustment>
+      </div>
+      <div class="flex flex-col gap-4">
+        <pj-quantity-adjustment [maximum]="9" class="self-start" pjSize="xl"></pj-quantity-adjustment>
+        <pj-quantity-adjustment [maximum]="99" class="self-start" pjSize="xl"></pj-quantity-adjustment>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentCarousel">
+  <div class="flex flex-col gap-4" style="background-color: white; height: 100%">
+    <h2>Carousel</h2>
+    <pj-carousel class="max-w-3xl">
+      <ng-template swiperItem>
+        <pj-image
+          [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/shop-cover.jpg'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/heart.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/lock.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image
+          [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/life_ring.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/heart.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/lock.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image
+          [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/life_ring.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image
+          [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/test_image.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+      <ng-template swiperItem>
+        <pj-image
+          [imageData]="{imageType: 'rectangle', width: 214, height: 214, imageSrc: 'assets/image/test_image.png'}"
+          (click)="onSwiperItemClick($event)"></pj-image>
+      </ng-template>
+    </pj-carousel>
+  </div>
+</ng-template>
+<ng-template templateName="componentTabText">
+  <div class="flex flex-col gap-4">
+    <h2>Tab - Text</h2>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="md"></pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)"></pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="xl"></pj-tab-group>
+  </div>
+</ng-template>
+<ng-template templateName="componentTabUnderlined">
+  <div class="flex flex-col gap-4">
+    <h2>Tab - Underlined</h2>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="md" [tabType]="'underlined'">
+    </pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" [tabType]="'underlined'"></pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="xl" [tabType]="'underlined'">
+    </pj-tab-group>
+  </div>
+</ng-template>
+<ng-template templateName="componentTabPill">
+  <div class="flex flex-col gap-4">
+    <h2>Tab - Pill</h2>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="md" [tabType]="'pill'"></pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" [tabType]="'pill'"></pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="xl" [tabType]="'pill'"></pj-tab-group>
+  </div>
+</ng-template>
+<ng-template templateName="componentTabOutlined">
+  <div class="flex flex-col gap-4">
+    <h2>Tab - Outlined</h2>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="md" [tabType]="'outlined'">
+    </pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="md" [tabType]="'outlined'"
+      pjColor="blackBtn">
+    </pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" [tabType]="'outlined'"></pj-tab-group>
+    <pj-tab-group [tabItemsData]="getTabItems(tab1, tab2, tab3, tab4)" pjSize="xl" [tabType]="'outlined'">
+    </pj-tab-group>
+  </div>
+</ng-template>
+<ng-template #tab1>
+  <h2>Content for text only</h2>
+</ng-template>
+<ng-template #tab2>
+  <h2>Content for icon and text</h2>
+</ng-template>
+<ng-template #tab3>
+  <h2>Content for text and badge</h2>
+</ng-template>
+<ng-template #tab4>
+  <h2>Content for icon, text and badge</h2>
+</ng-template>
+
+<ng-template templateName="componentStep">
+  <div class="flex flex-col gap-4">
+    <h2>Step</h2>
+    <pj-step [stepsData]="getStepsData(step1, step2, step3,step4,step5,step6)" pjSize="md"></pj-step>
+    <pj-step [stepsData]="getStepsData(step1, step2, step3,step4,step5,step6)"></pj-step>
+  </div>
+</ng-template>
+<ng-template #step1>
+  test 001
+</ng-template>
+<ng-template #step2>
+  test 002
+</ng-template>
+<ng-template #step3>
+  test 003
+</ng-template>
+<ng-template #step4>
+  test 004
+</ng-template>
+<ng-template #step5>
+  test 005
+</ng-template>
+<ng-template #step6>
+  test 006
+</ng-template>
+
+<ng-template templateName="componentAddressEdit">
+  <div class="flex flex-col gap-4">
+    <h2>Address Edit</h2>
+    <div class="flex flex-row gap-4">
+      <div class="flex flex-col gap-4">
+        <h4>Generic Editing</h4>
+        <pj-address-form [address]="getAddress2()" [supportedCountries]="getSupportedCountries()"></pj-address-form>
+      </div>
+      <div class="flex flex-col gap-4">
+        <h4>Address Edit For shipment</h4>
+        <pj-address-form [address]="getAddress1()" [supportedCountries]="getSupportedCountries()" [forShipping]="true">
+        </pj-address-form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentAddressDetail">
+  <div class="flex flex-col gap-4">
+    <h2>Address Details</h2>
+    <h2>Card Type</h2>
+    <pj-layout-grid>
+      <pj-address class="col-span-4 p:md:col-span-5" [address]="getAddress1()"></pj-address>
+      <pj-address class="col-span-4 p:md:col-span-5" [address]="getAddress2()"></pj-address>
+      <pj-address class="col-span-4 p:md:col-span-5" [address]="getAddress2()" [addressType]="'detail'"></pj-address>
+    </pj-layout-grid>
+    <h2>Item Type</h2>
+    <pj-address-item [address]="getAddress1()"></pj-address-item>
+    <pj-address-item [address]="getAddress2()"></pj-address-item>
+  </div>
+</ng-template>
+<ng-template templateName="componentThirdPartyPayment">
+  <div class="flex flex-col gap-4">
+    <h2>Third Party Payment</h2>
+    <pj-layout-grid>
+      <pj-linked-payment-detail class="col-span-4 p:sm:col-span-6 p:md:col-span-5 p:lg:col-span-9 p:xl:col-span-8"
+        [paymentInfo]="getThirdPartyPaymentInfo()"></pj-linked-payment-detail>
+    </pj-layout-grid>
+  </div>
+</ng-template>
+<ng-template templateName="componentPaymentCardEdit">
+  <div class="flex flex-col gap-4">
+    <h2>Edit Payment Card</h2>
+    <pj-credit-card-edit [creditInfo]="getCreditCardInfo()"></pj-credit-card-edit>
+  </div>
+</ng-template>
+<ng-template templateName="componentPaymentCardCreation">
+  <div class="flex flex-col gap-4">
+    <h2>Payment Card Creation</h2>
+    <pj-credit-card-new [acceptedCardNames]="getAcceptedCardNames()" [title]="'PolarJ'"></pj-credit-card-new>
+  </div>
+</ng-template>
+<ng-template templateName="componentPaymentCard">
+  <div class="flex flex-col gap-4">
+    <h2>Payment Card</h2>
+    <div class="flex flex-row gap-4">
+      <pj-credit-card-detail [creditInfo]="getDefaultCreditCardInfo()" [backgroudNumner]="1">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getExpiratedCreditCardInfo()" [backgroudNumner]="2">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" [backgroudNumner]="3">
+      </pj-credit-card-detail>
+    </div>
+    <div class="flex flex-row gap-4">
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" [backgroudNumner]="4">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" [backgroudNumner]="5">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" [backgroudNumner]="6">
+      </pj-credit-card-detail>
+    </div>
+    <div class="flex flex-row gap-4">
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" pjSize="sm" [backgroudNumner]="1">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" pjSize="sm" [backgroudNumner]="2">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" pjSize="sm" [backgroudNumner]="3">
+      </pj-credit-card-detail>
+    </div>
+    <div class="flex flex-row gap-4">
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" pjSize="sm" [backgroudNumner]="4">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" pjSize="sm" [backgroudNumner]="5">
+      </pj-credit-card-detail>
+      <pj-credit-card-detail [creditInfo]="getCreditCardInfo()" pjSize="sm" [backgroudNumner]="6">
+      </pj-credit-card-detail>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentPagination">
+  <div class="flex flex-col gap-4">
+    <h2>Pagination</h2>
+    <pj-pagination [totalPageItem]="7" [totalPages]="10"></pj-pagination>
+    <pj-pagination [totalPageItem]="9" [totalPages]="40" [currentPage]="8"></pj-pagination>
+  </div>
+</ng-template>
+<ng-template templateName="componentNotification">
+  <div class="w-1/2 flex flex-col gap-4">
+    <h2>Notification</h2>
+    <pj-notification [iconName]="'check_circle_outline'" [title]="'Success saved'" pjColor="success"
+      [description]="'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus...'"></pj-notification>
+    <pj-notification [title]="'Success saved'" pjColor="success" [actionLabel]="'Undo'"></pj-notification>
+  </div>
+</ng-template>
+<ng-template templateName="componentLinkContent">
+  <div class="flex flex-col gap-4">
+    <h2>Link - Content</h2>
+    <div *ngFor="let size of ['md','lg','xl']">
+      <div class="flex flex-row items-center gap-4">
+        <pj-link pjSize="{{size}}" [label]="'Content Link'"></pj-link>
+        <pj-link [leftIconName]="'home'" pjSize="{{size}}" [label]="'Content Link'"></pj-link>
+        <pj-link pjSize="{{size}}" [label]="'Content Link'" [rightIconName]="'add'"></pj-link>
+        <pj-link [leftIconName]="'home'" pjSize="{{size}}" [label]="'Content Link'" [rightIconName]="'add'"></pj-link>
+      </div>
+    </div>
+    <div *ngFor="let size of ['md','lg','xl']">
+      <div class="flex flex-row items-center gap-4">
+        <pj-link pjColor="secondary" pjSize="{{size}}" [label]="'Content Link'"></pj-link>
+        <pj-link pjColor="secondary" [leftIconName]="'home'" pjSize="{{size}}" [label]="'Content Link'"></pj-link>
+        <pj-link pjColor="secondary" pjSize="{{size}}" [label]="'Content Link'" [rightIconName]="'add'"></pj-link>
+        <pj-link pjColor="secondary" [leftIconName]="'home'" pjSize="{{size}}" [label]="'Content Link'"
+          [rightIconName]="'add'"></pj-link>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentLinkInline">
+  <div class="flex flex-col gap-4">
+    <h2>Link - Inline</h2>
+    <div *ngFor="let size of ['md','lg','xl']">
+      <div class="flex flex-row items-center gap-4">
+        <pj-link [type]="'inline'" pjSize="{{size}}" [label]="'Charge Begin'"></pj-link>
+        <pj-link [type]="'inline'" [leftIconName]="'home'" pjSize="{{size}}" [label]="'Charge Begin'"></pj-link>
+        <pj-link [type]="'inline'" pjSize="{{size}}" [label]="'Charge Begin'" [rightIconName]="'add'"></pj-link>
+        <pj-link [type]="'inline'" [leftIconName]="'home'" pjSize="{{size}}" [label]="'Charge Begin'"
+          [rightIconName]="'add'"></pj-link>
+      </div>
+    </div>
+    <div *ngFor="let size of ['md','lg','xl']">
+      <div class="flex flex-row items-center gap-4">
+        <pj-link [type]="'inline'" pjColor="secondary" pjSize="{{size}}" [label]="'Charge Begin'"></pj-link>
+        <pj-link [type]="'inline'" pjColor="secondary" [leftIconName]="'home'" pjSize="{{size}}"
+          [label]="'Charge Begin'"></pj-link>
+        <pj-link [type]="'inline'" pjColor="secondary" pjSize="{{size}}" [label]="'Charge Begin'"
+          [rightIconName]="'add'"></pj-link>
+        <pj-link [type]="'inline'" pjColor="secondary" [leftIconName]="'home'" pjSize="{{size}}"
+          [label]="'Charge Begin'" [rightIconName]="'add'"></pj-link>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!-- <ng-template templateName="componentLinkCTA">
+  <div class="flex flex-col gap-4">
+    <h2>Link - CTA</h2>
+    <h4>Color Primary</h4>
+    <div *ngFor="let size of ['md','lg','xl']">
+      <div class="flex flex-row items-center gap-4">
+        <pj-link [type]="'cta'" pjSize="{{size}}" [label]="'CTA Link'"></pj-link>
+        <pj-link [type]="'cta'" [leftIconName]="'home'" pjSize="{{size}}" [label]="'CTA Link'"></pj-link>
+        <pj-link [type]="'cta'" pjSize="{{size}}" [label]="'CTA Link'" [rightIconName]="'add'"></pj-link>
+        <pj-link [type]="'cta'" [leftIconName]="'home'" pjSize="{{size}}" [label]="'CTA Link'" [rightIconName]="'add'">
+        </pj-link>
+      </div>
+    </div>
+    <h4>Color Brand</h4>
+    <div *ngFor="let size of ['md','lg','xl']">
+      <div class="flex flex-row items-center gap-4">
+        <pj-link [type]="'cta'" pjSize="{{size}}" [label]="'CTA Link'" pjColor="brand"></pj-link>
+        <pj-link [type]="'cta'" [leftIconName]="'home'" pjSize="{{size}}" [label]="'CTA Link'" pjColor="brand">
+        </pj-link>
+        <pj-link [type]="'cta'" pjSize="{{size}}" [label]="'CTA Link'" [rightIconName]="'add'" pjColor="brand">
+        </pj-link>
+        <pj-link [type]="'cta'" [leftIconName]="'home'" pjSize="{{size}}" [label]="'CTA Link'" [rightIconName]="'add'"
+          pjColor="brand"></pj-link>
+      </div>
+    </div>
+  </div>
+</ng-template> -->
+<ng-template templateName="componentLinkGeneric">
+  <div class="flex flex-col gap-4">
+    <h2>Link - Generic</h2>
+    <h4>Body type link</h4>
+    <pj-link-generic>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam venenatis egestas lacus
+    </pj-link-generic>
+    <pj-link-generic pjSize="lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <pj-link-generic pjSize="xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <h4>Label type link</h4>
+    <pj-link-generic [linkType]="'label'">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam venenatis
+      egestas lacus
+    </pj-link-generic>
+    <pj-link-generic [linkType]="'label'" pjSize="lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <pj-link-generic [linkType]="'label'" pjSize="xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <h4>Strong type link</h4>
+    <pj-link-generic [linkType]="'strong'">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam venenatis
+      egestas lacus
+    </pj-link-generic>
+    <pj-link-generic [linkType]="'strong'" pjSize="lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <pj-link-generic [linkType]="'strong'" pjSize="xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <h4>Body type link</h4>
+    <pj-link-generic pjColor="secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam venenatis
+      egestas lacus
+    </pj-link-generic>
+    <pj-link-generic pjColor="secondary" pjSize="lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam
+      venenatis egestas
+      lacus</pj-link-generic>
+    <pj-link-generic pjColor="secondary" pjSize="xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi aliquam
+      venenatis egestas
+      lacus</pj-link-generic>
+    <h4>Label type link</h4>
+    <pj-link-generic pjColor="secondary" [linkType]="'label'">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Mi aliquam venenatis
+      egestas lacus
+    </pj-link-generic>
+    <pj-link-generic pjColor="secondary" [linkType]="'label'" pjSize="lg">Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <pj-link-generic pjColor="secondary" [linkType]="'label'" pjSize="xl">Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <h4>Strong type link</h4>
+    <pj-link-generic pjColor="secondary" [linkType]="'strong'">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Mi aliquam venenatis
+      egestas lacus
+    </pj-link-generic>
+    <pj-link-generic pjColor="secondary" [linkType]="'strong'" pjSize="lg">Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+    <pj-link-generic pjColor="secondary" [linkType]="'strong'" pjSize="xl">Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Mi
+      aliquam venenatis egestas
+      lacus</pj-link-generic>
+  </div>
+</ng-template>
+<ng-template templateName="componentIncentive">
+  <div class="flex flex-col gap-4">
+    <h2>Incentive</h2>
+    <pj-incentive class="self-start" [label]="'Free shipping'" [iconName]="'local_shipping'"></pj-incentive>
+    <pj-incentive class="self-start" [label]="'Free shipping'" [iconName]="'local_shipping'" pjSize="lg"></pj-incentive>
+  </div>
+</ng-template>
+<ng-template templateName="componentHelpBox">
+  <div class="flex flex-col gap-4">
+    <h2 #helpboxDock>Helper Box</h2>
+    <pj-button-cta label="Open *Helper Box*" (click)="onOpenHelpBoxBtnClick(helpboxDock)"></pj-button-cta>
+    <!-- <pj-helper-box [helperItems]="getPasswordHelper()"></pj-helper-box>
+
+    <div class="flex flex-row items-start gap-4">
+      <pj-helper-box [helperItems]="getHelperItem(0)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(0)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(0)" [closeable]="false"></pj-helper-box>
+    </div>
+    <div class="flex flex-row items-start gap-4">
+      <pj-helper-box [helperItems]="getHelperItem(1)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(1)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(1)" [closeable]="false"></pj-helper-box>
+    </div>
+    <div class="flex flex-row items-start gap-4">
+      <pj-helper-box [helperItems]="getHelperItem(2)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(2)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(2)" [closeable]="false"></pj-helper-box>
+    </div>
+    <div class="flex flex-row items-start gap-4">
+      <pj-helper-box [helperItems]="getHelperItem(3)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(3)"></pj-helper-box>
+      <pj-helper-box [helperItems]="getHelperItemWithTitle(3)" [closeable]="false"></pj-helper-box>
+    </div> -->
+  </div>
+</ng-template>
+<ng-template templateName="componentFileUploadStatus">
+  <div class="w-1/2 flex flex-col gap-4">
+    <h2>File Uploading Status</h2>
+
+    <pj-file-upload-status [fileName]="'somefile.pdf'" [fileUploadProgress]="40"></pj-file-upload-status>
+    <pj-file-upload-status [fileName]="'somefile.pdf'" [fileUploadProgress]="100"></pj-file-upload-status>
+    <pj-button-cta [label]="'Start Upload'" (click)="onStartFileUploadClick()" btnType="outlined" pjColor="secondary">
+    </pj-button-cta>
+    <pj-file-upload-status *ngIf="showUploadStatus()" [fileName]="'Big file.pdf'"
+      [fileUploadProgress]="getUploadProgress()" (actionClick)="onFileUploadStatusActionClick($event)">
+    </pj-file-upload-status>
+  </div>
+</ng-template>
+<ng-template templateName="componentFileUploading">
+  <div class="flex flex-col gap-4">
+    <h2>File Uploading</h2>
+    <h4>File Content</h4>
+    <div class="flex flex-row gap-4">
+      <pj-file></pj-file>
+      <pj-file [deletable]="true"></pj-file>
+      <pj-file-uploading>
+        <pj-file [addNewFile]="true" PjUploadDock></pj-file>
+      </pj-file-uploading>
+
+    </div>
+    <h4>Upload ONE file</h4>
+    <div class="flex flex-row gap-4">
+      <pj-file-uploading>
+        <pj-button-cta label="Pick a File" PjUploadDock></pj-button-cta>
+      </pj-file-uploading>
+      <pj-file-uploading [fileType]="'image/*'" (base64Content)="onImageUploaded($event)">
+        <pj-button-icon pjColor="secondary" iconName="image" PjUploadDock pjSize="lg"></pj-button-icon>
+      </pj-file-uploading>
+      <pj-file-uploading pjColor="primary" [fileType]="'.pdf'">
+        <pj-button-cta label="Pick a PDF File" pjColor="neutral" PjUploadDock></pj-button-cta>
+      </pj-file-uploading>
+      <pj-image [imageData]="getUploadImageData()" *ngIf="imageUploaded()"></pj-image>
+    </div>
+    <h4>Upload multiple files</h4>
+    <div class="flex flex-row gap-4">
+      <pj-file-uploading [multipleFiles]="true">
+        <pj-button-cta label="Pick Files" PjUploadDock></pj-button-cta>
+      </pj-file-uploading>
+      <pj-file-uploading [multipleFiles]="true" [fileType]="'image/*'" (base64Content)="onOneImageUploaded($event)">
+        <pj-button-icon pjColor="secondary" iconName="image" PjUploadDock pjSize="lg"></pj-button-icon>
+      </pj-file-uploading>
+      <pj-file-uploading [multipleFiles]="true" [fileType]="'.pdf'">
+        <pj-button-cta label="Pick PDF Files" pjColor="neutral" PjUploadDock></pj-button-cta>
+      </pj-file-uploading>
+    </div>
+    <div *ngIf="hasUploadedImages()" class="flex flex-row flex-wrap gap-4">
+      <pj-image *ngFor="let imageData of getUploadImages()" [imageData]="imageData"></pj-image>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentTooltip">
+  <div class="flex flex-col gap-4">
+    <h2>Tooltip</h2>
+    <pj-button-cta pjColor="neutral" [label]="'Do nothing'"></pj-button-cta>
+    <pj-button-cta pjColor="neutral" [label]="'Show Tooltip - Top'" tooltip="Test" location="top">
+    </pj-button-cta>
+    <pj-button-cta pjColor="neutral" [label]="'Show Tooltip - Bottom'" tooltip="Test" location="bottom">
+    </pj-button-cta>
+    <div class="flex flex-row gap-4 items-center justify-center">
+      <pj-button-cta pjColor="neutral" [label]="'Do nothing'"></pj-button-cta>
+      <pj-button-cta pjColor="neutral" pjSize="xl" [label]="'Show Tooltip - Left'" tooltip="Test" location="left">
+      </pj-button-cta>
+      <pj-button-cta pjColor="neutral" pjSize="xl" [label]="'Show Tooltip - Right'" tooltip="Test" location="right">
+      </pj-button-cta>
+      <pj-button-cta pjColor="neutral" [label]="'Do nothing'"></pj-button-cta>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentTextAreaEntry">
+  <div class="flex flex-col gap-4">
+    <h2>Text Area Entry</h2>
+    <pj-text-area-entry placeholder="Free text ... " label="Text area"></pj-text-area-entry>
+    <pj-text-area-entry [disabled]="true" defaultValue="Default Value" label="Text area"></pj-text-area-entry>
+    <pj-text-area-entry [error]="true" defaultValue="Default Value" label="Text area"></pj-text-area-entry>
+  </div>
+</ng-template>
+<ng-template templateName="componentPasswordEntry">
+  <div class="flex flex-col gap-4">
+    <h2>Password Entry</h2>
+    <div *ngFor="let size of ['md', 'lg', 'xl']">
+      <div class="flex flex-row items-end justify-around gap-4">
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', labelled: true, passwordEnabled: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', labelled: true, passwordEnabled: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', labelled: true, passwordEnabled: true, error: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', labelled: true, passwordEnabled: true, disabled: true}">
+        </pj-text-entry>
+      </div>
+      <div class="flex flex-row items-end justify-around gap-4 mt-4">
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', passwordEnabled: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', passwordEnabled: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', passwordEnabled: true, error: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Password', assistiveText: 'must be all alphabet', passwordEnabled: true, disabled: true}">
+        </pj-text-entry>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentPhoneEntry">
+  <div class="flex flex-col gap-4">
+    <h2>Text Entry</h2>
+    <h4>Phone Entry</h4>
+    <pj-phone-number-entry></pj-phone-number-entry>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentCardNumberEntry">
+  <div class="flex flex-col gap-4">
+    <h2>Text Entry</h2>
+    <h4>Card Number Entry</h4>
+    <pj-card-number-entry pjSize="md"></pj-card-number-entry>
+    <pj-card-number-entry pjSize="lg"></pj-card-number-entry>
+    <pj-card-number-entry pjSize="xl"></pj-card-number-entry>
+  </div>
+</ng-template>
+<ng-template templateName="componentTextEntry">
+  <div class="flex flex-col gap-4">
+    <h2>Text Entry</h2>
+    <h4>Free Text Entry</h4>
+    <div *ngFor="let size of ['md']">
+      <div class="flex flex-row items-end justify-around gap-4">
+        <pj-text-entry class="flex-grow" pjSize="{{size}}" [formControl]="testFormControl!"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', labelled: true, placeholder: 'First Name'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', labelled: true, placeholder: 'First Name'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', labelled: true, error: true, placeholder: 'First Name'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', labelled: true, disabled: true}">
+        </pj-text-entry>
+      </div>
+      <div class="flex flex-row items-end justify-around gap-4 mt-4">
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', placeholder: 'First Name'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', error: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'First Name', assistiveText: 'must be all alphabet', disabled: true}"></pj-text-entry>
+      </div>
+      <div class="flex flex-row items-end justify-around gap-4 mt-4">
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Amount', assistiveText: 'must be all digit', placeholder: 'Amount'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Amount', assistiveText: 'must be all digit'}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Amount', assistiveText: 'must be all digit', error: true}">
+        </pj-text-entry>
+        <pj-text-entry class="flex-grow" pjSize="{{size}}"
+          [entryConfig]="{label: 'Amount', assistiveText: 'must be all digit', disabled: true}"></pj-text-entry>
+      </div>
+    </div>
+    <pj-perfix-input [leftPerfixSign]="'USD'" [textEntryType]="'noborder'"></pj-perfix-input>
+    <pj-perfix-input [leftPerfixSign]="'USD'"></pj-perfix-input>
+    <pj-perfix-input [rightPerfixSign]="'%'" [textEntryType]="'noborder'"></pj-perfix-input>
+    <pj-perfix-input [rightPerfixSign]="'%'" [formControl]="getPerfixFormControl()"></pj-perfix-input>
+    <pj-text-entry class="flex-grow" [entryConfig]="{label: 'No border', placeholder: 'Click to edit'}"
+      [textEntryType]="'noborder'" [formControl]="getNoborderFormControl()"></pj-text-entry>
+  </div>
+</ng-template>
+<ng-template templateName="componentDateInput">
+  <div class="flex flex-col gap-4">
+    <h2>Date Input</h2>
+    <h4>Year Only</h4>
+    <h4>Month Only</h4>
+    <h4>Year Month Day</h4>
+    <pj-date (dateChanged)="onDateChanged($event)"></pj-date>
+    <h4>Year and Month</h4>
+    <h4>Month and Day</h4>
+    <pj-time></pj-time>
+    <pj-datetime></pj-datetime>
+    <pj-date-picker></pj-date-picker>
+  </div>
+</ng-template>
+<ng-template templateName="componentThumbnail">
+  <div class="flex flex-col gap-4">
+    <h2>Thumbnail</h2>
+    <pj-thumbnail [thumbnailSrc]="'assets/image/life_ring.png'"></pj-thumbnail>
+  </div>
+</ng-template>
+<ng-template templateName="componentFieldValue">
+  <div class="flex flex-col gap-4">
+    <h2>Field Value - Text</h2>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-text class="w-1/2" [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}">
+      </pj-field-value-text>
+      <pj-field-value-text class="w-1/2" [direction]="'vertical'"
+        [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}">
+      </pj-field-value-text>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-text class="w-1/2" pjSize="lg" [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}">
+      </pj-field-value-text>
+      <pj-field-value-text class="w-1/2" pjSize="lg" [direction]="'vertical'"
+        [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}"></pj-field-value-text>
+    </div>
+    <h4>Mix Mode</h4>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-text class="w-1/2" [mixMode]="true"
+        [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}">
+      </pj-field-value-text>
+      <pj-field-value-text class="w-1/2" [mixMode]="true" [direction]="'vertical'"
+        [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}"></pj-field-value-text>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-text class="w-1/2" [mixMode]="true" pjSize="lg"
+        [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}">
+      </pj-field-value-text>
+      <pj-field-value-text class="w-1/2" [mixMode]="true" pjSize="lg" [direction]="'vertical'"
+        [fieldValue]="{label: 'Field Name', textValue: 'Field Value'}"></pj-field-value-text>
+    </div>
+    <h2>Field Value - Link</h2>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-action class="w-1/2" [fieldValue]="getActionFieldValue()"></pj-field-value-action>
+      <pj-field-value-action class="w-1/2" [direction]="'vertical'" [fieldValue]="getActionFieldValue()">
+      </pj-field-value-action>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-action class="w-1/2" pjSize="lg" [fieldValue]="getActionFieldValue()"></pj-field-value-action>
+      <pj-field-value-action class="w-1/2" pjSize="lg" [direction]="'vertical'" [fieldValue]="getActionFieldValue()">
+      </pj-field-value-action>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-action class="w-1/2" [fieldValue]="getActionFieldValue()">
+      </pj-field-value-action>
+      <pj-field-value-action class="w-1/2" [direction]="'vertical'" [fieldValue]="getActionFieldValue()">
+      </pj-field-value-action>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-field-value-action class="w-1/2" pjSize="lg" [fieldValue]="getActionFieldValue()">
+      </pj-field-value-action>
+      <pj-field-value-action class="w-1/2" pjSize="lg" [direction]="'vertical'" [fieldValue]="getActionFieldValue()">
+      </pj-field-value-action>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentSwitch">
+  <div class="flex flex-col gap-4">
+    <h2>Switch</h2>
+    <div class="flex flex-row items-center gap-4">
+      <pj-switch class="w-1/2" [switchData]="getSwitchData(0)"></pj-switch>
+      <pj-switch class="w-1/2" [switchData]="getSwitchData(2)"></pj-switch>
+    </div>
+    <div class="flex flex-row items-center gap-4">
+      <pj-switch class="w-1/2" [switchData]="getSwitchData(1)"></pj-switch>
+      <pj-switch class="w-1/2" [switchData]="getSwitchData(3)"></pj-switch>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentSpinner">
+  <div class="flex flex-col gap-4">
+    <h2>Spinner</h2>
+    <div class="flex flex-row items-center justify-around">
+      <pj-spinner></pj-spinner>
+      <pj-spinner pjSize="md"></pj-spinner>
+      <pj-spinner pjSize="lg"></pj-spinner>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentSearchBar">
+  <div class="flex flex-col gap-4">
+    <h2>Search Bar</h2>
+    <pj-search-bar></pj-search-bar>
+    <pj-search-bar pjSize="md" [candidatedKeywords]="getSearchResult()"></pj-search-bar>
+    <pj-search-bar pjSize="lg" [asyncKeywordSearching]="true" [candidatedKeywords]="getAsyncSearchResult()"
+      (actionClick)="onSearchBarActionClick($event)"></pj-search-bar>
+    <h2>Search Bar with back</h2>
+    <pj-search-bar [showBackBtnAfterSearching]="true"></pj-search-bar>
+    <pj-search-bar pjSize="md" [showBackBtnAfterSearching]="true"></pj-search-bar>
+    <pj-search-bar pjSize="lg" [showBackBtnAfterSearching]="true"></pj-search-bar>
+  </div>
+</ng-template>
+<ng-template templateName="componentMultipleSelection">
+  <div class="flex flex-col gap-4">
+    <h2>Multiple Selection</h2>
+    <pj-selection-group [singleSelection]="false">
+      <div class="flex flex-col gap-4">
+        <pj-selitem-stacked-card subTitle="Sub Title 1" [title]="'Title 1'" [description]="'Description 1'"
+          value="value" iconName="home.outlined" pjSize="sm" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card subTitle="Sub Title 1" [title]="'Title 1'" [description]="'Description 1'"
+          value="value" iconName="home.outlined" pjSize="md" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card subTitle="Sub Title 1" [title]="'Title 1'" [description]="'Description 1'"
+          value="value" iconName="home.outlined" pjSize="lg" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card subTitle="Sub Title 1" [title]="'Title 1'" [description]="'Description 1'"
+          value="value" imageSrc="assets/image/heart.png" pjSize="sm" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card subTitle="Sub Title 1" [title]="'Title 1'" [description]="'Description 1'"
+          value="value" imageSrc="assets/image/heart.png" pjSize="md" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card subTitle="Sub Title 1" [title]="'Title 1'" [description]="'Description 1'"
+          value="value" imageSrc="assets/image/heart.png" pjSize="lg" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card [title]="'Title 2'" [description]="'Description 2'" selItem></pj-selitem-stacked-card>
+        <pj-selitem-stacked-card [title]="'Title 3'" [description]="'Description 3'" selItem [selected]="true">
+        </pj-selitem-stacked-card>
+      </div>
+    </pj-selection-group>
+    <pj-selection-group [singleSelection]="false">
+      <div class="flex flex-row gap-4">
+        <pj-selitem-card [title]="'Title 1'" [description]="'Description 1'" selItem [selected]="true"
+          [imageSrc]="'assets/image/heart.png'"></pj-selitem-card>
+        <pj-selitem-card [title]="'Title 2'" [description]="'Description 2'" selItem [selected]="true"
+          [imageSrc]="'assets/image/lock.png'"></pj-selitem-card>
+        <pj-selitem-card [title]="'Title 3'" [description]="'Description 3'" selItem [selected]="true"
+          [imageSrc]="'assets/image/life_ring.png'">
+        </pj-selitem-card>
+      </div>
+    </pj-selection-group>
+    <pj-selection-group [singleSelection]="false">
+      <div class="flex flex-row gap-4">
+        <pj-selitem-image selItem [imageSrc]="'assets/image/heart.png'"></pj-selitem-image>
+        <pj-selitem-image selItem [imageSrc]="'assets/image/lock.png'"></pj-selitem-image>
+        <pj-selitem-image selItem [selected]="true" [imageSrc]="'assets/image/life_ring.png'">
+        </pj-selitem-image>
+      </div>
+    </pj-selection-group>
+  </div>
+</ng-template>
+<ng-template templateName="componentSingleSelection">
+  <div class="flex flex-col gap-4">
+    <h2>Single Selection</h2>
+    <pj-selection-group [singleSelection]="true">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4">
+          <div class="title">First section</div>
+          <pj-selitem-stacked-card [title]="'Title 1'" [description]="'Description 1'" selItem>
+          </pj-selitem-stacked-card>
+          <pj-selitem-stacked-card [title]="'Title 2'" [description]="'Description 2'" selItem>
+          </pj-selitem-stacked-card>
+        </div>
+        <div class="title">Second section</div>
+        <pj-selitem-stacked-card [title]="'Title 3'" [description]="'Description 3'" selItem [selected]="true">
+        </pj-selitem-stacked-card>
+      </div>
+    </pj-selection-group>
+    <pj-divider></pj-divider>
+    <pj-selection-group [singleSelection]="true">
+      <div class="flex flex-col gap-4">
+        <pj-selitem-generic selItem>
+          <div class="p-4 rounded-lg">Selection Item 001</div>
+        </pj-selitem-generic>
+        <pj-selitem-generic selItem>
+          <div class="p-4 rounded-lg">Selection Item 002</div>
+        </pj-selitem-generic>
+        <pj-selitem-generic selItem>
+          <div class="p-4 rounded-lg">Selection Item 003</div>
+        </pj-selitem-generic>
+        <pj-selitem-generic selItem>
+          <div class="p-4 rounded-lg">Selection Item 004</div>
+        </pj-selitem-generic>
+      </div>
+    </pj-selection-group>
+
+    <pj-selection-group [singleSelection]="true">
+      <div class="flex flex-col gap-4">
+        <div selItem>
+          <div class="p-4 rounded-lg">Selection Item 001</div>
+        </div>
+        <div selItem>
+          <div class="p-4 rounded-lg">Selection Item 002</div>
+        </div>
+        <div selItem>
+          <div class="p-4 rounded-lg">Selection Item 003</div>
+        </div>
+        <div selItem>
+          <div class="p-4 rounded-lg">Selection Item 004</div>
+        </div>
+      </div>
+    </pj-selection-group>
+  </div>
+  <h2>Image single chooser</h2>
+  <pj-selection-group [singleSelection]="true">
+    <div class="flex flex-row gap-4">
+      <pj-selitem-image selItem [imageSrc]="'assets/image/heart.png'"></pj-selitem-image>
+      <pj-selitem-image selItem [imageSrc]="'assets/image/lock.png'"></pj-selitem-image>
+      <pj-selitem-image selItem [selected]="true" [imageSrc]="'assets/image/life_ring.png'">
+      </pj-selitem-image>
+    </div>
+  </pj-selection-group>
+</ng-template>
+<ng-template templateName="componentStarRate">
+  <div class="flex flex-col gap-4">
+    <h2>Star Rate</h2>
+    <div class="flex flex-row items-center gap-4">
+      <pj-star-rate [rating]="4" [subLabel]="'1024'"></pj-star-rate>
+      <pj-star-rate [rating]="4" [hasLabel]="true" [subLabel]="'1024'"></pj-star-rate>
+      <pj-star-rate [rating]="4.5" [hasLabel]="true"></pj-star-rate>
+    </div>
+    <div class="flex flex-row items-center gap-4">
+      <pj-star-rate [rating]="4" pjSize="lg" [subLabel]="'1024'"></pj-star-rate>
+      <pj-star-rate [rating]="4.5" [hasLabel]="true" pjSize="lg"></pj-star-rate>
+    </div>
+    <pj-star-rate [rating]="0" pjSize="lg" [title]="'Product'"
+      [ratingDesc]="['The product is bad.', 'The product is okay.', 'The product is good.', 'The product is great.', 'The product is awesome!']"
+      [editable]="true"></pj-star-rate>
+    <pj-star-rate [rating]="1" pjSize="lg" [title]="'Product'"
+      [ratingDesc]="['The product is bad.', 'The product is okay.', 'The product is good.', 'The product is great.', 'The product is awesome!']">
+    </pj-star-rate>
+    <pj-star-rate [rating]="2" pjSize="lg" [title]="'Product'"
+      [ratingDesc]="['The product is bad.', 'The product is okay.', 'The product is good.', 'The product is great.', 'The product is awesome!']">
+    </pj-star-rate>
+    <pj-star-rate [rating]="3" pjSize="lg" [title]="'Product'"
+      [ratingDesc]="['The product is bad.', 'The product is okay.', 'The product is good.', 'The product is great.', 'The product is awesome!']">
+    </pj-star-rate>
+    <pj-star-rate [rating]="4" pjSize="lg" [title]="'Product'"
+      [ratingDesc]="['The product is bad.', 'The product is okay.', 'The product is good.', 'The product is great.', 'The product is awesome!']">
+    </pj-star-rate>
+    <pj-star-rate [rating]="5" pjSize="lg" [title]="'Product'"
+      [ratingDesc]="['The product is bad.', 'The product is okay.', 'The product is good.', 'The product is great.', 'The product is awesome!']">
+    </pj-star-rate>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentPopover">
+  <div class="flex flex-col gap-4">
+    <h2>Popover</h2>
+    <pj-popover style="width: 208px;">
+      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus
+        magna fringilla urna, porttitor</div>
+    </pj-popover>
+  </div>
+</ng-template>
+<ng-template templateName="componentProgressSeries">
+  <div class="flex flex-col gap-4">
+    <h2>Progress Indicator</h2>
+    <div class="flex flex-row items-start gap-4">
+      <pj-progress-indicator pjSize="sm"></pj-progress-indicator>
+      <pj-progress-indicator></pj-progress-indicator>
+      <pj-progress-indicator pjSize="lg"></pj-progress-indicator>
+    </div>
+    <h2>Progress Bar</h2>
+    <div class="flex flex-row items-center gap-4">
+      <pj-button-cta [label]="'Start Process'" (click)="onStartProcessBtnClick()" btnType="outlined"
+        pjColor="secondary"></pj-button-cta>
+      <pj-button-cta [label]="'Stop Process'" (click)="onStopProcessBtnClick()" btnType="outlined" pjColor="error">
+      </pj-button-cta>
+    </div>
+    <pj-progress-bar [progress]="getProgress()"></pj-progress-bar>
+    <pj-progress-bar [progress]="getProgress()" pjColor="primary"></pj-progress-bar>
+    <pj-progress-bar [progress]="getProgress()" pjColor="secondary"></pj-progress-bar>
+    <h2>Progress Status</h2>
+    <pj-progress-status [steps]="getProgressStepData()"></pj-progress-status>
+    <pj-progress-status [steps]="getProgressStepData2()"></pj-progress-status>
+    <pj-progress-status [steps]="getProgressStepData3()"></pj-progress-status>
+    <h2>Progress Linear</h2>
+    <pj-progress-linear [percent]="25"></pj-progress-linear>
+    <pj-progress-linear [label]="'Have done: '" [percent]="60"></pj-progress-linear>
+    <pj-progress-linear [label]="'Have done: '" [percent]="60" [focused]="true"></pj-progress-linear>
+    <h2>Progress Steps</h2>
+    <pj-progress-step [steps]="getProgressStepData()"></pj-progress-step>
+  </div>
+</ng-template>
+<ng-template templateName="componentModalWindow">
+  <div class="flex flex-row gap-4">
+    <pj-button-cta [label]="'Open Modal Window'" pjColor="neutral" (click)="onOpenModalWindow()">
+    </pj-button-cta>
+    <pj-button-cta [label]="'Open Remove Modal Window'" pjColor="neutral" (click)="onOpenRemoveModalWindow()">
+    </pj-button-cta>
+  </div>
+</ng-template>
+<ng-template templateName="componentInfoCard">
+  <div class="flex flex-col gap-4">
+    <h2>Info Card</h2>
+    <pj-layout-grid>
+      <pj-info-card class="col-span-4" [label]="'Sales'" [value]="'$5487.77'" [iconName]="'local_mall.outlined'">
+      </pj-info-card>
+    </pj-layout-grid>
+  </div>
+</ng-template>
+<ng-template templateName="componentImageManagement">
+  <div class="flex flex-col gap-4">
+    <h2>Image Management</h2>
+    <div class="flex flex-row gap-4">
+      <pj-image-manage [imageData]="{imageSrc:'assets/image/life_ring.png'}"></pj-image-manage>
+      <pj-image-manage [imageData]="{imageSrc:'assets/image/life_ring.png'}" [action1]="{iconName: 'delete', label:''}">
+      </pj-image-manage>
+      <pj-image-manage [imageData]="{imageSrc:'assets/image/life_ring.png'}" [action1]="{iconName: 'delete', label:''}"
+        [statusAdded]="true"></pj-image-manage>
+      <pj-image-manage [imageData]="{imageSrc:'assets/image/heart.png'}" [actionLocation]="'center'"
+        [action2]="{iconName: 'delete', label:'delete'}" [action1]="{iconName: 'add_circle', label:'Add'}">
+      </pj-image-manage>
+      <pj-image-manage [imageData]="{imageSrc:'assets/image/heart.png'}" [actionLocation]="'center'"
+        [action2]="{iconName: 'delete', label:'delete'}" [statusAdded]="true">
+      </pj-image-manage>
+    </div>
+    <div class="flex flex-row gap-4">
+      <pj-image-manage [label]="'test.png'" [action1]="{iconName: 'cancel.outlined', label:''}">
+      </pj-image-manage>
+      <pj-image-manage [label]="'test.png'" [actionLocation]="'center'"
+        [action2]="{iconName: 'cancel.outlined', label:''}"></pj-image-manage>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentDivider">
+  <div class="flex flex-col gap-8">
+    <h2>Divider - Horizontal</h2>
+    <div class="flex flex-row items-center gap-4">
+      <pj-divider class="flex-grow"></pj-divider>
+      <pj-divider class="flex-grow" [label]="'OR'"></pj-divider>
+    </div>
+    <div class="flex flex-row items-center gap-4">
+      <pj-divider class="flex-grow" [dividerType]="'subtle'"></pj-divider>
+      <pj-divider class="flex-grow" [dividerType]="'subtle'" [label]="'OR'"></pj-divider>
+    </div>
+    <h2>Divider - Virtical</h2>
+    <div class="self-center flex flex-row h-20 gap-8">
+      <pj-divider [direction]="'virtical'"></pj-divider>
+      <pj-divider [direction]="'virtical'" [dividerType]="'subtle'"></pj-divider>
+      <pj-divider [direction]="'virtical'" [label]="'OR'"></pj-divider>
+      <pj-divider [direction]="'virtical'" [dividerType]="'subtle'" [label]="'OR'"></pj-divider>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentDropdown">
+  <h2>Dropdown - Action</h2>
+  <h4 class="mb-8">Used as dropdown menu</h4>
+  <div class="flex flex-col gap-2 mb-2" *ngFor="let size of ['md', 'lg', 'xl']">
+    <div class="flex flex-row items-center gap-2 mb-8">
+      <pj-dropdown-action pjSize="{{size}}" class="flex-grow" [item]="{label: 'UserAccount Menu'}"
+        [menuItems]="getDropDownActionItems()">
+      </pj-dropdown-action>
+      <pj-dropdown-action pjSize="{{size}}" class="flex-grow" [item]="{iconName: 'person', label: 'UserAccount Menu'}"
+        [menuItems]="getDropDownActionItems()">
+      </pj-dropdown-action>
+      <pj-dropdown-action pjSize="{{size}}" class="flex-grow" [item]="{iconName: 'person', label: 'UserAccount Menu'}"
+        [menuItems]="getDropDownActionItems()" [disabled]="true">
+      </pj-dropdown-action>
+      <pj-dropdown-action pjSize="{{size}}" class="flex-grow"
+        [item]="{imageName: 'assets/image/flag/us.png', label: 'UserAccount Menu'}"
+        [menuItems]="getDropDownActionItems()">
+      </pj-dropdown-action>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2" *ngFor="let size of ['md', 'lg', 'xl']">
+    <div class="flex flex-row items-center gap-2 mb-8">
+      <pj-dropdown-action [label]="'User Account'" pjSize="{{size}}" class="flex-grow"
+        [item]="{label: 'UserAccount Menu'}" [menuItems]="getDropDownActionItems()">
+      </pj-dropdown-action>
+      <pj-dropdown-action [label]="'User Account'" pjSize="{{size}}" class="flex-grow"
+        [item]="{iconName: 'person', label: 'UserAccount Menu'}" [menuItems]="getDropDownActionItems()">
+      </pj-dropdown-action>
+      <pj-dropdown-action [label]="'User Account'" pjSize="{{size}}" class="flex-grow"
+        [item]="{iconName: 'person', label: 'UserAccount Menu'}" [menuItems]="getDropDownActionItems()"
+        [disabled]="true">
+      </pj-dropdown-action>
+      <pj-dropdown-action [label]="'User Account'" pjSize="{{size}}" class="flex-grow"
+        [item]="{imageName: 'assets/image/flag/us.png', label: 'UserAccount Menu'}"
+        [menuItems]="getDropDownActionItems()">
+      </pj-dropdown-action>
+    </div>
+  </div>
+  <h2>Dropdown - Selection</h2>
+  <h4 class="mb-8">Used as dropdown selection</h4>
+  <div class="flex flex-col items-end mb-8 gap-8">
+    <div class="flex flex-row items-end gap-2">
+      <pj-dropdown-selection pjSize="md" [menuItems]="getDropDownOptionItems()"></pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="lg" [menuItems]="getDropDownOptionItems()"></pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="xl" [menuItems]="getDropDownOptionItems()"></pj-dropdown-selection>
+    </div>
+    <div class="flex flex-row items-end gap-2">
+      <pj-dropdown-selection pjSize="md" [menuItems]="getDropDownOptionItems()" [label]="'Setting'">
+      </pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="lg" [menuItems]="getDropDownOptionItems()" [label]="'Setting'">
+      </pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="xl" [menuItems]="getDropDownOptionItems()" [label]="'Setting'">
+      </pj-dropdown-selection>
+    </div>
+
+    <div class="flex flex-row items-end gap-2">
+      <pj-dropdown-selection pjSize="md" [menuItems]="getSupportedCountriesForDropdown()"></pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="lg" [menuItems]="getSupportedCountriesForDropdown()"></pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <div>test</div>
+      <pj-dropdown-selection pjSize="xl" [menuItems]="getSupportedCountriesForDropdown()"
+        (itemClicked)="getSelectedItem($event)"></pj-dropdown-selection>
+    </div>
+    <div class="flex flex-row items-end gap-2">
+      <pj-dropdown-selection pjSize="md" [menuItems]="getSupportedCountriesForDropdown()" [label]="'Country'">
+      </pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="lg" [menuItems]="getSupportedCountriesForDropdown()" [label]="'Country'">
+      </pj-dropdown-selection>
+      <pj-divider class=" self-stretch" [direction]="'virtical'"></pj-divider>
+      <pj-dropdown-selection pjSize="xl" [menuItems]="getSupportedCountriesForDropdown()" [label]="'Country'"
+        [error]="true">
+      </pj-dropdown-selection>
+    </div>
+  </div>
+
+  <h2>Dropdown - Optional Item</h2>
+  <h4 class="mb-8">Item can be selected / unselected</h4>
+  <div class="flex flex-col items-end mb-8">
+    <div class="flex flex-row items-end gap-2">
+      <pj-dropdown-option pjSize="md" label="Optional Item" [menuItems]="getSelectedItemsForDropdown()"
+        [item]="{label: 'Optional Items'}"></pj-dropdown-option>
+      <pj-dropdown-option pjSize="lg" label="Optional Item" [menuItems]="getSelectedItemsForDropdown()"
+        [item]="{label: 'Optional Items'}"></pj-dropdown-option>
+      <pj-dropdown-option pjSize="xl" label="Optional Item" [menuItems]="getSelectedItemsForDropdown()"
+        [item]="{label: 'Optional Items'}">
+      </pj-dropdown-option>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentButtonCTA">
+  <h2 class="mb-8">Button - CTA</h2>
+  <div class="flex flex-col gap-4 mb-8" *ngFor="let btnType of ['text','filled','outlined','elevated']">
+    <h4>CTA - {{btnType}}</h4>
+    <div class="flex flex-row gap-4 p-4" style="background-color: lightpink;">
+      <div *ngFor="let size of ['md', 'lg', 'xl']">
+        <div class="flex flex-col gap-4 justify-start">
+          <pj-button-cta [btnType]="btnType" [label]="'Btn CTA'"
+            *ngFor="let color of ['success', 'secondary', 'brand', 'neutral', 'error', 'whiteBtn']" pjColor="{{color}}"
+            pjSize="{{size}}" [leftIconName]="'local_shipping'" [badgeLabel]="'99'"></pj-button-cta>
+          <pj-button-cta [btnType]="btnType" [label]="'Btn CTA'" pjSize="{{size}}" [disabled]="true"
+            (click)="onClick('disabled')" pjColor="secondary">
+          </pj-button-cta>
+          <pj-button-cta [btnType]="btnType" [label]="'Btn CTA'" pjSize="{{size}}" [disabled]="false"
+            (click)="onClick('enabled')" [rightIconName]="'add'" pjColor="secondary">
+          </pj-button-cta>
+          <pj-button-cta [btnType]="btnType" [label]="'Btn CTA'" pjSize="{{size}}" [disabled]="true"
+            (click)="onClick('disabled')" [leftIconName]="'add'" pjColor="secondary">
+          </pj-button-cta>
+          <pj-button-cta [btnType]="btnType" [label]="'Btn CTA'" pjSize="{{size}}" [disabled]="false"
+            (click)="onClick('enabled')" [badgeLabel]="'99'" pjColor="secondary">
+          </pj-button-cta>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <pj-button-cta [btnType]="btnType" [label]="'Btn CTA'"
+          *ngFor="let color of ['success', 'secondary', 'brand', 'neutral', 'error', 'whiteBtn']" pjColor="{{color}}"
+          pjSize="lg" [rightIconName]="'local_shipping'" [disabled]="true"></pj-button-cta>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentButtonIcon">
+  <h2 class="mb-8">Button - Icon</h2>
+  <div class="flex flex-col gap-4 p-4 m-4 rounded-lg" *ngFor="let btnType of ['text','filled','outlined','elevated']"
+    style="background-color: lightpink;">
+    <h4>Icon - {{btnType}}</h4>
+    <div class="flex flex-row items-center gap-4" *ngFor="let size of ['sm', 'md', 'lg', 'xl']">
+      <pj-button-icon [btnType]="btnType" *ngFor="let color of ['neutral', 'secondary', 'error']" pjColor="{{color}}"
+        pjSize="{{size}}" [iconName]="'home'"></pj-button-icon>
+      <pj-button-icon [btnType]="btnType" *ngFor="let color of ['neutral', 'secondary', 'error']" pjColor="{{color}}"
+        pjSize="{{size}}" [iconName]="'favorite'" [badgeLabel]="'99'" [inlineBadge]="true"></pj-button-icon>
+      <pj-button-icon [btnType]="btnType" *ngFor="let color of ['neutral', 'secondary', 'error']" pjColor="{{color}}"
+        pjSize="{{size}}" [iconName]="'add'" [badgeLabel]="'99'"></pj-button-icon>
+      <div style="background-color: lightpink;" class="p-4 flex flex-row gap-4">
+        <pj-button-icon [btnType]="btnType" pjColor="whiteBtn" pjSize="{{size}}" [iconName]="'home'"></pj-button-icon>
+        <pj-button-icon [btnType]="btnType" pjColor="whiteBtn" pjSize="{{size}}" [iconName]="'favorite'"
+          [badgeLabel]="'99'" [inlineBadge]="true"></pj-button-icon>
+        <pj-button-icon [btnType]="btnType" pjColor="whiteBtn" pjSize="{{size}}" [iconName]="'add'" [badgeLabel]="'99'">
+        </pj-button-icon>
+      </div>
+    </div>
+    <div class="flex flex-row items-center gap-4">
+      <pj-button-icon [btnType]="btnType" *ngFor="let color of ['neutral', 'secondary', 'error']" pjColor="{{color}}"
+        pjSize="lg" [iconName]="'home'" [disabled]="true"></pj-button-icon>
+      <pj-button-icon [btnType]="btnType" *ngFor="let color of ['neutral', 'secondary', 'error']" pjColor="{{color}}"
+        pjSize="lg" [iconName]="'favorite'" [badgeLabel]="'99'" [inlineBadge]="true" [disabled]="true"></pj-button-icon>
+      <pj-button-icon [btnType]="btnType" *ngFor="let color of ['neutral', 'secondary', 'error']" pjColor="{{color}}"
+        pjSize="lg" [iconName]="'add'" [badgeLabel]="'99'" [disabled]="true"></pj-button-icon>
+      <div style="background-color: lightpink;" class="p-4 flex flex-row gap-4">
+        <pj-button-icon [btnType]="btnType" pjColor="whiteBtn" pjSize="lg" [iconName]="'home'" [disabled]="true">
+        </pj-button-icon>
+        <pj-button-icon [btnType]="btnType" pjColor="whiteBtn" pjSize="lg" [iconName]="'favorite'" [badgeLabel]="'99'"
+          [inlineBadge]="true" [disabled]="true"></pj-button-icon>
+        <pj-button-icon [btnType]="btnType" pjColor="whiteBtn" pjSize="lg" [iconName]="'add'" [badgeLabel]="'99'"
+          [disabled]="true">
+        </pj-button-icon>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentButtonInline">
+  <h2 class="mb-8">Button - Inline</h2>
+  <div class="flex flex-col gap-4 p-4" style="background-color: lightpink;">
+    <div class="flex flex-row gap-4 items-center" *ngFor="let color of getColors()">
+      <pj-button-inline *ngFor="let size of ['md', 'lg', 'xl']" pjSize="{{size}}" pjColor="{{color}}"
+        [label]="'Inline '+size.toUpperCase()" [leftIconName]="'local_shipping'" [rightIconName]="'add'">
+      </pj-button-inline>
+      <pj-button-inline *ngFor="let size of ['md', 'lg', 'xl']" pjSize="{{size}}" pjColor="{{color}}"
+        [label]="'Inline '+size.toUpperCase()">
+      </pj-button-inline>
+      <pj-button-inline pjSize="md" pjColor="{{color}}" [leftIconName]="'local_shipping'" [label]="'Inline MD'"
+        [rightIconName]="'add'" [disabled]="true">
+      </pj-button-inline>
+    </div>
+    <div class="flex flex-row gap-4 items-center p-4" style="background-color: lightpink;">
+      <pj-button-inline *ngFor="let size of ['md', 'lg', 'xl']" pjSize="{{size}}" pjColor="whiteBtn"
+        [label]="'Inline '+size.toUpperCase()" [leftIconName]="'local_shipping'" [rightIconName]="'add'">
+      </pj-button-inline>
+      <pj-button-inline *ngFor="let size of ['md', 'lg', 'xl']" pjSize="{{size}}" pjColor="whiteBtn"
+        [label]="'Inline '+size.toUpperCase()">
+      </pj-button-inline>
+      <pj-button-inline pjSize="md" pjColor="whiteBtn" [leftIconName]="'local_shipping'" [label]="'Inline MD'"
+        [rightIconName]="'add'" [disabled]="true">
+      </pj-button-inline>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentButtonFAB">
+  <h2 class="mb-8">Button - FAB</h2>
+  <div class="flex flex-col gap-4 mb-8" *ngFor="let color of ['primary', 'secondary', 'brand', 'neutral']">
+    <div class="flex flex-row gap-8">
+      <pj-button-fab [iconName]="'add'" pjColor="{{color}}"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [disabled]="true" pjColor="{{color}}"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [badgeLabel]="'23'" pjColor="{{color}}"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [badgeLabel]="'23'" [disabled]="true" pjColor="{{color}}"></pj-button-fab>
+
+      <pj-button-fab [iconName]="'add'" pjColor="{{color}}" pjSize="lg"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [disabled]="true" pjColor="{{color}}" pjSize="lg"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [badgeLabel]="'23'" pjColor="{{color}}" pjSize="lg"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [badgeLabel]="'23'" [disabled]="true" pjColor="{{color}}" pjSize="lg">
+      </pj-button-fab>
+    </div>
+  </div>
+  <div class="flex flex-col gap-4 mb-8" *ngFor="let color of ['primary', 'secondary', 'brand', 'neutral']">
+    <div class="flex flex-row gap-8">
+      <pj-button-fab [iconName]="'add'" [label]="'Extended'" pjColor="{{color}}"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [label]="'Extended'" [disabled]="true" pjColor="{{color}}"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [label]="'Extended'" [badgeLabel]="'23'" pjColor="{{color}}"></pj-button-fab>
+      <pj-button-fab [iconName]="'add'" [label]="'Extended'" [badgeLabel]="'23'" [disabled]="true" pjColor="{{color}}">
+      </pj-button-fab>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentButtonFavorite">
+  <h2 class="mb-8">Button - Favorite</h2>
+  <div class="flex flex-col mb-2" *ngFor="let btnType of ['text', 'filled', 'elevated', 'outlined']">
+    <h4>Favorite - {{btnType}}</h4>
+    <div class="flex flex-col mb-2" *ngFor="let size of ['md', 'lg', 'xl']">
+      <div class="flex flex-col mb-2" *ngFor="let color of ['neutral', 'secondary']">
+        <div class="flex flex-row items-center gap-8">
+          <pj-button-favorite pjSize="{{size}}" pjColor="{{color}}" [btnType]="btnType"></pj-button-favorite>
+          <pj-button-favorite pjSize="{{size}}" pjColor="{{color}}" [btnType]="btnType" [disabled]="true">
+          </pj-button-favorite>
+          <pj-button-favorite pjSize="{{size}}" pjColor="{{color}}" [btnType]="btnType">
+          </pj-button-favorite>
+          <pj-button-favorite pjSize="{{size}}" pjColor="{{color}}" [btnType]="btnType" [withLabel]="true">
+          </pj-button-favorite>
+          <pj-button-favorite pjSize="{{size}}" pjColor="{{color}}" [btnType]="btnType" [withLabel]="true"
+            [disabled]="true">
+          </pj-button-favorite>
+          <pj-button-favorite pjSize="{{size}}" pjColor="{{color}}" [btnType]="btnType" [withLabel]="true">
+          </pj-button-favorite>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentCodebox">
+  <h2 class="mb-8">Code Field Group</h2>
+  <div class="flex flex-col gap-8">
+    <pj-codebox [values]="'9876 4321'" (valueChanged)="onCodeboxValueChanged($event)"></pj-codebox>
+    <pj-codebox [hasError]="true"></pj-codebox>
+    <pj-codebox (valueChanged)="onCodeboxValueChanged($event)"></pj-codebox>
+    <pj-codebox [values]="'helloCan'" [hasError]="true"></pj-codebox>
+  </div>
+</ng-template>
+<ng-template templateName="componentChip">
+  <h2 class="mb-8">Chip Input / Chip Filter / Chip Filter Group (Not done)</h2>
+  <div class="flex flex-col gap-8">
+    <h4>Chip Input</h4>
+    <div class="flex flex-row gap-8">
+      <pj-chip-input [label]="'Peripherals'"></pj-chip-input>
+      <pj-chip-input [label]="'Headphone'"></pj-chip-input>
+      <pj-chip-input [label]="'Peripherals'" [selected]="true"></pj-chip-input>
+      <pj-chip-input [label]="'Headphone'" [selected]="true"></pj-chip-input>
+    </div>
+    <h4>Chip Filter</h4>
+    <div class="flex flex-row gap-8">
+      <pj-chip-filter [label]="'Computer'"></pj-chip-filter>
+      <pj-chip-filter [quantity]="400" [label]="'Computer'"></pj-chip-filter>
+      <pj-chip-filter [imageSrc]="'assets/image/life_ring.png'" [label]="'Computer'"></pj-chip-filter>
+    </div>
+    <div style="width:auto;" class=" overflow-auto">
+      <div class="flex flex-row gap-8">
+        <pj-chip-filter [quantity]="400" [label]="'Computer'"></pj-chip-filter>
+        <pj-chip-filter [quantity]="400" [label]="'Peripherals'"></pj-chip-filter>
+        <pj-chip-filter [quantity]="400" [label]="'Abc'" [selected]="true"></pj-chip-filter>
+        <pj-chip-filter [quantity]="400" [label]="'Headphone'"></pj-chip-filter>
+        <pj-chip-filter [quantity]="400" [label]="'Home'"></pj-chip-filter>
+        <pj-chip-filter [quantity]="400" [label]="'Filter'"></pj-chip-filter>
+      </div>
+    </div>
+    <pj-chip-group [chips]="getChipsForGroup()"></pj-chip-group>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentChoiceBox">
+  <h2 class="mb-8">Checkbox / Checkbox Group</h2>
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-row items-center justify-evenly gap-8">
+      <div class="flex flex-col gap-4">
+        <pj-checkbox [label]="'Apple'" [particialCheck]="true"></pj-checkbox>
+        <pj-checkbox [label]="'Google'"></pj-checkbox>
+        <pj-checkbox [label]="'Amazon'"></pj-checkbox>
+      </div>
+      <div class="flex flex-col gap-4">
+        <pj-checkbox></pj-checkbox>
+        <pj-checkbox></pj-checkbox>
+        <pj-checkbox></pj-checkbox>
+      </div>
+      <div class="flex flex-col gap-1">
+        <pj-checkbox label="Select All" [checked]="isAllChecked()" [particialCheck]="isParticialChecked()"
+          (changedEvent)="onCheckAllClick($event)"></pj-checkbox>
+        <pj-checkbox-group [direction]="'vertical'" [items]="getCheckboxItems()" (changeEvent)="onChangeEvent($event)">
+        </pj-checkbox-group>
+      </div>
+      <div class="flex flex-col gap-1">
+        <pj-checkbox label="Select All" [checked]="isAllChecked()" [particialCheck]="isParticialChecked()"
+          (changedEvent)="onCheckAllClick($event)"></pj-checkbox>
+        <pj-checkbox-group [direction]="'vertical'" [items]="getCheckboxItems()" [bordered]="false"
+          (changeEvent)="onChangeEvent($event)">
+        </pj-checkbox-group>
+      </div>
+    </div>
+    <pj-checkbox-group [items]="getCheckboxItems()" (changeEvent)="onChangeEvent($event)"></pj-checkbox-group>
+  </div>
+  <div class="flex flex-col gap-8 mt-8">
+    <h2>Radio / Radio Group</h2>
+    <div class="flex flex-row items-center justify-evenly gap-8">
+      <div class="flex flex-col gap-4">
+        <pj-radio [label]="'Apple'"></pj-radio>
+        <pj-radio [label]="'Google'"></pj-radio>
+        <pj-radio [label]="'Amazon'"></pj-radio>
+      </div>
+      <div class="flex flex-col gap-4">
+        <pj-radio></pj-radio>
+        <pj-radio></pj-radio>
+        <pj-radio></pj-radio>
+      </div>
+      <pj-radio-group [direction]="'vertical'" [items]="getRadioItems()" (changeEvent)="onItemGroupChange($event)">
+      </pj-radio-group>
+      <pj-radio-group [direction]="'vertical'" [items]="getRadioItems()" [bordered]="false"></pj-radio-group>
+    </div>
+    <div class="flex flex-col gap-4">
+      <pj-radio-group [items]="getRadioItems()"></pj-radio-group>
+    </div>
+    <pj-radio [disabled]="true" [label]="'disabled test'"></pj-radio>
+  </div>
+  <div class="flex flex-col gap-8 mt-8">
+    <h2>Customized Group</h2>
+    <div class="flex flex-row items-center justify-evenly gap-8">
+      <pj-checkbox-group [direction]="'vertical'" (changeEvent)="onChangeEvent($event)">
+        <pj-checkbox [groupItem]="chElm1" #chElm1 itemValue="2">
+          <pj-star-rate [rating]="5" [hasLabel]="true"></pj-star-rate>
+        </pj-checkbox>
+        <pj-checkbox [groupItem]="chElm2" #chElm2 itemValue="3" [checked]="true">
+          <pj-star-rate [rating]="4" [hasLabel]="true"></pj-star-rate>
+        </pj-checkbox>
+      </pj-checkbox-group>
+      <pj-radio-group direction="vertical" (changeEvent)="onRadioChangeEvent($event)">
+        <pj-radio [groupItem]="elm1" #elm1 itemValue="2" [checked]="true">
+          <pj-star-rate [rating]="5" [hasLabel]="true"></pj-star-rate>
+        </pj-radio>
+        <pj-radio [groupItem]="elm2" #elm2 itemValue="3">
+          <pj-star-rate [rating]="4" [hasLabel]="true"></pj-star-rate>
+        </pj-radio>
+      </pj-radio-group>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentBreadcrumb">
+  <div class="flex flex-col gap-8">
+    <pj-breadcrumb [breadcrumbs]="getBreadcrumbs()"></pj-breadcrumb>
+  </div>
+</ng-template>
+<ng-template templateName="componentBadge">
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-row items-center gap-8" *ngFor="let color of getColors()">
+      <pj-badge [label]="'999'" pjSize="sm" pjColor="{{color}}"></pj-badge>
+      <pj-badge [label]="'999'" pjColor="{{color}}"></pj-badge>
+      <pj-badge [label]="'999'" pjSize="lg" pjColor="{{color}}"></pj-badge>
+      <pj-badge [label]="'999'" pjSize="sm" pjColor="{{color}}" [withDot]="true"></pj-badge>
+      <pj-badge [label]="'999'" pjColor="{{color}}" [withDot]="true"></pj-badge>
+      <pj-badge [label]="'999'" pjSize="lg" pjColor="{{color}}" [withDot]="true"></pj-badge>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentAvatar">
+  <div class="flex flex-col gap-8 p-4" style="background-color: lightpink;">
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [imageSrc]="'assets/image/life_ring.png'"></pj-avatar>
+      <pj-avatar pjSize="sm" [imageSrc]="'assets/image/life_ring.png'"></pj-avatar>
+      <pj-avatar pjSize="md" [imageSrc]="'assets/image/life_ring.png'"></pj-avatar>
+      <pj-avatar pjSize="lg" [imageSrc]="'assets/image/life_ring.png'"></pj-avatar>
+      <pj-avatar pjSize="xl" [imageSrc]="'assets/image/life_ring.png'"></pj-avatar>
+      <pj-avatar pjSize="xxl" [imageSrc]="'assets/image/life_ring.png'"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs"></pj-avatar>
+      <pj-avatar pjSize="sm"></pj-avatar>
+      <pj-avatar pjSize="md"></pj-avatar>
+      <pj-avatar pjSize="lg"></pj-avatar>
+      <pj-avatar pjSize="xl"></pj-avatar>
+      <pj-avatar pjSize="xxl"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [imageSrc]="'assets/image/heart.png'" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="sm" [imageSrc]="'assets/image/heart.png'" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="md" [imageSrc]="'assets/image/heart.png'" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="lg" [imageSrc]="'assets/image/heart.png'" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="xl" [imageSrc]="'assets/image/heart.png'" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="xxl" [imageSrc]="'assets/image/heart.png'" [hasNotification]="true"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="sm" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="md" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="lg" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="xl" [hasNotification]="true"></pj-avatar>
+      <pj-avatar pjSize="xxl" [hasNotification]="true"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [imageSrc]="'assets/image/lock.png'" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="sm" [imageSrc]="'assets/image/lock.png'" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="md" [imageSrc]="'assets/image/lock.png'" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="lg" [imageSrc]="'assets/image/lock.png'" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="xl" [imageSrc]="'assets/image/lock.png'" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="xxl" [imageSrc]="'assets/image/lock.png'" [online]="true"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="sm" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="md" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="lg" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="xl" [online]="true"></pj-avatar>
+      <pj-avatar pjSize="xxl" [online]="true"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [imageSrc]="'assets/image/lock.png'" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="sm" [imageSrc]="'assets/image/lock.png'" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="md" [imageSrc]="'assets/image/lock.png'" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="lg" [imageSrc]="'assets/image/lock.png'" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="xl" [imageSrc]="'assets/image/lock.png'" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="xxl" [imageSrc]="'assets/image/lock.png'" [online]="false"></pj-avatar>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-avatar pjSize="xs" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="sm" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="md" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="lg" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="xl" [online]="false"></pj-avatar>
+      <pj-avatar pjSize="xxl" [online]="false"></pj-avatar>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentImageGroup">
+  <div class="flex flex-col gap-8">
+    <h2>Image Group</h2>
+    <div class="flex flex-row items-center gap-8">
+      <pj-image-group class="w-1/2" [images]="getImages()"></pj-image-group>
+      <pj-image-group class="w-1/2" [images]="getImages()"></pj-image-group>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentImage">
+  <div class="flex flex-col gap-8">
+    <h2>Image</h2>
+    <div class="flex flex-row items-center gap-8">
+      <pj-image [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'rectangle', width: 64, height: 64}">
+      </pj-image>
+      <pj-image [imageData]="{imageSrc: 'assets/image/heart.png', imageType: 'rectangle', width: 80, height: 80}">>
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/lock.png', imageType: 'rectangle', width: 120, height: 120, label: 'Dog02'}">
+        >
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'rectangle', width: 240, height: 240, label: 'Cat'}">
+        ></pj-image>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'rectangle', width: 64, height: 64, badgeLabel: '23'}">
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/heart.png', imageType: 'rectangle', width: 80, height: 80, badgeLabel: '23'}">
+        >
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/lock.png', imageType: 'rectangle', width: 120, height: 120, label: 'Dog02', badgeLabel: '23'}">
+        >
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'rectangle', width: 240, height: 240, label: 'Cat', badgeLabel: '23'}">
+        ></pj-image>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-image [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'circle', width: 64, height: 64}">
+      </pj-image>
+      <pj-image [imageData]="{imageSrc: 'assets/image/heart.png', imageType: 'circle', width: 80, height: 80}">>
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/lock.png', imageType: 'circle', width: 120, height: 120, label: 'Dog02'}">
+        >
+      </pj-image>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'circle', width: 240, height: 240, label: 'Cat'}">
+        >
+      </pj-image>
+    </div>
+    <div>
+      <pj-image
+        [imageData]="{imageSrc: 'assets/image/life_ring.png', imageType: 'rectangle', width: 480, height: 480, label: 'Cat'}">
+        >
+      </pj-image>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentBanner">
+  <pj-banner></pj-banner>
+</ng-template>
+<ng-template templateName="componentArrowGroup">
+  <div class="flex flex-col gap-8">
+    <pj-arrow-group></pj-arrow-group>
+    <pj-arrow-group [arrowGroupData]="{btnSize: 'lg', btnType: 'text'}"></pj-arrow-group>
+    <pj-arrow-group [arrowGroupData]="{btnSize: 'lg', btnType: 'elevated'}"></pj-arrow-group>
+    <pj-arrow-group [arrowGroupData]="{btnSize: 'xl', btnType: 'text', hasMask: true}"></pj-arrow-group>
+    <pj-arrow-group [arrowGroupData]="{btnSize: 'xl', btnType: 'elevated'}"></pj-arrow-group>
+  </div>
+</ng-template>
+<ng-template templateName="componentAlert">
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-row gap-8">
+      <pj-alert [alertData]="getAlertData('success')"></pj-alert>
+      <pj-alert [alertData]="getAlertData('success', true)"></pj-alert>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-alert [alertData]="getAlertData('warning')" pjColor="warning"></pj-alert>
+      <pj-alert [alertData]="getAlertData('warning', true)" pjColor="warning"></pj-alert>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-alert [alertData]="getAlertData('error')" pjColor="error"></pj-alert>
+      <pj-alert [alertData]="getAlertData('error', true)" pjColor="error"></pj-alert>
+    </div>
+    <div class="flex flex-row gap-8">
+      <pj-alert [alertData]="getAlertData('info')" pjColor="info"></pj-alert>
+      <pj-alert [alertData]="getAlertData('info', true)" pjColor="info"></pj-alert>
+    </div>
+    <pj-alert [alertData]="getAlertData('info', false, true)" pjColor="info"></pj-alert>
+  </div>
+</ng-template>
+<ng-template templateName="componentActionImageItem">
+  <div class="flex flex-col gap-8">
+    <pj-action-image-item pjSize="lg" [actionItemData]="getActionItemData(0)"></pj-action-image-item>
+    <pj-action-image-item pjSize="lg" [actionItemData]="getActionItemData(1)"></pj-action-image-item>
+    <pj-action-image-item pjSize="lg" [actionItemData]="getActionItemData(2)"></pj-action-image-item>
+    <pj-action-image-item pjSize="lg" [actionItemData]="getActionItemData(3)"></pj-action-image-item>
+    <pj-action-image-item pjSize="lg" [actionItemData]="getActionItemData(4)"></pj-action-image-item>
+    <pj-action-image-item pjSize="xl" [actionItemData]="getActionItemData(0)"></pj-action-image-item>
+    <pj-action-image-item pjSize="xl" [actionItemData]="getActionItemData(1)"></pj-action-image-item>
+    <pj-action-image-item pjSize="xl" [actionItemData]="getActionItemData(2)"></pj-action-image-item>
+    <pj-action-image-item pjSize="xl" [actionItemData]="getActionItemData(3)"></pj-action-image-item>
+    <pj-action-image-item pjSize="xl" [actionItemData]="getActionItemData(4)"></pj-action-image-item>
+  </div>
+</ng-template>
+<ng-template templateName="componentActionItem">
+  <div class="flex flex-col gap-8">
+    <pj-action-item pjSize="lg" [actionItemData]="getActionItemData(3)"></pj-action-item>
+    <pj-action-item pjSize="lg" [actionItemData]="getActionItemData(4)"></pj-action-item>
+    <pj-action-item pjSize="xl" [actionItemData]="getActionItemData(3)"></pj-action-item>
+    <pj-action-item pjSize="xl" [actionItemData]="getActionItemData(4)"></pj-action-item>
+  </div>
+</ng-template>
+<ng-template templateName="componentActionCard">
+  <div class="flex flex-col gap-8">
+    <pj-action-card [actionCardData]="getActionCardData(0)"></pj-action-card>
+    <pj-action-card [actionCardData]="getActionCardData(1)"></pj-action-card>
+  </div>
+</ng-template>
+<ng-template templateName="componentActionButton">
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-row items-center gap-8">
+      <pj-action-button pjSize="md" [label]="'Enable'"></pj-action-button>
+      <pj-action-button pjSize="md" [label]="'Disabled'" pjDisabled></pj-action-button>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-action-button pjSize="lg" [label]="'Enable'"></pj-action-button>
+      <pj-action-button pjSize="lg" [label]="'Disabled'" pjDisabled></pj-action-button>
+    </div>
+    <div class="flex flex-row items-center gap-8">
+      <pj-action-button pjSize="xl" [label]="'Enable'"></pj-action-button>
+      <pj-action-button pjSize="xl" [label]="'Disabled'" pjDisabled></pj-action-button>
+    </div>
+  </div>
+</ng-template>
+<ng-template templateName="componentAccordion">
+  <div class="flex flex-row gap-8">
+    <div class="flex flex-col gap-4">
+      <pj-round-accordion pjSize="lg" [accordionData]="getAccordionData(0)">
+        <h5>content for accordion</h5>
+      </pj-round-accordion>
+      <pj-round-accordion pjSize="xl" [accordionData]="getAccordionData(0)">
+        <h4>content for accordion</h4>
+      </pj-round-accordion>
+
+      <pj-round-accordion pjSize="lg" [accordionData]="getAccordionData(1)">
+        <h5>content for accordion</h5>
+      </pj-round-accordion>
+      <pj-round-accordion pjSize="xl" [accordionData]="getAccordionData(2)">
+        <h4>content for accordion</h4>
+      </pj-round-accordion>
+    </div>
+    <div class="flex flex-col gap-4">
+      <pj-inline-accordion pjSize="lg" [accordionData]="getAccordionData(0)">
+        <h5>content for accordion</h5>
+      </pj-inline-accordion>
+      <pj-inline-accordion pjSize="xl" [accordionData]="getAccordionData(0)">
+        <h4>content for accordion</h4>
+      </pj-inline-accordion>
+
+      <pj-inline-accordion pjSize="lg" [accordionData]="getAccordionData(1)">
+        <h5>content for accordion</h5>
+      </pj-inline-accordion>
+      <pj-inline-accordion pjSize="xl" [accordionData]="getAccordionData(2)">
+        <h4>content for accordion</h4>
+      </pj-inline-accordion>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentTable">
+  <pj-table [rows]="[{id: 1, name: 'test'},{id: 2, name: 'test'},{id: 3, name: 'test'}]"
+    [columnHeader]="[{columnNo:1,columnTitle:'id',columnComponent:'none',columnWidth:300,dataName:'id',dataType:'number',show:true}
+    ,{columnNo:2,columnTitle:'name',columnComponent:'none',headerChangeable:true,columnWidth:300,dataName:'name',dataType:'string',show:true}]" (tableContextmenu)="onTableContextMenu($event)">
+  </pj-table>
+</ng-template>
+
+<ng-template templateName="componentTableToolbar">
+  <div>
+    <pj-table-toolbar></pj-table-toolbar>
+  </div>
+</ng-template>
+
+<ng-template #emptyTemplate>
+  <h1>No Component Selected</h1>
+</ng-template>
+<ng-template templateName="componentAutocomplete">
+  <div class="flex flex-col gap-4">
+    <pj-autocomplete [open]="true" [searchItem]="getSearchItem()" [resultItems]="getResults()"
+      [shopItem]="getShopItem()" [upperLabel]="'PRODUCTS'" [divided]="true" [lowerLabel]="'SHOPS'"></pj-autocomplete>
+    <br>
+    <pj-autocomplete [open]="true" [searchItem]="getSearchItem()" [resultItems]="getResults()"></pj-autocomplete>
+    <br>
+    <pj-autocomplete [open]="true" [searchItem]="getSearchItem()" [resultItems]="getResults()"
+      [shopItem]="getShopItem()" [divided]="true" [promotion]="true" [promotionImages]="getCompleteImages()"
+      [upperLabel]="'PRODUCT'" [lowerLabel]="'SHOPS'"></pj-autocomplete>
+    <br>
+    <pj-autocomplete [open]="true" [searchItem]="'abcd'" [resultItems]="[]"></pj-autocomplete>
+    <br>
+    <pj-autocomplete-empty [open]="true" [suggestItems]="getSuggestItems()" [searchHistory]="getSearchHistory()"
+      [upperLabel]="'SUGGESTED'" [divided]="true" [lowerLabel]="'RECENT SEARCH'"></pj-autocomplete-empty>
+    <br>
+    <h2>Autocomplete group</h2>
+    <pj-autocomplete-group [datasource]="getSearchData()" [aimProperty]="getAimProperty()"
+      [secondAimProperty]="getSecondAimProperty()"></pj-autocomplete-group>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentSingleSlider">
+  <h2>Single Slider</h2>
+  <div class="flex flex-col gap-5">
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <h4>{{getSlider1Value()}}</h4>
+      <pj-single-slider (valueChange)="onSingleValue1Change($event)"></pj-single-slider>
+    </div>
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <h4>{{getSlider2Value()}}</h4>
+      <pj-single-slider [sliderData]="getCustomiseSliderData1()" (valueChange)="onSingleValue2Change($event)">
+      </pj-single-slider>
+    </div>
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <pj-single-slider [sliderData]="getCustomiseSliderData2()"></pj-single-slider>
+    </div>
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <pj-single-slider [sliderData]="getCustomiseSliderData3()"></pj-single-slider>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template templateName="componentDoubleSlider">
+  <h2>Double Slider</h2>
+  <div class="flex flex-col gap-5">
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <h4>{{getSlider1Values()}}</h4>
+      <pj-double-slider (valueChange)="onValue1Change($event)"></pj-double-slider>
+    </div>
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <pj-double-slider [sliderData]="getCustomiseDoubelSliderData1()">
+      </pj-double-slider>
+    </div>
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <pj-double-slider [sliderData]="getCustomiseDoubelSliderData2()">
+      </pj-double-slider>
+    </div>
+    <div class="border-2 rounded-lg p-4 flex flex-col gap-2">
+      <pj-double-slider [sliderData]="getCustomiseDoubelSliderData3()">
+      </pj-double-slider>
+    </div>
+  </div>
+</ng-template>

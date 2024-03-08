@@ -1,0 +1,18 @@
+<div class="am-dropdown-upload-cell">
+  <pj-empty-status *ngIf="!hasImage()" [config]="{iconName: 'add', width: 80, height: 80, radius: '8px' }" [dropdownElm]="imageActionElm">
+  </pj-empty-status>
+  <pj-image-manage *ngIf="hasImage()"
+  [imageData]="{imageType: 'rectangle', width: 80, height: 80, imageSrc: getThisImage()}"
+  [action1]="{iconName:'close',label:''}"
+  (action1Click)="deleteThisImage()">
+</pj-image-manage>
+  <pj-dropdown-box #imageActionElm>
+
+    <pj-file-uploading [multipleFiles]="false" [fileType]="'image/*'" (base64Content)="setImageInfo($event)">
+      <pj-dropdown-item [dropdownItem]="{label:'Upload image',iconName:'upload'}" PjUploadDock></pj-dropdown-item>
+    </pj-file-uploading>
+
+    <pj-dropdown-item [dropdownItem]="{label:'Choose image',iconName:'checklist'}" (itemClicked)="clickChooseImage()"></pj-dropdown-item>
+
+  </pj-dropdown-box>
+</div>

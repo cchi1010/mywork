@@ -1,0 +1,51 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-panel-shadow: (shadow1, shadow2, shadow3, shadow4, shadow5, shadow6);
+$pj-panel-font: (title: $pj-strong-1);
+$pj-panel-style: (
+  bd: map-get($pj-primary, 10),
+  bg: $pj-white,
+  title: (fg: map-get($pj-neutral, 800)),
+  shadow1: (
+    sdA: map-get($pj-primary-shadow, 1a),
+    sdB: map-get($pj-primary-shadow, 1b),
+  ),
+  shadow2: (
+    sdA: map-get($pj-primary-shadow, 2a),
+    sdB: map-get($pj-primary-shadow, 2b),
+  ),
+  shadow3: (
+    sdA: map-get($pj-primary-shadow, 3a),
+    sdB: map-get($pj-primary-shadow, 3b),
+  ),
+  shadow4: (
+    sdA: map-get($pj-primary-shadow, 4a),
+    sdB: map-get($pj-primary-shadow, 4b),
+  ),
+  shadow5: (
+    sdA: map-get($pj-primary-shadow, 5a),
+    sdB: map-get($pj-primary-shadow, 5b),
+  ),
+  shadow6: (
+    sdA: map-get($pj-primary-shadow, 6a),
+    sdB: map-get($pj-primary-shadow, 6b),
+  ),
+);
+
+.pj-panel {
+  @include pjColorWithMapExt($pj-panel-style);
+  height: 100%;
+  border-width: 1px;
+  border-style: solid;
+  @each $shadowsn in $pj-panel-shadow {
+    &.#{$shadowsn} {
+      @include pjColorWithMapExt($pj-panel-style, $shadowsn);
+    }
+  }
+  & .title {
+    font: map-get($pj-panel-font, title);
+    @include pjColorWithMapExt($pj-panel-style, title);
+  }
+}

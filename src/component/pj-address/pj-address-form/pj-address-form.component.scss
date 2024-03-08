@@ -1,0 +1,31 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-address-form-font: (instructionTitle: $pj-label-lg, icon: 40px, label: $pj-label-lg);
+$pj-address-form-style: (instructionTitle: (fg: map-get($pj-neutral, 600)));
+$pj-address-form-measurement: (
+  width: 480px,
+  propertyType: (width: 100px, height: 120px, radius: 16px)
+);
+
+.pj-address-form {
+  @include pjMeasurementWithMapExt($pj-address-form-measurement);
+
+  & .instructionTitle {
+    font: map-get($pj-address-form-font, instructionTitle);
+    @include pjColorWithMapExt($pj-address-form-style, instructionTitle);
+  }
+
+  & .propertyType {
+    @include pjMeasurementWithMapExt($pj-address-form-measurement, propertyType);
+
+    & .icon {
+      font-size: map-get($pj-address-form-font, icon);
+    }
+
+    & .label {
+      font: map-get($pj-address-form-font, label);
+    }
+  }
+}

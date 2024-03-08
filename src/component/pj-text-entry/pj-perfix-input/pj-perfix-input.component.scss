@@ -1,0 +1,414 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-perfix-input-size: (md,
+  lg,
+  xl);
+
+$pj-perfix-input-font: (inputArea: $pj-label-lg,
+  placeholder: $pj-label-lg,
+  assistiveText: $pj-small,
+  label: $pj-label-lg,
+  innerLabel: $pj-label-md,
+  leftPerfixSign:$pj-body-2,
+  rightPerfixSign:$pj-body-2,
+);
+
+$pj-perfix-input-measurement: (md: (height: 32px,
+    padding: 4px 8px 4px 8px,
+    border: 1px,
+    assistiveText: 8px,
+    radius: 6px,
+    leftType:(radius: 0px 6px 6px 0px),
+    rightType:(radius: 6px 0px 0px 6px),
+    leftRightType:(radius:0px),
+    leftPerfixSign:(height: 32px,
+      border:1px 0px 1px 1px,
+      radius:6px 0px 0px 6px,
+      padding: 3px 8px 3px 8px,
+    ),
+    rightPerfixSign:(height: 32px,
+      border:1px 1px 1px 0px,
+      radius: 0px 6px 6px 0px,
+      padding: 3px 8px 3px 8px,
+    ),
+  ),
+  lg: (height: 40px,
+    padding: 8px 12px 8px 12px,
+    border: 1px,
+    assistiveText: 12px,
+    radius: 8px,
+    leftType:(radius: 0px 8px 8px 0px),
+    rightType:(radius: 8px 0px 0px 8px),
+    leftRightType:(radius:0px),
+    leftPerfixSign:(height: 40px,
+      border:1px 0px 1px 1px,
+      radius:8px 0px 0px 8px,
+      padding: 7px 12px 7px 12px,
+    ),
+    rightPerfixSign:(height: 40px,
+      border:1px 1px 1px 0px,
+      radius: 0px 8px 8px 0px,
+      padding: 7px 12px 7px 12px,
+    ),
+  ),
+  xl: (height: 56px,
+    padding: 12px 16px 12px 16px,
+    border: 1px,
+    assistiveText: 16px,
+    radius: 10px,
+    leftType:(radius: 0px 10px 10px 0px),
+    rightType:(radius: 10px 0px 0px 10px),
+    leftRightType:(radius:0px),
+    leftPerfixSign:(height: 56px,
+      border:1px 0px 1px 1px,
+      radius:10px 0px 0px 10px,
+      padding: 15px 16px 15px 16px,
+    ),
+    rightPerfixSign:(height: 56px,
+      border:1px 1px 1px 0px,
+      radius: 0px 10px 10px 0px,
+      padding: 15px 16px 15px 16px,
+    ),
+  ),
+);
+
+$pj-perfix-input-style:(icon: map-get($pj-error, 500),
+  normal: (bg: $pj-white,
+    bd: map-get($pj-neutral, 100),
+    sdA: map-get($pj-neutral-shadow, 1a),
+    sdB: map-get($pj-neutral-shadow, 1b),
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    inputArea: (fg: map-get($pj-neutral, 800),
+    ),
+    leftPerfixSign:(fg:map-get($pj-neutral, 400),
+      bg:$pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b)),
+    rightPerfixSign:(fg:map-get($pj-neutral, 400),
+      bg:$pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b)),
+    placeholder: (bg: $pj-white,
+      fg: map-get($pj-neutral, 200),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+    focused: (bg: $pj-white,
+      bd: map-get($pj-secondary, 500),
+      sdA: $pj-input-shadow,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: $pj-white,
+        fg: map-get($pj-secondary, 600),
+      ),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 400),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    filled: (bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: $pj-white,
+        fg: map-get($pj-neutral, 400),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    error: (bg: map-get($pj-error, 10),
+      bd: map-get($pj-error, 500),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 600),
+      ),
+      inputArea: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      placeholder: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      assistiveText: (fg: map-get($pj-error, 600),
+      ),
+    ),
+    disabled: (bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: none,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+  ),
+  noborder: (bg: $pj-white,
+    bd: $pj-white,
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    inputArea: (fg: map-get($pj-neutral, 800),
+    ),
+    leftPerfixSign:(fg:map-get($pj-neutral, 400),
+      bg:$pj-white,
+      bd: $pj-white,
+    ),
+    rightPerfixSign:(fg:map-get($pj-neutral, 400),
+      bg:$pj-white,
+      bd: $pj-white,
+    ),
+    placeholder: (bg: $pj-white,
+      fg: map-get($pj-neutral, 200),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+    focused: (bg: $pj-white,
+      bd: map-get($pj-secondary, 500),
+      sdA: $pj-input-shadow,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: $pj-white,
+        fg: map-get($pj-secondary, 600),
+      ),
+      leftPerfixSign:(fg:map-get($pj-neutral, 400),
+        bg:$pj-white,
+        bd: map-get($pj-neutral, 100),
+        sdA: map-get($pj-neutral-shadow, 1a),
+        sdB: map-get($pj-neutral-shadow, 1b)),
+      rightPerfixSign:(fg:map-get($pj-neutral, 400),
+        bg:$pj-white,
+        bd: map-get($pj-neutral, 100),
+        sdA: map-get($pj-neutral-shadow, 1a),
+        sdB: map-get($pj-neutral-shadow, 1b)),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 400),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    filled: (bg: $pj-white,
+      bd: $pj-white,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: $pj-white,
+        fg: map-get($pj-neutral, 400),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    error: (bg: map-get($pj-error, 10),
+      bd: map-get($pj-error, 500),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 600),
+      ),
+      inputArea: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      leftPerfixSign:(fg:map-get($pj-neutral, 400),
+        bg:$pj-white,
+        bd: map-get($pj-neutral, 100),
+        sdA: map-get($pj-neutral-shadow, 1a),
+        sdB: map-get($pj-neutral-shadow, 1b)),
+      rightPerfixSign:(fg:map-get($pj-neutral, 400),
+        bg:$pj-white,
+        bd: map-get($pj-neutral, 100),
+        sdA: map-get($pj-neutral-shadow, 1a),
+        sdB: map-get($pj-neutral-shadow, 1b)),
+      placeholder: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      assistiveText: (fg: map-get($pj-error, 600),
+      ),
+    ),
+    disabled: (bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: none,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    hover:(bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      )),
+
+  ));
+
+
+
+.inputArea {
+  width: 100%;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: default;
+  color: map-get($pj-perfix-input-style, icon);
+}
+
+.showPasswordIcon {
+  font-size: 20px;
+  color: map-get($pj_neutral, 200);
+  cursor: pointer;
+}
+
+
+
+.label {
+  @include pjColorWithMapExt($pj-perfix-input-style, label);
+
+  @each $status in (filled, error, focused, disabled) {
+    &.#{$status} {
+      @include pjColorWithMapExt($pj-perfix-input-style, $status, label);
+    }
+  }
+}
+
+@each $textEntryType in (normal, noborder) {
+  .pj-perfix-input {
+    border-style: solid;
+
+    &.disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    @each $part in (leftPerfixSign, rightPerfixSign) {
+      & .#{$part}.#{$textEntryType} {
+        @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, $part);
+      }
+    }
+  }
+
+  .assistiveText {
+    pointer-events: none;
+    @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, assistiveText);
+
+    @each $status in (filled, error, focused, disabled) {
+      &.#{$status} {
+        @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, $status, assistiveText);
+      }
+    }
+  }
+
+  .pj-text-entry-box.#{$textEntryType} {
+    border-style: solid;
+    cursor: text;
+
+    & input:focus {
+      outline: none;
+    }
+
+    &.notInput {
+      border: 1px solid map-get($pj-error, 300);
+    }
+
+    @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType);
+
+    @each $part in (inputArea, innerLabel) {
+      & .#{$part} {
+        @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, $part);
+      }
+    }
+
+    & input::placeholder {
+      @include pjColorWithMapExt($pj-perfix-input-style, placeholder);
+    }
+
+    &:hover {
+      @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, hover);
+    }
+
+    @each $status in (filled, error, focused, disabled) {
+      &.#{$status} {
+        @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, $status);
+
+        @each $part in (inputArea, innerLabel,leftPerfixSign, rightPerfixSign) {
+          & .#{$part} {
+            @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, $status, $part);
+          }
+        }
+
+        & input::placeholder {
+          @include pjColorWithMapExt($pj-perfix-input-style, $textEntryType, $status, placeholder);
+        }
+      }
+    }
+
+  }
+}
+
+@each $part in (inputArea, label, innerLabel, assistiveText, leftPerfixSign, rightPerfixSign) {
+  .pj-perfix-input {
+    & .#{$part} {
+      font: map-get($pj-perfix-input-font, $part);
+    }
+
+    & input::placeholder {
+      font: map-get($pj-perfix-input-font, placeholder);
+    }
+  }
+}
+
+@each $size in $pj-perfix-input-size {
+  .pj-perfix-input.#{$size} {
+    & .pj-text-entry-box {
+      @include pjMeasurementWithMapExt($pj-perfix-input-measurement, $size);
+
+      @each $type in (leftType, rightType, leftRightType) {
+        &.#{$type} {
+          @include pjMeasurementWithMapExt($pj-perfix-input-measurement, $size, $type);
+        }
+      }
+    }
+
+    @each $part in (leftPerfixSign, rightPerfixSign) {
+      & .#{$part} {
+        @include pjMeasurementWithMapExt($pj-perfix-input-measurement, $size, $part);
+      }
+    }
+  }
+
+  .assistiveText.#{$size} {
+    padding-left: map-get-ext($pj-perfix-input-measurement, $size, assistiveText);
+  }
+}

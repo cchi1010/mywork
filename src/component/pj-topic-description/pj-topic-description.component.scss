@@ -1,0 +1,26 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-topic-description-size: (sm, lg);
+$pj-topic-description-font: (
+    sm: (title: $pj-strong-2), 
+    lg: (title: $pj-h5)
+);
+
+$pj-topic-description-style: (title: (fg: map-get($pj-neutral, 800)));
+
+.pj-topic-description {
+    @include pjColorWithMapExt($pj-topic-description-style, title);
+}
+
+.pj-topic-description.sm {
+    & .title {
+        font: map-get-ext($pj-topic-description-font, sm, title) !important;
+    }
+}
+.pj-topic-description.lg {
+    & .title {
+        font: map-get-ext($pj-topic-description-font, lg, title);
+    }
+}

@@ -1,0 +1,22 @@
+[{
+  "title": "Alert",
+  "description": "关于 Alert"
+}, {
+  "title": "Title",
+  "description": "Description",
+  "parameters": [{
+      "label": "@Input",
+      "textValue": ""
+  },{
+    "label": "alertData",
+    "textValue": "{ title: string, descriptions: string array, closable: boolean }"
+}],
+  "componentData": {
+    "pjColor": "info",
+    "alertData": {
+      "title": "Alert",
+      "descriptions": ["Alert Description"],
+      "closeable": true
+    }
+  }
+}]

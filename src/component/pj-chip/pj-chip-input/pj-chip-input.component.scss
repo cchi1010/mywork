@@ -1,0 +1,63 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-chip-input-font: (label:$pj-label-lg);
+
+$pj-chip-input-measurement: (
+  height: 32px,
+  radius: 32px,
+  padding: 4px 12px 4px 12px,
+  withClose: ( padding: 4px 10px 4px 12px )
+);
+
+$pj-chip-input-style: (
+  fg: map-get($pj-neutral, 800),
+  bg: map-get($pj-neutral, 50),
+  bd: map-get($pj-neutral, 50),
+  hover: (
+    bg: map-get($pj-neutral, 50),
+    bd: map-get($pj-neutral, 150),
+    icon: (fg: map-get($pj-neutral, 600)),
+  ),
+  pressed: (
+    bg: map-get($pj-neutral, 100),
+    bd: map-get($pj-neutral, 150),
+  ),
+  icon: (
+    fg: map-get($pj-neutral, 400),
+  ),
+);
+
+.pj-chip-input {
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  & .label {
+    font: map-get($pj-chip-input-font, label);
+  }
+  @include pjMeasurementWithMapExt($pj-chip-input-measurement);
+  &.withClose {
+    @include pjMeasurementWithMapExt($pj-chip-input-measurement, withClose);
+  }
+  @include pjColorWithMapExt($pj-chip-input-style);
+  & .icon {
+    font-size: 18px;
+    margin-left: 8px;
+    @include pjColorWithMapExt($pj-chip-input-style, icon);
+  }
+  &:hover {
+    @include pjColorWithMapExt($pj-chip-input-style, hover);
+
+    & .icon {
+      @include pjColorWithMapExt($pj-chip-input-style, hover, icon);
+    }
+
+  }
+  &.pressed {
+    @include pjColorWithMapExt($pj-chip-input-style, pressed);
+    & .icon {
+      @include pjColorWithMapExt($pj-chip-input-style, pressed, icon);
+    }
+  }
+}

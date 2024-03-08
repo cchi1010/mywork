@@ -1,0 +1,91 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-feedback-banner-color: (neutral, info, success, error);
+
+$pj-feedback-banner-size: (xs, sm, lg);
+
+$pj-feedback-banner-font: (
+    xs: (label: $pj-strong-3, description: $pj-small, icon: 16px),
+    sm: (label: $pj-strong-2, description: $pj-body-2, icon: 20px),
+    lg: (label: $pj-strong-1, description: $pj-body-1, icon: 24px),
+);
+
+$pj-feedback-banner-measurement: (
+    xs: (
+        width: calc(100vw - 10px), radius: 16px, padding: 8px, bottom: 0px,
+        iconBackground: (width:32px, height:32px, radius: 8px, padding: 8px)
+    ),
+    sm: (
+        width: 536px, margin: 0px auto, bottom: 16px,
+        iconBackground: (width:40px, height:40px, radius: 8px, padding: 10px)
+    ),
+    lg: (
+        width: 720px, margin: 0px auto, bottom: 32px,
+        iconBackground: (width:48px, height:48px, radius: 8px, padding: 12px)
+    )
+);
+
+$pj-feedback-banner-style: (
+    bg: map-get($pj-neutral, 700),
+    sdA: map-get($pj-neutral-shadow, 6a),
+    sdB: map-get($pj-neutral-shadow, 6b),
+    label: (fg: $pj-white),
+    description: (fg: $pj-white),
+    icon: (
+        neutral: (fg: map-get($pj-neutral, 600)),
+        info: (fg: $pj-white),
+        success: (fg: $pj-white),
+        error: (fg: $pj-white),
+    ),
+    iconBackground: (
+        neutral: (bg: $pj-white),
+        info: (bg: map-get($pj-info, 300)),
+        success: (bg: map-get($pj-success, 500)),
+        error: (bg: map-get($pj-error, 500)),
+    ),
+);
+
+.pj-feedback-banner {
+    z-index: 200;
+    position: fixed;
+    display: none;
+    @include pjColorWithMapExt($pj-feedback-banner-style);
+    & .label {
+        @include pjColorWithMapExt($pj-feedback-banner-style, label);
+    }
+    & .description {
+        @include pjColorWithMapExt($pj-feedback-banner-style, description);
+    }
+    @each $color in $pj-feedback-banner-color {
+        &.#{$color} .icon {
+            @include pjColorWithMapExt($pj-feedback-banner-style, icon, $color);
+        }
+        &.#{$color} .iconBackground {
+            @include pjColorWithMapExt($pj-feedback-banner-style, iconBackground, $color);
+        }
+    }
+    @each $size in $pj-feedback-banner-size {
+        &.#{$size} {
+            left: calc((100vw - 10px - map-get-ext($pj-feedback-banner-measurement, $size, width)) / 2);
+            bottom: map-get-ext($pj-feedback-banner-measurement, $size, bottom);
+            display: flex;
+            @include pjMeasurementWithMapExt($pj-feedback-banner-measurement, $size);
+ 
+            & .label {
+                font: map-get-ext($pj-feedback-banner-font, $size, label);
+            }
+            & .description {
+                font: map-get-ext($pj-feedback-banner-font, $size, description);
+            }
+            & .iconBackground {
+                @include pjMeasurementWithMapExt($pj-feedback-banner-measurement, $size, iconBackground);
+            }
+            & .icon {
+                font-size: map-get-ext($pj-feedback-banner-font, $size, icon);
+            }
+        }
+    }
+    
+}

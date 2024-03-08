@@ -1,0 +1,7 @@
+<div class="pj-file flex flex-col justify-center items-center relative" [ngClass]="getFileClass()" [ngStyle]="getSizeStyle()">
+  <div class="delete" *ngIf="!addNewFile && deletable">
+    <pj-button-icon btnType="elevated" pjColor="neutral" pjSize="lg" [iconName]="'delete_outline'"></pj-button-icon>
+  </div>
+  <pj-icon *ngIf="addNewFile" [iconName]="'add'"></pj-icon>
+  <div *ngIf="addNewFile" class="label">Upload</div>
+</div>

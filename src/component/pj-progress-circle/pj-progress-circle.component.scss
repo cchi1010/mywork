@@ -1,0 +1,146 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+
+@keyframes growProgressBar {
+
+  0%,
+  33% {
+    --pgPercentage: 0;
+  }
+
+  100% {
+    --pgPercentage: var(--value);
+  }
+}
+
+
+$am-process-circle-measurement: (sm: (width: 48px,
+    height: 48px, ),
+  md: (width: 80px,
+    height: 80px, ),
+  lg: (width: 120px,
+    height: 120px, ),
+);
+$am-process-none-measurement: (sm: (width: 48px,
+    height: 48px,
+    circle:(left:0px,
+      top:0px,
+      height: 48px,
+      width: 48px,
+      radius: 50%, ),
+    circle-center:(left:3px,
+      top:3px,
+      height: 42px,
+      width: 42px,
+      radius: 50%, ),
+    center-word:(left: 13px,
+      top: 15px,
+    )),
+  md:(width: 80px,
+    height: 80px,
+    circle:(left:0px,
+      top:0px,
+      height: 80px,
+      width: 80px,
+      radius: 50%, ),
+    circle-center:(left:4px,
+      top:4px,
+      height: 72px,
+      width: 72px,
+      radius: 50%, ),
+    center-word:(left: 24px,
+      top: 28px,
+    )),
+  lg: (width: 120px,
+    height: 120px,
+    circle:(left:0px,
+      top:0px,
+      height: 120px,
+      width: 120px,
+      radius: 50%, ),
+    circle-center:(left:6px,
+      top:6px,
+      height: 108px,
+      width: 108px,
+      radius: 50%, ),
+    center-word:(left: 40px,
+      top: 46px,
+    )),
+);
+
+
+$am-process-circle-style: (secondary:(fg:map-get($pj-neutral, 800),bd:map-get($pj-secondary, 500), bg:map-get($pj-neutral, 50)),
+  neutral:(fg:map-get($pj-neutral, 800),bd:map-get($pj-neutral, 600), bg:map-get($pj-neutral, 50)),
+  success:(fg:map-get($pj-neutral, 800),bd:map-get($pj-success, 500), bg:map-get($pj-neutral, 50)),
+);
+$am-process-none-style: (circle:(bg:map-get($pj-neutral, 50)),
+  circle-center:(bg:$pj-white),
+  center-word:(fg:map-get($pj-secondary, 900)),
+
+);
+$am-process-font: (sm: $pj-label-md,
+  md: $pj-label-xl,
+  lg:$pj-label-2xl,
+);
+
+@each $size in (sm, md, lg) {
+  @each $type in (secondary, neutral, success) {
+    .process-circle {
+      &.#{$size} {
+        font: map-get($am-process-font, $size);
+        @include pjMeasurementWithMapExt($am-process-circle-measurement, $size);
+      }
+
+      &.#{$type} {
+        @include pjColorWithMapExt($am-process-circle-style, $type);
+        --pgPercentage: var(--value);
+        // animation: growProgressBar 3s 1 forwards;
+
+        display: grid;
+        place-items: center;
+        background: radial-gradient(closest-side, $pj-white 90%, transparent 0 99.9%, $pj-white 0),
+          conic-gradient(map-get-ext($am-process-circle-style, $type,bd) calc(var(--pgPercentage) * 1%),
+           map-get-ext($am-process-circle-style, $type,bg) 0);
+      }
+    }
+
+    .process-circle::before {
+      counter-reset: percentage var(--value);
+      content: counter(percentage) '%';
+    }
+  }
+}
+
+/* demo */
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+@each $size in (sm, md, lg) {
+  @each $part in (circle, circle-center, center-word) {
+    .process-circle-none {
+
+      position: relative;
+
+      &.#{$size} {
+        font: map-get($am-process-font, $size);
+        @include pjMeasurementWithMapExt($am-process-none-measurement, $size);
+
+        & .#{$part} {
+          position: absolute;
+          border-radius: 50%;
+          @include pjMeasurementWithMapExt($am-process-none-measurement, $size, $part);
+          @include pjColorWithMapExt($am-process-none-style, $part);
+          top: map-get-ext($am-process-none-measurement, $size, $part, top);
+          left: map-get-ext($am-process-none-measurement, $size, $part, left);
+        }
+      }
+    }
+  }
+}

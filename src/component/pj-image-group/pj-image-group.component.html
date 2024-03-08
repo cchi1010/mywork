@@ -1,0 +1,16 @@
+<div class="pj-image-group flex flex-col" [ngStyle]="getImageGroupWidthStyle()" [ngClass]="getFocusedClass()">
+  <div *ngIf="hasImages()" class="flex flex-col gap-2">
+    <div *ngFor="let rowImages of shownImages" class="flex flex-row gap-2">
+      <div *ngFor="let image of rowImages">
+        <pj-image [imageData]="image" (click)="onImageClicked(image)"></pj-image>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!hasImages()" class="newGroup flex flex-col items-center justify-center" [ngStyle]="getNewGroupStyle()">
+    <pj-icon [iconName]="'add'"></pj-icon>
+  </div>
+  <div class="title text-center mt-3 truncate-text-line-1" *ngIf="hasTitle()">{{ groupTitle }}</div>
+  <div class="description text-center self-center" *ngIf="hasDescription()">
+    {{ groupDesc }}
+  </div>
+</div>

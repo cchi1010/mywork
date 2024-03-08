@@ -1,0 +1,50 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-date-size: (md, lg, xl);
+
+$pj-date-font: ( icon: 24px );
+
+$pj-date-measurement: (
+  md: (
+    cardIcon: (top: 34px, left: 8px, fontSize: 24px, color: map-get($pj-neutral, 150)),
+    left: 4px, top: 26px
+  ),
+  lg: (
+    cardIcon: (top: 38px, left: 12px, fontSize: 24px, color: map-get($pj-neutral, 150)),
+    left: 8px, top: 30px
+  ),
+  xl: (
+    cardIcon: (top: 42px, left: 16px, fontSize: 32px, color: map-get($pj-neutral, 150)),
+    left: 12px, top: 34px
+  )
+);
+$pj-date-style: (
+  icon: (fg: map-get($pj-neutral, 400)),
+);
+
+.pj-date {
+  & .icon {
+    position: absolute;
+    font-size: map-get($pj-date-font, icon);
+    @include pjColorWithMapExt($pj-date-style, icon);
+  }
+
+  @each $size in $pj-date-size {
+    &.#{$size} {
+      & .cardIcon {
+        position: absolute;
+        top: map-get-ext($pj-date-measurement, $size, cardIcon, top);
+        left: map-get-ext($pj-date-measurement, $size, cardIcon, left);
+        font-size: map-get-ext($pj-date-measurement, $size, cardIcon, fontSize);
+        color: map-get-ext($pj-date-measurement, $size, cardIcon, color);
+      }
+
+      & .icon {
+        top: map-get-ext($pj-date-measurement, $size, top);
+        left: map-get-ext($pj-date-measurement, $size, left);
+      }
+    }
+  }
+}

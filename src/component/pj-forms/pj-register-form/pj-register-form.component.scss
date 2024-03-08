@@ -1,0 +1,40 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-register-form-part: (title, haveaccount, captchaError);
+$pj-register-form-font: (
+    title: $pj-h5,
+    haveaccount: $pj-body-2,
+    captchaError: $pj-small,
+);
+$pj-register-form-measurement: (
+    width: 400px,
+    padding: 32px,
+    radius: 12px,
+    border: 1px,
+);
+$pj-register-form-style: (
+    bg: $pj-white,
+    bd: map-get($pj-primary, 50),
+    sdA: map-get($pj-primary-shadow, 4a),
+    sdB: map-get($pj-primary-shadow, 4b),
+    title: (fg: map-get($pj-neutral, 800)),
+    haveaccount: (fg: map-get($pj-neutral, 900)),
+    captchaError: (fg: map-get($pj-error, 500)),
+);
+
+
+:host {
+    border-style: solid;
+    @include pjMeasurementWithMapExt($pj-register-form-measurement);
+    @include pjColorWithMapExt($pj-register-form-style);
+
+    @each $part in $pj-register-form-part {
+        & .#{$part} {
+            text-align: center;
+            font: map-get($pj-register-form-font, $part);
+            @include pjColorWithMapExt($pj-register-form-style, $part);
+        }
+    }
+}

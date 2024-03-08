@@ -1,0 +1,4 @@
+<div class="pj-selitem-generic flex flex-row items-center justify-between" [ngClass]="getSelectedClass()">
+  <ng-content></ng-content>
+  <pj-icon class="icon" *ngIf="isFocused()" [iconName]="getCheckedName()"></pj-icon>
+</div>

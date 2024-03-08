@@ -1,0 +1,22 @@
+<div class="pj-file-upload-status uploading flex flex-row items-center gap-4" *ngIf="isUploading()">
+  <pj-spinner pjSize="sm"></pj-spinner>
+  <div class="flex-grow flex flex-col gap-2">
+    <div class="flex flex-row justify-between">
+      <div class="fileName">{{ getFileName() }}</div>
+      <div class="progressLabel">{{ getProgressLabel() }}</div>
+    </div>
+    <pj-progress-bar [progress]="getUploadingProgress()" pjColor="secondary"></pj-progress-bar>
+  </div>
+  <pj-button-icon btnType="text" [iconName]="'cancel'" pjColor="neutral" pjSize="md" (click)="onCancelBtnClick()">
+  </pj-button-icon>
+</div>
+
+<div class="pj-file-upload-status uploaded flex flex-row items-center justify-between" *ngIf="!isUploading()">
+  <div class="flex flex-row items-center gap-4">
+    <pj-icon class="icon" [iconName]="'attachment'"></pj-icon>
+    <div class="fileName">{{ getFileName() }}</div>
+  </div>
+  <pj-button-icon btnType="text" [iconName]="'delete'" pjColor="neutral" pjSize="md" (click)="onDeleteBtnClick()">
+  </pj-button-icon>
+</div>
+

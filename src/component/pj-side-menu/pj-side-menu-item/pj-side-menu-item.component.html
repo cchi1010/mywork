@@ -1,0 +1,41 @@
+<div class="pj-side-menu-item mb-2" *ngIf="isNormalSideMenu()">
+  <div *ngIf="!isDivider()">
+    <div class="flex flex-row items-center justify-between" pjPressable [ngClass]="getMenuItemClass()" (click)="onClick()">
+      <div class="flex flex-row items-center" [ngClass]="getIndentationClass()">
+        <pj-icon *ngIf="hasIcon()" class="icon mr-4" [ngClass]="hideIcon()" [iconName]="getIconName()"></pj-icon>
+        <div class="label">{{ item?.label }}</div>
+      </div>
+      <div class="flex flex-row items-center">
+        <div *ngIf="hasBadge()" class="badge">{{ item?.badge }}</div>
+        <pj-icon *ngIf="showSubMenuIcon()" class="ml-2 icon" [iconName]="getSubItemIconName()"></pj-icon>
+      </div>
+    </div>
+    <div *ngIf="isExpanded()" class="flex flex-col mt-2">
+      <pj-side-menu-item *ngFor="let subItem of item?.children" [size]="size" [leaveIconRoom]="leaveIconRoom"
+        [indentationLevel]="indentationLevel + 1" [item]="subItem" (itemClick)="onItemClick($event)">
+      </pj-side-menu-item>
+    </div>
+  </div>
+  <div *ngIf="isDivider()">
+    <pj-divider></pj-divider>
+  </div>
+</div>
+<div *ngIf="!isNormalSideMenu()" style="max-width: 62px"
+  class="pj-side-menu-item-condensed mb-2 flex flex-col items-center">
+  <div *ngIf="!isDivider()">
+    <div class="flex flex-col items-center" [ngClass]="getMenuItemClass()">
+      <pj-icon class="slef-center" *ngIf="hasIcon()" [iconName]="getIconName()"></pj-icon>
+      <div *ngIf="hasBadge()" class="badge" [ngClass]="type">
+        {{ item?.badge }}
+      </div>
+    </div>
+    <div *ngIf="isExpanded()" class="flex flex-col mt-2">
+      <pj-side-menu-item *ngFor="let subItem of item?.children" [size]="size" [leaveIconRoom]="leaveIconRoom"
+        [indentationLevel]="indentationLevel + 1" [item]="subItem" (itemClick)="onItemClick($event)" [type]="type">
+      </pj-side-menu-item>
+    </div>
+  </div>
+  <div *ngIf="isDivider()">
+    <pj-divider></pj-divider>
+  </div>
+</div>

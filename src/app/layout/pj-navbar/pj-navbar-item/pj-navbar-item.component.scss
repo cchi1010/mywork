@@ -1,0 +1,62 @@
+@import '/src/scss/customize';
+@import '/src/scss/color';
+@import '/src/scss/typography';
+
+$pj-navbar-item-size: (lg, xl);
+
+$pj-navbar-item-font: (label: $pj-label-lg, icon: 22px);
+
+$pj-navbar-item-measurement: (
+    height: 40px,
+    padding: 8px 12px 8px 16px,
+    radius: 48px,
+);
+
+$pj-navbar-item-style: (
+    label: (fg: map-get($pj-neutral, 600)),
+    icon: (fg: map-get($pj-neutral, 300)),
+    hover: ( label: (fg: map-get($pj-neutral, 600)), icon: (fg: map-get($pj-neutral, 300)), bg: map-get($pj-neutral, 50)),
+    focused: (label: (fg: $pj-white), icon: (fg: $pj-white), bg: map-get($pj-secondary, 500)),
+    pressed: (label: (fg: map-get($pj-neutral, 600)), icon: (fg: map-get($pj-neutral, 300)), bg: map-get($pj-neutral, 100)),
+);
+
+
+.pj-navbar-item {
+    cursor: pointer;
+    & .label {
+        font: map-get($pj-navbar-item-font, label);
+        @include pjColorWithMapExt($pj-navbar-item-style, label);
+    }
+    & .icon {
+        font-size: map-get($pj-navbar-item-font, icon);
+        @include pjColorWithMapExt($pj-navbar-item-style, icon);
+    }
+    @include pjMeasurementWithMapExt($pj-navbar-item-measurement);
+    &:hover {
+        @include pjColorWithMapExt($pj-navbar-item-style, hover);
+        & .label {
+            @include pjColorWithMapExt($pj-navbar-item-style, hover, label);
+        }
+        & .icon {
+            @include pjColorWithMapExt($pj-navbar-item-style, hover, icon);
+        }
+    }
+    &.focused {
+        @include pjColorWithMapExt($pj-navbar-item-style, focused);
+        & .label {
+            @include pjColorWithMapExt($pj-navbar-item-style, focused, label);
+        }
+        & .icon {
+            @include pjColorWithMapExt($pj-navbar-item-style, focused, icon);
+        }
+    }
+    &.pressed {
+        @include pjColorWithMapExt($pj-navbar-item-style, pressed);
+        & .label {
+            @include pjColorWithMapExt($pj-navbar-item-style, pressed, label);
+        }
+        & .icon {
+            @include pjColorWithMapExt($pj-navbar-item-style, pressed, icon);
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<div class="am-edit-cell">
+  <div *ngIf="!onEdit()" class="flex flex-row justify-around items-center">
+    <div class="text">{{getCellInfo()}}</div>
+    <pj-button-icon btnType="filled" pjColor="neutral" pjSize="md" iconName="edit"
+      (click)="onEditBtnClick()">
+    </pj-button-icon>
+  </div>
+  <div *ngIf="onEdit()" class="flex flex-row gap-1 vCenter">
+    <pj-text-entry pjSize="md" class="w-28" [entryConfig]="{placeholder: getCellInfo()}"
+      [formControl]="valueFormcontrol()" (focusout)="trySaveEditInput($event)"
+      (enterKeyPressed)="onSaveInputText($event)">
+    </pj-text-entry>
+    <pj-button-icon btnType="filled" pjColor="secondary" pjSize="md" iconName="check"
+      (click)="onCheckIconClick()"></pj-button-icon>
+  </div>
+</div>

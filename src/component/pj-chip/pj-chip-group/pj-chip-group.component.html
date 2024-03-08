@@ -1,0 +1,8 @@
+<div class="pj-chip-group flex flex-col">
+  <pj-carousel [loop]="false" [autoplay]="false" [spaceBetweenItem]="8">
+    <ng-template swiperItem *ngFor="let chip of chips, let i=index">
+      <pj-chip-filter class="flex-shrink-0 mr-2" [imageSrc]="chip.imageSrc" [label]="chip.label"
+        [selected]="chip.selected" (click)="shiftChipitem(i)"></pj-chip-filter>
+    </ng-template>
+  </pj-carousel>
+</div>

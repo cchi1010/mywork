@@ -1,0 +1,35 @@
+<div #elm class="pj-alert flex flex-row gap-4" pjDefaultColor="success">
+  <pj-icon *ngIf="hasIconName()" class="alert_icon" [iconName]="getIconName()"></pj-icon>
+  <div class="flex-grow flex flex-col">
+    <div class="flex flex-row justify-between">
+      <div class="alert_title">{{ alertData?.title }}</div>
+      <div class="flex flex-row items-center">
+        <pj-button-inline *ngIf="hasLink()" pjColor="{{ getColor() }}" pjSize="xl"
+          [label]="alertData?.linkAction?.actionLabel || ''" [rightIconName]="'arrow_right'"></pj-button-inline>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <ng-container *ngIf="hasDescription()">
+        <ng-container *ngIf="singleDescription()">
+          <div class="alert_description">{{ getDescription() }}</div>
+        </ng-container>
+        <ng-container *ngIf="!singleDescription()">
+          <ul class="alert_description ml-4">
+            <li *ngFor="let description of getDescriptions()">
+              {{ description }}
+            </li>
+          </ul>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="hasAction()">
+        <div class="flex flex-row mt-2 gap-8">
+          <pj-button-inline pjColor="{{ getColor() }}" pjSize="lg" *ngFor="let action of getActions()"
+            [label]="action.label || ''" (click)="onActionBtnClick(action)">
+          </pj-button-inline>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <pj-icon *ngIf="isCloseable()" class="alert_closeIcon cursor-pointer" [iconName]="'close'" (click)="onCloseClick()">
+  </pj-icon>
+</div>

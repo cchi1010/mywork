@@ -1,0 +1,115 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-loading-type: (pj-loading);
+$pj-loading-type-item: (box, loading-title, primary, secondary, brand, neutral, info, success, warning, error);
+
+
+$pj-loading-data: (
+  pj-loading: (bg: map-get($map: $pj-primary, $key: 900)),
+  box: (bg: map-get($map: $pj-primary, $key: 10)),
+  primary: (
+    fg: map-get($pj-primary, 800),
+    bg: map-get($pj-primary, 50),
+    dot: (
+      fg: map-get($pj-primary, 300),
+    ),
+  ),
+  secondary: (
+    fg: map-get($pj-secondary, 700),
+    bg: map-get($pj-secondary, 100),
+    dot: (
+      fg: map-get($pj-secondary, 200),
+    ),
+  ),
+  brand: (
+    fg: map-get($pj-brand, 700),
+    bg: map-get($pj-brand, 50),
+    dot: (
+      fg: map-get($pj-brand, 200),
+    ),
+  ),
+  neutral: (
+    fg: map-get($pj-neutral, 900),
+    bg: map-get($pj-neutral, 50),
+    dot: (
+      fg: map-get($pj-neutral, 150),
+    ),
+  ),
+  info: (
+    fg: map-get($pj-info, 700),
+    bg: map-get($pj-info, 50),
+    dot: (
+      fg: map-get($pj-info, 200),
+    ),
+  ),
+  success: (
+    fg: map-get($pj-success, 900),
+    bg: map-get($pj-success, 50),
+    dot: (
+      fg: map-get($pj-success, 300),
+    ),
+  ),
+  warning: (
+    fg: map-get($pj-warning, 900),
+    bg: map-get($pj-warning, 100),
+    dot: (
+      fg: map-get($pj-warning, 300),
+    ),
+  ),
+  error: (
+    fg: $pj-white,
+    bg: map-get($pj-error, 500),
+    dot: (
+      fg: map-get($pj-error, 50),
+    ),
+  ),
+);
+
+
+.hidden {
+  display: none;
+  transition: all 0.6 linear;
+}
+
+.show {
+  display: block;
+  transition: all 0.6 linear;
+}
+
+.pj-loading {
+  opacity: .6;
+  z-index: map-get($zIndex, modalWin);
+}
+
+.loading-icon {
+  font: $pj-h3;
+  animation: spin 1s infinite linear;
+}
+
+.loading-title {
+  font: $pj-h6;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@each $part in $pj-loading-type {
+
+  .#{$part} {
+    @include pjColorWithMapExt($pj-loading-data, $part);
+  }
+
+  @each $part in $pj-loading-type-item {
+    .#{$part} {
+      @include pjColorWithMapExt($pj-loading-data, $part);
+    }
+  }
+
+}

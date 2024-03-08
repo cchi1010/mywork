@@ -1,0 +1,10 @@
+<div class="fixed w-screen h-screen top-0 left-0 pj-loading overflow-hidden" [pjColor]="getPjColor()"
+  [ngClass]="getLoadingClass()" pjModalBg>
+  <div class="flex items-center absolute left-2/4 rounded-lg -translate-x-2/4 p-4" [ngClass]="getContentClass()">
+    <div class="flex flex-row items-center gap-2">
+      <pj-icon *ngIf="!isImage()" [iconName]="getIconName()" class="loading-icon"></pj-icon>
+      <pj-image *ngIf="isImage()" [imageData]="getImageData()" class="loading-icon"></pj-image>
+      <div *ngIf="hasTitle()" class="flex-1 loading-title">{{getTitle()}}</div>
+    </div>
+  </div>
+</div>

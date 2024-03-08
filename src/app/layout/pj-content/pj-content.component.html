@@ -1,0 +1,4 @@
+<pj-layout-flex flexClass="flex flex-col px-8 py-4" *ngIf="hasBreadcrumbs()">
+  <pj-breadcrumb [breadcrumbs]="getBreadcrumbs()" (actionEvent)="onActionEvent($event)"></pj-breadcrumb>
+</pj-layout-flex>
+<router-outlet class="page-content" *ngIf="true"></router-outlet>

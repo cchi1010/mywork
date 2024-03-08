@@ -1,0 +1,19 @@
+<div class="pj-slider p-4 flex flex-col gap-1">
+  <div *ngIf="isValueShown()" class="flex flex-row items-center relative">
+    <div #lowValueLabelElm class="valueLabel text-center lowValue">{{getLowValue()}}</div>
+    <div #highValueLabelElm class="valueLabel text-center highValue">{{getHighValue()}}</div>
+  </div>
+  <div class="flex" [ngClass]="getRowColClass()">
+    <div #leftElm *ngIf="isBothends()" class="valueRange">{{getMinValue()}}</div>
+    <div class="multi-range flex-grow flex flex-col relative">
+      <input #lowSliderElm class="slider lowSlider appearance-none" type="range" min="{{getMinValue()}}"
+        max="{{getMaxValue()}}" value="{{getLowElmValue()}}" (input)="onLowValueChange(lowSliderElm)" pjPressable>
+      <input #highSliderElm class="slider highSlider appearance-none" type="range" min="{{getMinValue()}}"
+        max="{{getMaxValue()}}" value="{{getHighElmValue()}}" (input)="onHighValueChange(highSliderElm)" pjPressable>
+    </div>
+    <div *ngIf="hasRangeLabel()" class="flex flex-row items-center justify-between">
+      <div *ngIf="isBeneath()" class="valueRange">{{getMinValue()}}</div>
+      <div class="valueRange">{{getMaxValue()}}</div>
+    </div>
+  </div>
+</div>

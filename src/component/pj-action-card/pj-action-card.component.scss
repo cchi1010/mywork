@@ -1,0 +1,64 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+// 该组件的宽度为根据不同屏幕大小，占用若干columns
+
+$pj-action-card-font: (label: $pj-strong-2,description: $pj-body-2);
+
+$pj-action-card-measurement: (
+  height: 100%,
+  padding: 24px 16px 24px 16px, radius: 16px, border: 1px
+);
+
+$pj-action-card-style: (bg: $pj-white,
+  bd: map-get($pj-neutral, 50),
+  sdA: map-get($pj-neutral-shadow, 2a),
+  sdB: map-get($pj-neutral-shadow, 2b),
+  hover: (
+    sdA: map-get($pj-neutral-shadow, 4a),
+    sdB: map-get($pj-neutral-shadow, 4b),
+  ),
+  pressed: (bg: map-get($pj-neutral, 50)),
+  label: (fg: map-get($pj-neutral, 800)),
+  description: (fg: map-get($pj-neutral, 600)),
+  disabled: (
+    label: (fg: map-get($pj-neutral, 300)),
+    description: (fg: map-get($pj-neutral, 200))
+  )
+);
+
+.pj-action-card {
+  cursor: pointer;
+  @include pjMeasurementWithMapExt($pj-action-card-measurement);
+  @include pjColorWithMapExt($pj-action-card-style);
+
+  & .label {
+    font: map-get($pj-action-card-font, label);
+    @include pjColorWithMapExt($pj-action-card-style, label);
+  }
+
+  & .description {
+    font: map-get($pj-action-card-font, description);
+    @include pjColorWithMapExt($pj-action-card-style, description);
+  }
+
+  &:hover {
+    @include pjColorWithMapExt($pj-action-card-style, hover);
+  }
+
+  &.pressed {
+    @include pjColorWithMapExt($pj-action-card-style, pressed);
+  }
+
+  &.disabled {
+    pointer-events: none;
+    & .label {
+      @include pjColorWithMapExt($pj-action-card-style, disabled, label);
+    }
+  
+    & .description {
+      @include pjColorWithMapExt($pj-action-card-style, disabled, description);
+    }
+  }
+}

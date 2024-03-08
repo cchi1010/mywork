@@ -1,0 +1,66 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-empty-status-type: ( typeGeneric, typeMedia );
+
+$pj-empty-status-font: ( label: $pj-label-lg);
+
+$pj-empty-status-style: (
+    typeGeneric: (
+        bg: $pj-white, bd: map-get($pj-neutral, 50),
+        icon: (fg: map-get($pj-neutral, 400)),
+        label: (fg: map-get($pj-neutral, 400)),
+        hover: (
+            bg: map-get($pj-neutral, 50), bd: map-get($pj-neutral, 100),
+        ),
+        pressed: (
+            bg: map-get($pj-neutral, 100), bd: map-get($pj-neutral, 100),
+        ),
+    ),
+    typeMedia: (
+        bg: map-get($pj-neutral, 50),
+        icon: (fg: map-get($pj-neutral, 400)),
+        label: (fg: map-get($pj-neutral, 400)),
+        hover: (bg: map-get($pj-neutral, 100)),
+        pressed: (bg: map-get($pj-neutral, 150)),
+    ),
+);
+
+
+.pj-empty-status {
+    cursor: default;
+    &.typeGeneric {
+        @include pjColorWithMapExt($pj-empty-status-style, typeGeneric);
+        & .label {
+            font: map-get($pj-empty-status-font, label);
+            @include pjColorWithMapExt($pj-empty-status-style, typeGeneric, label);
+        }
+        & .icon {
+            @include pjColorWithMapExt($pj-empty-status-style, typeGeneric, icon);
+        }
+        &:hover {
+            @include pjColorWithMapExt($pj-empty-status-style, typeGeneric, hover);
+        }
+        &.pressed {
+            @include pjColorWithMapExt($pj-empty-status-style, typeGeneric, pressed);
+        }
+    }
+    &.typeMedia {
+        @include pjColorWithMapExt($pj-empty-status-style, typeMedia);
+        & .label {
+            font: map-get($pj-empty-status-font, label);
+            @include pjColorWithMapExt($pj-empty-status-style, typeMedia, label);
+        }
+        & .icon {
+            font-size: map-get($pj-empty-status-font, icon);
+            @include pjColorWithMapExt($pj-empty-status-style, typeMedia, icon);
+        }
+        &:hover {
+            @include pjColorWithMapExt($pj-empty-status-style, typeMedia, hover);
+        }
+        &.pressed {
+            @include pjColorWithMapExt($pj-empty-status-style, typeMedia, pressed);
+        }
+    }
+}

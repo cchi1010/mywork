@@ -1,0 +1,88 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-file-font: (
+  label: $pj-label-lg,
+);
+
+$pj-file-measurement: (
+  radius: 16px,
+);
+
+$pj-file-style: (
+  bg: map-get($pj-neutral, 500),
+  addNewFile: (
+    bg: map-get($pj-primary, 10),
+  ),
+  label: (
+    fg: map-get($pj-primary, 700),
+  ),
+  icon: (
+    fg: map-get($pj-primary, 500),
+  ),
+);
+
+.pj-file {
+  cursor: pointer;
+  @include pjMeasurementWithMapExt($pj-file-measurement);
+  @include pjColorWithMapExt($pj-file-style);
+  &.addNewFile {
+    @include pjColorWithMapExt($pj-file-style, addNewFile);
+  }
+  & .label {
+    font: map-get($pj-file-font, label);
+    @include pjColorWithMapExt($pj-file-style, label);
+  }
+
+  & .icon {
+    @include pjColorWithMapExt($pj-file-style, icon);
+  }
+
+  & .delete {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    z-index: map-get($zIndex, elmAbove);
+    // @include pjMeasurementWithMapExt($pj-file-measurement, delete);
+    // @include pjColorWithMapExt($pj-file-style, delete);
+  }
+}
+// .pj-file {
+//   &-md {
+//     max-width: 114px;
+//     min-width: 114px;
+//     max-height: 114px;
+//     min-height: 114px;
+
+//     &-delete {
+//       max-width: 44px;
+//       min-width: 44px;
+//       max-height: 44px;
+//       min-height: 44px;
+//       padding: 10px;
+//       margin-bottom: -22px;
+//       margin-right: -22px;
+//       z-index: map-get($zIndex, elmAbove);
+//       background-color: white;
+//       border-radius: 44px;
+//       box-shadow: 0px 4px 12px 2px #31393C1A;
+//     }
+//   }
+// }
+
+// .pj-file {
+//   border-radius: 8px;
+
+//   &-add {
+//     background-color: $pj-white;
+//     border-style: dashed;
+//     border-width: 1px;
+//     border-color: $pj-black;
+//   }
+
+//   &-file {
+//     background-color: map-get($pj-neutral, 500);
+//     border-style: none;
+//   }
+// }

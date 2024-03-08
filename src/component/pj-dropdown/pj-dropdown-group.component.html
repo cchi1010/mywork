@@ -1,0 +1,8 @@
+<div class="pj-dropdown-group">
+  <pj-dropdown-header *ngIf="hasHeader()" [focused]="getFocused(actionElm)" [disabled]="disabled" [item]="item"
+    [label]="label" [dropdownElm]="actionElm" pjSize="{{ getHeaderSize() }}" [error]="error" [noSelection]="noSelection">
+  </pj-dropdown-header>
+  <pj-dropdown #actionElm [menuItems]="menuItems" pjSize="{{ getItemmSize() }}" [dropdownType]="getDropdownType()"
+    (itemClicked)="onItemClick($event, actionElm)" [maxHeight]="maxHeight" [disabledItemClickable]="disabledItemClickable">
+  </pj-dropdown>
+</div>

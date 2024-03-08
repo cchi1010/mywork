@@ -1,0 +1,22 @@
+@import "/src/scss/color";
+@import "/src/scss/customize";
+
+.pj-side-panel {
+  position: fixed;
+
+  &.right {
+    right: 0px;
+  }
+  &.left {
+    left: 0px;
+  }
+
+  z-index: map-get($zIndex, sidePanel);
+  &.partial {
+    bottom: 32px;
+  }
+  &.viewheight {
+    top: 0px;
+    height: 100vh;
+  }
+}

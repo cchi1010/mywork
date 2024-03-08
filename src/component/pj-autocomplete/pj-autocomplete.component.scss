@@ -1,0 +1,36 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+.pj-autocomplete {
+  border-radius: 16px;
+  background-color: $pj-white;
+  padding: 8px;
+  width: 490px;
+
+  &.promtion {
+    width: 782px;
+  }
+
+  box-shadow: map-get($pj-neutral-shadow, 4a),
+  map-get($pj-neutral-shadow, 4b);
+
+  & .label {
+    font: $pj-strong-2;
+    color: map-get($pj-neutral, 300);
+    padding: 8px 8px 8px 8px;
+  }
+
+  & .textpart {
+    width: 474px;
+  }
+
+  & .picpart {
+    width: 302px;
+  }
+
+  & .buttonpart {
+    width: 474px;
+    padding: 0px 4px 2px 14px;
+  }
+}

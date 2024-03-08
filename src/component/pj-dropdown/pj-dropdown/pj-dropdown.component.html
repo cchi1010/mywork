@@ -1,0 +1,7 @@
+<pj-dropdown-box #dropdownBox [horizontalAlign]="horizontalAlign" [maxHeight]="maxHeight">
+  <div *ngFor="let item of menuItems">
+    <pj-dropdown-item [dropdownItem]="item" (itemClicked)="onItemClick(item)" pjSize="{{ getItemSize() }}"
+      [disabledItemClickable]="disabledItemClickable">
+    </pj-dropdown-item>
+  </div>
+</pj-dropdown-box>

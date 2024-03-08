@@ -1,0 +1,5 @@
+<div class="pj-link flex flex-row items-center gap-1" [ngClass]="type" pjPressable pjDefaultColor="neutral">
+  <pj-icon class="icon" *ngIf="hasLeftIcon()" [iconName]="leftIconName"></pj-icon>
+  <div class="label pj-selection-disable">{{ label }}</div>
+  <pj-icon class="icon" *ngIf="hasRightIcon()" [iconName]="rightIconName"></pj-icon>
+</div>

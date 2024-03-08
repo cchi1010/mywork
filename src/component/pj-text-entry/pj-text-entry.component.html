@@ -1,0 +1,24 @@
+<div class="pj-text-entry flex flex-col justify-start gap-1" pjDefaultSize="md" [ngClass]="getDisableClass()">
+  <div *ngIf="hasLabel(inputElm)" class="label" [ngClass]="getTextClass()">
+    {{ getLabel() }}
+  </div>
+  <div class="pj-text-entry-box flex flex-row items-center" [ngClass]="getTextClass()" [ngStyle]="getPaddingX()"
+    (click)="onInputFocus(inputElm)">
+    <div class="flex-grow flex flex-col relative">
+      <div *ngIf="hasInnerLabel()" class="innerLabel">{{ getLabel() }}</div>
+      <input #inputElm class="inputArea" type="{{ getTextType() }}" (keydown.enter)="onEnterKeyPress()" (keydown)="onKeyDown()"
+        [formControl]="getFormControl()" (focus)="onInputFocus()" (blur)="onInputFocuseOut()" [maxLength]="getMaxLength()" (keyup)="onKeyUp($event)"
+        [placeholder]="getPlaceholder()" />
+    </div>
+    <pj-icon class="flex-grow-0 icon" *ngIf="!hasShowPasswordBtn()" [ngClass]="getErrorIconClass()"
+      [iconName]="'error'"></pj-icon>
+    <pj-icon class="flex-grow-0 showPasswordIcon" *ngIf="hasShowPasswordBtn()" [iconName]="getShowPasswordIconName()"
+      (click)="onShowPasswordBtnClick($event)"></pj-icon>
+  </div>
+  <div class="assistiveText" [ngClass]="getAssistiveTextClass()" *ngIf="hasAssistiveText()">
+    {{ getAssistiveText() }}
+  </div>
+  <div class="assistiveText" [ngClass]="getErrorMsgClass()" *ngIf="hasErrorMsg()">
+    {{ getErrorMsg() }}
+  </div>
+</div>

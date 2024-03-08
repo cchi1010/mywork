@@ -1,0 +1,5 @@
+<div class="pj-navbar-item flex flex-row justify-between items-center" pjPressable [ngClass]="getFocusedClass(item)"
+  pjDefaultSize="lg">
+  <div class="label">{{item?.title}}</div>
+  <pj-icon class="icon" *ngIf="hasIcon()" [iconName]="'chevron_right'"></pj-icon>
+</div>

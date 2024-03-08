@@ -1,0 +1,13 @@
+<div class="pj-credit-card-edit flex flex-col gap-6">
+  <pj-credit-card-detail class="self-center" [creditInfo]="creditInfo"></pj-credit-card-detail>
+  <pj-text-entry class="flex-1" [entryConfig]="{label: 'CVV', labelled: true, passwordEnabled: true}" pjSize="lg"
+    [formControl]="getFormControl('cvv')"></pj-text-entry>
+  <div class="flex flex-row items-end gap-4">
+    <pj-dropdown-selection class="flex-1" pjSize="lg" [menuItems]="getYears()" [item]="getExistingYear()"
+      [label]="'Expiry date'" (itemClicked)="yearSelected($event)">
+    </pj-dropdown-selection>
+    <pj-dropdown-selection class="flex-1" pjSize="lg" [menuItems]="getMonth()" [item]="getExistingMonth()"
+      (itemClicked)="monthSelected($event)">
+    </pj-dropdown-selection>
+  </div>
+</div>

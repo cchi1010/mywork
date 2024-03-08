@@ -1,0 +1,9 @@
+.pj-credit-card-edit {
+  min-width: 448px;
+  & .cvv {
+    min-width: 200px;
+  }
+  & .dateField {
+    min-width: 90px;
+  }
+}

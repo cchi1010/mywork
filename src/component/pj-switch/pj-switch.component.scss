@@ -1,0 +1,77 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-switch-font: (
+  label: $pj-strong-2,
+  description: $pj-body-2,
+  iconsize: 24px,
+);
+
+$pj-switch-measurement: (
+  width: 52px,
+  height: 32px,
+  radius: 16px,
+  padding: 4px 0 4px 0,
+  dotON: (
+    width: 24px,
+    height: 24px,
+    radius: 12px,
+    margin: 0 0 0 24px,
+  ),
+  dotOFF: (
+    width: 24px,
+    height: 24px,
+    radius: 12px,
+    margin: 0 0 0 4px,
+  ),
+);
+$pj-switch-style: (
+  bg: $pj-white,
+  on: (bg: map-get($pj-secondary, 300)),
+  off: (bg: map-get($pj-neutral, 100)),
+  label: (fg: map-get($pj-neutral, 800)),
+  description: (fg: map-get($pj-neutral, 600)),
+  icon: (
+    on: (fg: map-get($pj-neutral, 600)),
+    off: (fg: map-get($pj-neutral, 150)),
+    fg: map-get($pj-neutral, 600)
+  ),
+);
+
+.pj-switch {
+  cursor: default;
+  @each $part in (icon, label, description) {
+    & .#{$part} {
+      font: map-get($pj-switch-font, $part);
+      @include pjColorWithMapExt($pj-switch-style, $part);
+    }
+  }
+  & .icon {
+    font-size: map-get($pj-switch-font, iconsize);
+    &.on {
+        @include pjColorWithMapExt($pj-switch-style, icon, on);
+    }
+    &.off {
+        @include pjColorWithMapExt($pj-switch-style, icon, off);
+    }
+  }
+}
+.toggle-button {
+  cursor: pointer;
+  @include pjMeasurementWithMapExt($pj-switch-measurement);
+  &.on {
+    @include pjColorWithMapExt($pj-switch-style, on);
+  }
+  &.off {
+    @include pjColorWithMapExt($pj-switch-style, off);
+  }
+  & .dot-on {
+    @include pjColorWithMapExt($pj-switch-style);
+    @include pjMeasurementWithMapExt($pj-switch-measurement, dotON);
+  }
+  & .dot-off {
+    @include pjColorWithMapExt($pj-switch-style);
+    @include pjMeasurementWithMapExt($pj-switch-measurement, dotOFF);
+  }
+}

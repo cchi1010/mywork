@@ -1,0 +1,77 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-progress-step-font: (
+  icon: 20px,
+  label: $pj-body-2,
+  description: $pj-body-2,
+  descriptionH: $pj-h5,
+);
+
+$pj-progress-step-measurement: (
+  bar: (
+    height: 10px,
+    radius: 16px,
+  ),
+);
+
+$pj-progress-step-style: (
+  bar: (
+    bg: map-get($pj-primary, 100),
+  ),
+  icon: (
+    fg: map-get($pj-primary, 200),
+    current: (
+      fg: map-get($pj-secondary, 500),
+    ),
+  ),
+  line: (
+    bd: map-get($pj-primary, 200),
+    current: (
+      bd: map-get($pj-secondary, 500),
+    ),
+  ),
+  label: (
+    fg: map-get($pj-primary, 400),
+    current: (
+      fg: map-get($pj-primary, 900),
+    ),
+  ),
+  description: (
+    fg: map-get($pj-primary, 600),
+    current: (
+      fg: map-get($pj-primary, 900),
+    ),
+    success: (
+      fg: map-get($pj-success, 600),
+    ),
+    brand: (
+      fg: map-get($pj-brand, 600),
+    ),
+  ),
+);
+.pj-progress-step {
+  & .icon {
+    font-size: map-get($pj-progress-step-font, icon);
+  }
+  & .line {
+    height: 54px;
+    margin: -4px 18px -4px 9px;
+    border-style: solid;
+    border-width: 0 0 0 2px;
+    @include pjColorWithMapExt($pj-progress-step-style, line);
+    &.current {
+      @include pjColorWithMapExt($pj-progress-step-style, line, current);
+    }
+  }
+  @each $part in (icon, label, description) {
+    & .#{$part} {
+      font: map-get($pj-progress-step-font, $part);
+      @include pjColorWithMapExt($pj-progress-step-style, $part);
+    }
+    & .#{$part}.current {
+      @include pjColorWithMapExt($pj-progress-step-style, $part, current);
+    }
+  }
+}

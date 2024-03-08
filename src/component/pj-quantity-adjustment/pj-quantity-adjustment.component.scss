@@ -1,0 +1,102 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-quantity-adjustment-size: (sm, lg, xl);
+$pj-quantity-adjustment-font: (
+  sm: ( inputText: $pj-label-md, icon: 20px ),
+  lg: ( inputText: $pj-label-lg, icon: 22px ),
+  xl: ( inputText: $pj-label-xl, icon: 24px ),
+);
+
+$pj-quantity-adjustment-measurement: (
+  inputBox: (border: 1px),
+  sm: (
+    height: 32px, radius: 32px, border: 1px,
+    inputText: (margin: 6px 16px 6px 16px),
+    leftIcon: (padding: 5px 4px 5px 5px, radius: 32px 0px 0px 32px),
+    rightIcon: (padding: 5px 5px 5px 4px, radius: 0px 32px 32px 0px),
+  ),
+  lg: (
+    height: 40px, radius: 40px, border: 1px,
+    inputText: (margin: 7px 18px 7px 18px),
+    leftIcon: (padding: 8px 7px 8px 8px, radius: 40px 0px 0px 40px),
+    rightIcon: (padding: 8px 8px 8px 7px, radius: 0px 40px 40px 0px),
+  ),
+  xl: (
+    height: 48px, radius: 48px, border: 1px,
+    inputText: (margin: 11px 20px 11px 20px),
+    leftIcon: (padding: 11px 10px 11px 11px, radius: 48px 0px 0px 48px),
+    rightIcon: (padding: 11px 11px 11px 10px, radius: 0px 48px 48px 0px),
+  ),
+);
+
+$pj-quantity-adjustment-style: (
+  bg: $pj-white,
+  bd: map-get($pj-neutral, 50),
+  icon: ( fg: map-get($pj-neutral, 600) ),
+  inputText: ( fg: map-get($pj-neutral, 800), bd: map-get($pj-neutral, 50) ),
+  disabled: (
+    icon: ( fg: map-get($pj-neutral, 150) ),
+  ),
+  hover: (
+    icon: ( bg: map-get($pj-neutral, 50))
+  ),
+  pressed: (
+    icon: ( bg: map-get($pj-neutral, 100))
+  ),
+  inputBox: (
+    bd: map-get($pj-secondary, 500),
+    sdA: $pj-input-shadow,
+  )
+);
+
+.pj-quantity-adjustment {
+  @each $size in $pj-quantity-adjustment-size {
+    &.#{$size} {
+      @include pjMeasurementWithMapExt($pj-quantity-adjustment-measurement, $size);
+      & .icon {
+        font-size: map-get-ext($pj-quantity-adjustment-font, $size, icon);
+      }
+      & .leftIcon {
+        @include pjMeasurementWithMapExt($pj-quantity-adjustment-measurement, $size, leftIcon);
+      }
+      & .rightIcon {
+        @include pjMeasurementWithMapExt($pj-quantity-adjustment-measurement, $size, rightIcon);
+      }
+      & .inputText {
+        font: map-get-ext($pj-quantity-adjustment-font, $size, inputText);
+        @include pjMeasurementWithMapExt($pj-quantity-adjustment-measurement, $size, inputText);
+      }
+    }
+  }
+  & .inputBox {
+    cursor: text;
+    @include pjMeasurementWithMapExt($pj-quantity-adjustment-measurement, inputBox);
+    &.focused {
+      @include pjColorWithMapExt($pj-quantity-adjustment-style, inputBox);
+    }
+  }
+  @include pjColorWithMapExt($pj-quantity-adjustment-style);
+  & .icon {
+    cursor: pointer;
+    @include pjColorWithMapExt($pj-quantity-adjustment-style, icon);
+    &.disabled {
+      pointer-events: none;
+      @include pjColorWithMapExt($pj-quantity-adjustment-style, disabled, icon);
+    }
+    &.leftIcon, &.rightIcon {
+      &:hover {
+        @include pjColorWithMapExt($pj-quantity-adjustment-style, hover, icon);
+      }
+      &.pressed {
+        @include pjColorWithMapExt($pj-quantity-adjustment-style, pressed, icon);
+      }
+    }
+  }
+  & .inputText {
+    width: 10px;
+    outline: none;
+    @include pjColorWithMapExt($pj-quantity-adjustment-style, inputText);
+  }
+}

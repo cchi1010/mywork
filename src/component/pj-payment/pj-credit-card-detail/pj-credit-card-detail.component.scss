@@ -1,0 +1,118 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-credit-card-size: (sm, lg);
+$pj-credit-card-part: (issuer, idNumber, holder, expiration, holderLabel);
+
+$pj-credit-card-font: (
+  sm: (
+    issuer: $pj-label-sm,
+    idNumber: $pj-card-number-sm,
+    holder: $pj-label-sm,
+    expiration: $pj-label-sm,
+    holderLabel: $pj-extra-tiny,
+    statusIcon: 12px,
+  ),
+  lg: (
+    issuer: $pj-label-md,
+    idNumber: $pj-card-number-lg,
+    holder: $pj-label-md,
+    expiration: $pj-label-md,
+    holderLabel: $pj-extra-tiny,
+    statusIcon: 20px,
+  ),
+);
+
+$pj-credit-card-measurement: (
+  sm: (
+    width: 200px,
+    height: 124px,
+    radius: 16px,
+    padding: 12px,
+    typeImage: (
+      width: 32px,
+      height: 22px,
+    ),
+    statusIcon: (
+      radius: 2px 0 0 2px,
+      margin: 0 -12px 0 0,
+    ),
+  ),
+  lg: (
+    width: 260px,
+    height: 162px,
+    radius: 16px,
+    padding: 16px,
+    typeImage: (
+      width: 40px,
+      height: 28px,
+    ),
+    statusIcon: (
+      radius: 4px 0 0 4px,
+      margin: 0 -16px 0 0,
+    ),
+  ),
+);
+
+$pj-credit-card-style: (
+  status: (
+    default: (
+      fg: $pj-white,
+      bg: map-get($pj-brand, 500),
+    ),
+    expired: (
+      fg: $pj-white,
+      bg: map-get($pj-error, 400),
+    ),
+  ),
+  holderLabel: (
+    fg: map-get($pj-neutral, 50),
+  ),
+);
+
+.pj-credit-card {
+  cursor: default;
+  color: $pj-white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  backdrop-filter: blur(84.4px);
+  // background: linear-gradient(147.5deg, #00c6fb 17.41%, #005bea 85.15%);
+  &.expired {
+    opacity: 50%;
+  }
+  & .type-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  & .statusIcon {
+    &.default {
+      background: linear-gradient(146.76deg, #f09819 20.95%, #ff5858 78.59%);
+    }
+    &.expired {
+      background: linear-gradient(144.35deg, #FF057C 9.1%, #8D0B93 49.06%, #321575 89.02%);
+    }
+  }
+  @each $size in $pj-credit-card-size {
+    &.#{$size} {
+      @include pjMeasurementWithMapExt($pj-credit-card-measurement, $size);
+      & .statusIcon {
+        font-size: map-get($pj-credit-card-font, $size, statusIcon);
+        @include pjMeasurementWithMapExt($pj-credit-card-measurement, $size, statusIcon);
+      }
+      & .type-image {
+        @include pjMeasurementWithMapExt($pj-credit-card-measurement, $size, typeImage);
+      }
+      @each $part in $pj-credit-card-part {
+        & .#{$part} {
+          font: map-get($pj-credit-card-font, $size, $part);
+        }
+      }
+    }
+  }
+  & .holderLabel {
+    @include pjColorWithMapExt($pj-credit-card-style, holderLabel);
+  }
+}

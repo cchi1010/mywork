@@ -1,0 +1,10 @@
+<div class="test-header flex flex-row justify-center gap-4 p-4">
+  <pj-button-icon pjSize="lg" pjColor="neutral" iconName="home" (click)="onHomeBtnClick()"></pj-button-icon>
+  <pj-button-cta pjSize="lg" pjColor="secondary" label="Review PolarJ Component" (click)="onComponentBtnClick()">
+  </pj-button-cta>
+  <div *ngIf="hasProjectTestPage()">
+    <pj-button-cta pjSize="lg" pjColor="neutral" btnType="outlined" [label]="getProjectBtnLabel()"
+      (click)="onProjectComponentBtnClick()">
+    </pj-button-cta>
+  </div>
+</div>

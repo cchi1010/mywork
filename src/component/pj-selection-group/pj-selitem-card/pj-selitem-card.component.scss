@@ -1,0 +1,51 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-selitem-stacked-card-font: (
+  title: $pj-strong-1,
+  description: $pj-body-2,
+  icon: 20px,
+);
+
+$pj-selitem-stacked-card-measurement: (
+  width: 280px,
+  padding: 24px,
+  radius: 16px,
+);
+
+$pj-selitem-stacked-card-style: (
+  title: (
+    fg: map-get($pj-neutral, 800),
+  ),
+  description: (
+    fg: map-get($pj-neutral, 600),
+  ),
+  focused: (
+    title: (
+      fg: map-get($pj-secondary, 800),
+    ),
+    description: (
+      fg: map-get($pj-secondary, 600),
+    ),
+  ),
+);
+
+.pj-selitem-stacked-card {
+  @include pjMeasurementWithMapExt($pj-selitem-stacked-card-measurement);
+  & .icon {
+    font-size: map-get($pj-selitem-stacked-card-font, icon);
+    color: map-get($pj-secondary, 500);
+  }
+  @each $part in (title, description) {
+    & .#{$part} {
+      font: map-get($pj-selitem-stacked-card-font, $part);
+      @include pjColorWithMapExt($pj-selitem-stacked-card-style, $part);
+    }
+    &.focused {
+      & .#{$part} {
+        @include pjColorWithMapExt($pj-selitem-stacked-card-style, focused, $part);
+      }
+    }
+  }
+}

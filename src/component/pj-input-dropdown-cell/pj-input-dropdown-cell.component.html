@@ -1,0 +1,36 @@
+<div class="am-input-dropdown-cell"  tabindex="-1"  (focusout)="closePopOver()">
+
+
+  <!-- <div [dropdownElm]="headerElm">{{getInputText()}} </div>
+  <pj-dropdown-box #headerElm [hasBorder]="false" [hasPadding]="true" [horizontalAlign]="'left'">
+    <div class="flex flex-col gap-2">
+      <pj-text-entry class="text-input" pjSize="md"
+        [entryConfig]="{placeholder: 'Create a value',error: isInputEmpty()}" (focusout)="trySaveEditInput($event)"
+        (enterKeyPressed)="onSaveInputText($event)">
+      </pj-text-entry>
+      <pj-divider></pj-divider>
+      <div class="dropdown-item flex flex-row gap-2 items-center" (click)="deleteThisColumn()">
+        <pj-icon [iconName]="'delete'"></pj-icon>
+        <div>Delete this property</div>
+      </div>
+    </div>
+  </pj-dropdown-box> -->
+
+
+  <div class="header" (click)="showPopOver()">{{getInputText()}} </div>
+  <pj-popover *ngIf="isPopOver()">
+    <div class="flex flex-col gap-2"  > 
+      <pj-text-entry class="text-input" pjSize="md" [formControl]="getFormControl()" (click)="focusOnInput()"
+        [entryConfig]="{placeholder: 'Create a value',error: isInputEmpty()}" (focusout)="trySaveEditInput($event)"
+        (enterKeyPressed)="onSaveInputText($event)">
+      </pj-text-entry>
+      <pj-divider></pj-divider>
+      <div class="dropdown-item flex flex-row gap-2 items-center" (click)="deleteThisColumn()">
+        <pj-icon [iconName]="'delete'"></pj-icon>
+        <div>Delete this property</div>
+      </div>
+
+    </div>
+
+  </pj-popover>
+</div>

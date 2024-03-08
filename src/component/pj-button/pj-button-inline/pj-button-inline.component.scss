@@ -1,0 +1,164 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-button-color: (secondary,brand,neutral,info,success,warning,error, whiteBtn);
+
+$pj-button-size: (md, lg, xl);
+
+$pj-button-font: (md: $pj-label-md,lg: $pj-label-lg,xl: $pj-label-xl);
+
+$pj-button-icon-size: (md: 18px,lg: 22px,xl: 24px);
+
+$pj-button-style: (
+  whiteBtn: (
+    icon: (
+      fg: $pj-white,
+      hover: (fg: map-get($pj-neutral, 100)),
+      pressed: (fg: map-get($pj-neutral, 200)),
+      disabled: (fg: $pj-white),
+    ),
+    label: (
+      fg: $pj-white,
+      hover: (fg: map-get($pj-neutral, 100)),
+      pressed: (fg: map-get($pj-neutral, 200)),
+      disabled: (fg: $pj-white),
+    ),
+  ),
+  secondary: (
+    icon: (
+      fg: map-get($pj-secondary, 600),
+      hover: (fg: map-get($pj-secondary, 800)),
+      pressed: (fg: map-get($pj-secondary, 900)),
+      disabled: (fg: map-get($pj-secondary, 200)),
+    ),
+    label: (
+      fg: map-get($pj-secondary, 600),
+      hover: (fg: map-get($pj-secondary, 800)),
+      pressed: (fg: map-get($pj-secondary, 900)),
+      disabled: (fg: map-get($pj-secondary, 200)),
+    ),
+  ),
+  brand: (
+    icon: (
+      fg: map-get($pj-brand, 700),
+      hover: (fg: map-get($pj-brand, 800)),
+      pressed: (fg: map-get($pj-brand, 900)),
+      disabled: (fg: map-get($pj-brand, 200)),
+    ),
+    label: (
+      fg: map-get($pj-brand, 700),
+      hover: (fg: map-get($pj-brand, 800)),
+      pressed: (fg: map-get($pj-brand, 900)),
+      disabled: (fg: map-get($pj-brand, 200)),
+    ),
+  ),
+  neutral: (
+    icon: (
+      fg: map-get($pj-neutral, 600),
+      hover: (fg: map-get($pj-neutral, 800)),
+      pressed: (fg: map-get($pj-neutral, 900)),
+      disabled: (fg: map-get($pj-neutral, 150)),
+    ),
+    label: (
+      fg: map-get($pj-neutral, 600),
+      hover: (fg: map-get($pj-neutral, 800)),
+      pressed: (fg: map-get($pj-neutral, 900)),
+      disabled: (fg: map-get($pj-neutral, 150)),
+    ),
+  ),
+  info: (
+    icon: (
+      fg: map-get($pj-info, 500),
+      hover: (fg: map-get($pj-info, 600)),
+      pressed: (fg: map-get($pj-info, 700)),
+      disabled: (fg: map-get($pj-info, 200)),
+    ),
+    label: (
+      fg: map-get($pj-info, 500),
+      hover: (fg: map-get($pj-info, 600)),
+      pressed: (fg: map-get($pj-info, 700)),
+      disabled: (fg: map-get($pj-info, 200)),
+    ),
+  ),
+  warning: (
+    icon: (
+      fg: map-get($pj-warning, 700),
+      hover: (fg: map-get($pj-warning, 800)),
+      pressed: (fg: map-get($pj-warning, 900)),
+      disabled: (fg: map-get($pj-warning, 150)),
+    ),
+    label: (
+      fg: map-get($pj-warning, 700),
+      hover: (fg: map-get($pj-warning, 800)),
+      pressed: (fg: map-get($pj-warning, 900)),
+      disabled: (fg: map-get($pj-warning, 150)),
+    ),
+  ),
+  success: (
+    icon: (
+      fg: map-get($pj-success, 700),
+      hover: (fg: map-get($pj-success, 800)),
+      pressed: (fg: map-get($pj-success, 900)),
+      disabled: (fg: map-get($pj-success, 200)),
+    ),
+    label: (
+      fg: map-get($pj-success, 700),
+      hover: (fg: map-get($pj-success, 800)),
+      pressed: (fg: map-get($pj-success, 900)),
+      disabled: (fg: map-get($pj-success, 200)),
+    ),
+  ),
+  error: (
+    icon: (
+      fg: map-get($pj-error, 600),
+      hover: (fg: map-get($pj-error, 700)),
+      pressed: (fg: map-get($pj-error, 800)),
+      disabled: (fg: map-get($pj-error, 200)),
+    ),
+    label: (
+      fg: map-get($pj-error, 600),
+      hover: (fg: map-get($pj-error, 700)),
+      pressed: (fg: map-get($pj-error, 800)),
+      disabled: (fg: map-get($pj-error, 200)),
+    ),
+  ),
+);
+
+@each $btnSize in $pj-button-size {
+  @each $color in $pj-button-color {
+    .pj-button {
+      cursor: pointer;
+      &.#{$btnSize} {
+        & .icon {
+          font-size: map-get($pj-button-icon-size, $btnSize);
+        }
+        & .label {
+          font: map-get($pj-button-font, $btnSize);
+        }
+      }
+      &.#{$color} {
+        &.disabled {
+          pointer-events: none;
+        }
+        @each $part in (icon, label) {
+          & .#{$part} {
+            @include pjColorWithMapExt($pj-button-style, $color, $part);
+          }
+          &:hover .#{$part} {
+            @include pjColorWithMapExt($pj-button-style, $color, $part, hover);
+          }
+          &.disabled .#{$part} {
+            @include pjColorWithMapExt($pj-button-style, $color, $part, disabled);
+            @if $color == whiteBtn {
+              opacity: 50%;
+            }
+          }
+          &.pressed .#{$part} {
+            @include pjColorWithMapExt($pj-button-style, $color, $part, pressed);
+          }
+        }
+      }
+    }
+  }
+}

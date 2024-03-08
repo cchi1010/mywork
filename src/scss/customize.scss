@@ -1,0 +1,161 @@
+@import '/src/scss/color';
+
+$pj-size-2level: (sm, lg);
+$pj-size-4level: (sm, md, lg, xl);
+$pj-size-6level: (xs, sm, md, lg, xl, xxl, xxxl);
+$pj-scrollbar: (
+  size: 10px,
+  size-hover: 10px,
+  radius: 10px,
+  tracker: map-get($pj-neutral, 50),
+  thumb: map-get($pj-neutral, 100),
+  thumb-hover: map-get($pj-neutral, 150),
+  thumb-active: map-get($pj-neutral, 200), // the scrollbar was holded
+);
+
+$pj-header-breakpoint: (
+  sm: 600px,
+  md: 834px,
+  lg: 1024px,
+  xl: 1200px,
+);
+
+$pj-footer-breakpoint: (
+  xs: 320px,
+  sm: 600px,
+  md: 834px,
+  lg: 1280px,
+  xl: 1400px,
+);
+
+$pj-screen-breakpoint: (
+  xs-max: 599px,
+  sm-min: 600px,
+  sm-max: 767px,
+  md-min: 768px,
+  md-max: 833px,
+  lg-min: 834px,
+  lg-max: 1023px,
+  xl-min: 1024px,
+  xl-max: 1365px,
+  xxl-min: 1366px,
+  xxl-max: 1919px,
+  xxxl-min: 1920px,
+);
+
+// 下面的参数是自定义容器的breakpoint，保存在app.constant.ts的ContentSizeBreakPoint中
+// $pj-content-breakpoint: (
+//   xs-max: 511px,
+//   sm-min: 512px,
+//   sm-max: 767px,
+//   md-min: 768px,
+//   md-max: 833px,
+//   lg-min: 834px,
+//   lg-max: 1023px,
+//   xl-min: 1024px,
+//   xl-max: 1199px,
+//   xxl-min: 1200px,
+// );
+
+$zIndex:(
+  pageHeader: 80,
+  normarl: 0,
+  content: 0,
+  footer: 0,
+  tooltip: 50,
+  popover: 50,
+  elmAbove: 100,
+  dropdown: 110,
+  locbar: 110,
+  sidePanel: 120,
+  sideMenu: 800,
+  navbar: 900,
+  modalBackground: 99,
+  modalWin: 999,
+);
+// 配置与尺寸相关的属性
+// width:
+// height:
+// border: 线框的宽度
+// padding 顺序： 上 右 下 左
+// margin 顺序： 上 右 下 左
+// radius，元素边框圆角大小顺序：左上 右上 右下 左下
+@mixin pjMeasurement($width: null, $height: null, $border: null, $padding: null, $margin: null, $radius: null, $minWidth: null) {
+  @if $width {
+    width: $width;
+    max-width: $width;
+  }
+
+  @if $minWidth {
+    min-width: $minWidth;
+  } @else {
+    @if $width {
+      min-width: $width;
+    }
+  }
+
+  @if $height {
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+  }
+
+  @if $padding {
+    padding: $padding;
+  }
+
+  @if $margin {
+    margin: $margin;
+  }
+  @if $border {
+    border-width: $border;
+  }
+  @if $radius {
+    border-radius: $radius;
+  }
+}
+
+@mixin pjMeasurementWithMapExt($measurementMap, $key1: null, $key2: null, $key3: null, $key4: null) {
+  @if $measurementMap != null {
+    @if $key1 {
+      @include pjMeasurementWithMap(map-get-ext($measurementMap, $key1, $key2, $key3, $key4));
+    } @else {
+      @include pjMeasurementWithMap($measurementMap);
+    }
+  }
+}
+
+@mixin pjMeasurementWithMap($measurementMap) {
+  @if $measurementMap != null {
+    @include pjMeasurement(
+      map-get($measurementMap, width),
+      map-get($measurementMap, height),
+      map-get($measurementMap, border),
+      map-get($measurementMap, padding),
+      map-get($measurementMap, margin),
+      map-get($measurementMap, radius),
+      map-get($measurementMap, minWidth)
+    );
+  }
+}
+
+@function map-get-ext($map, $key1, $key2: null, $key3: null, $key4: null) {
+  @if map-has-key($map, $key1) {
+    @if $key2 {
+      @if map-has-key(map-get($map, $key1), $key2) {
+        @if $key3 {
+          @if map-has-key(map-get(map-get($map, $key1), $key2), $key3) {
+            @if $key4 {
+              @return map-get(map-get(map-get(map-get($map, $key1), $key2), $key3), $key4);
+            } @else {
+              @return map-get(map-get(map-get($map, $key1), $key2), $key3);
+            }
+          }
+        }
+        @return map-get(map-get($map, $key1), $key2);
+      }
+    }
+    @return map-get($map, $key1);  
+  }
+  @return null;
+}

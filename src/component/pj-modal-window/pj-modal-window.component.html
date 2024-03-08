@@ -1,0 +1,20 @@
+<div class="pj-modal-win-backgroud flex flex-row items-center justify-center" pjModalBg
+  *ngIf="isOpened()" (click)="onBgCloseClick()">
+  <div class="pj-modal-win flex flex-col relative" [ngClass]="getSizeClass()">
+    <div *ngIf="hasTitle()" #modalTitle class="title flex flex-row items-center cursor-default"
+      [ngClass]="getTitleClass()">
+      <div>{{ title }}</div>
+      <pj-button-icon *ngIf="closeable" btnType="text" pjSize="{{ getCloseBtnSize() }}" pjColor="neutral"
+        [iconName]="'close'" (click)="onCloseClick()">
+      </pj-button-icon>
+    </div>
+    <pj-button-icon *ngIf="!hasTitle() && closeable" class="title closeBtn" btnType="elevated"
+      pjSize="{{ getCloseBtnSize() }}" pjColor="neutral" [iconName]="'close'" (click)="onCloseClick()">
+    </pj-button-icon>
+    <pj-divider *ngIf="hasTitle()"></pj-divider>
+    <div class="content" (click)="donothing($event)">
+      <ng-content></ng-content>
+      <div #content></div>
+    </div>
+  </div>
+</div>

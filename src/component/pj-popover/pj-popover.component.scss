@@ -1,0 +1,27 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-popover-measurement: (border: 1px,radius: 16px,padding: 16px);
+
+$pj-popover-style: (
+  bg: $pj-white,
+  bd: map-get($pj-neutral, 100),
+  sdA: map-get($pj-neutral-shadow, 4a),
+  sdB: map-get($pj-neutral-shadow, 4b),
+);
+
+.pj-popover {
+  position:absolute;
+  border-style: solid;
+  min-width: 300px;
+  width: fit-content;
+  z-index: map-get($zIndex, popover);
+  @include pjMeasurementWithMapExt($pj-popover-measurement);
+  @include pjColorWithMapExt($pj-popover-style);
+}
+
+:host {
+  position: absolute;
+  z-index: 9999;
+}

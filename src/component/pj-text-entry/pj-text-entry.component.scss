@@ -1,0 +1,318 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-text-entry-size: (md,
+  lg,
+  xl);
+
+$pj-text-entry-font: (inputArea: $pj-label-lg,
+  placeholder: $pj-body-2,
+  assistiveText: $pj-small,
+  label: $pj-body-2,
+  innerLabel: $pj-label-md,
+);
+
+$pj-text-entry-measurement: (md: (height: 32px,
+    padding: 3px 8px 3px 8px,
+    radius: 6px,
+    border: 1px,
+    assistiveText: 8px,
+  ),
+  lg: (height: 40px,
+    padding: 7px 12px 7px 12px,
+    radius: 8px,
+    border: 1px,
+    assistiveText: 12px,
+  ),
+  xl: (height: 48px,
+    padding: 11px 16px 11px 16px,
+    radius: 10px,
+    border: 1px,
+    assistiveText: 16px,
+  ),
+);
+
+$pj-text-entry-style: (bg: $pj-white,
+  bd: map-get($pj-neutral, 100),
+  sdA: map-get($pj-neutral-shadow, 1a),
+  sdB: map-get($pj-neutral-shadow, 1b),
+  label: (fg: map-get($pj-neutral, 800),
+  ),
+  inputArea: (fg: map-get($pj-neutral, 800),
+  ),
+  placeholder: (bg: $pj-white,
+    fg: map-get($pj-neutral, 200),
+  ),
+  assistiveText: (fg: map-get($pj-neutral, 600),
+  ),
+  focused: (bg: $pj-white,
+    bd: map-get($pj-secondary, 500),
+    sdA: $pj-input-shadow,
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    innerLabel: (bg: $pj-white,
+      fg: map-get($pj-secondary, 600),
+    ),
+    placeholder: (bg: $pj-white,
+      fg: map-get($pj-neutral, 400),
+    ),
+    inputArea: (bg: $pj-white,
+      fg: map-get($pj-neutral, 800),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+  ),
+  filled: (bg: $pj-white,
+    bd: map-get($pj-neutral, 100),
+    sdA: map-get($pj-neutral-shadow, 1a),
+    sdB: map-get($pj-neutral-shadow, 1b),
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    innerLabel: (bg: $pj-white,
+      fg: map-get($pj-neutral, 400),
+    ),
+    inputArea: (bg: $pj-white,
+      fg: map-get($pj-neutral, 800),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+  ),
+  error: (bg: map-get($pj-error, 10),
+    bd: map-get($pj-error, 500),
+    sdA: map-get($pj-neutral-shadow, 1a),
+    sdB: map-get($pj-neutral-shadow, 1b),
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    innerLabel: (bg: map-get($pj-error, 10),
+      fg: map-get($pj-error, 600),
+    ),
+    inputArea: (bg: map-get($pj-error, 10),
+      fg: map-get($pj-error, 900),
+    ),
+    placeholder: (bg: map-get($pj-error, 10),
+      fg: map-get($pj-error, 900),
+    ),
+    assistiveText: (fg: map-get($pj-error, 600),
+    ),
+  ),
+  disabled: (bg: $pj-white,
+    bd: map-get($pj-neutral, 100),
+    sdA: none,
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    inputArea: (bg: $pj-white,
+      fg: map-get($pj-neutral, 150),
+    ),
+    placeholder: (bg: $pj-white,
+      fg: map-get($pj-neutral, 150),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+  ),
+  icon: map-get($pj-error, 500),
+
+  noborder:(bg: $pj-white,
+    bd: $pj-white,
+    focused: (bg: $pj-white,
+    bd: map-get($pj-secondary, 500),
+    sdA: $pj-input-shadow,
+    label: (fg: map-get($pj-neutral, 800),
+    ),
+    innerLabel: (bg: $pj-white,
+      fg: map-get($pj-secondary, 600),
+    ),
+    placeholder: (bg: $pj-white,
+      fg: map-get($pj-neutral, 400),
+    ),
+    inputArea: (bg: $pj-white,
+      fg: map-get($pj-neutral, 800),
+    ),
+    assistiveText: (fg: map-get($pj-neutral, 600),
+    ),
+  ),
+    filled: (bg: $pj-white,
+      bd: $pj-white,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: $pj-white,
+        fg: map-get($pj-neutral, 400),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 800),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    error: (bg: map-get($pj-error, 10),
+      bd: map-get($pj-error, 500),
+      sdA: map-get($pj-neutral-shadow, 1a),
+      sdB: map-get($pj-neutral-shadow, 1b),
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      innerLabel: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 600),
+      ),
+      inputArea: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      placeholder: (bg: map-get($pj-error, 10),
+        fg: map-get($pj-error, 900),
+      ),
+      assistiveText: (fg: map-get($pj-error, 600),
+      ),
+    ),
+    disabled: (bg: $pj-white,
+      bd: map-get($pj-neutral, 100),
+      sdA: none,
+      label: (fg: map-get($pj-neutral, 800),
+      ),
+      inputArea: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      placeholder: (bg: $pj-white,
+        fg: map-get($pj-neutral, 150),
+      ),
+      assistiveText: (fg: map-get($pj-neutral, 600),
+      ),
+    ),
+    icon: map-get($pj-error, 500),
+  ),
+);
+
+.pj-text-entry-box {
+  border-style: solid;
+}
+
+.inputArea {
+  width: 100%;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: default;
+  color: map-get($pj-text-entry-style, icon);
+}
+
+.showPasswordIcon {
+  font-size: 20px;
+  color: map-get($pj_neutral, 200);
+  cursor: pointer;
+}
+
+.assistiveText {
+  pointer-events: none;
+  height: 18px;
+  @include pjColorWithMapExt($pj-text-entry-style, assistiveText);
+
+  @each $status in (filled, error, focused, disabled) {
+    &.#{$status} {
+      @include pjColorWithMapExt($pj-text-entry-style, $status, assistiveText);
+    }
+  }
+}
+
+.label {
+  @include pjColorWithMapExt($pj-text-entry-style, label);
+
+  @each $status in (filled, error, focused, disabled) {
+    &.#{$status} {
+      @include pjColorWithMapExt($pj-text-entry-style, $status, label);
+    }
+  }
+}
+
+.pj-text-entry {
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.pj-text-entry-box {
+  cursor: text;
+
+  &.notInput {
+    border: 1px solid map-get($pj-error, 300);
+  }
+
+  & input:focus {
+    outline: none;
+  }
+
+  @include pjColorWithMapExt($pj-text-entry-style);
+
+  &.noborder {
+    @include pjColorWithMapExt($pj-text-entry-style, noborder);
+  }
+
+  @each $part in (inputArea, innerLabel) {
+    & .#{$part} {
+      @include pjColorWithMapExt($pj-text-entry-style, $part);
+    }
+  }
+
+  & input::placeholder {
+    @include pjColorWithMapExt($pj-text-entry-style, placeholder);
+  }
+
+  @each $status in (filled, error, focused, disabled) {
+    &.#{$status} {
+      @include pjColorWithMapExt($pj-text-entry-style, $status);
+
+      @each $part in (inputArea, innerLabel) {
+        & .#{$part} {
+          @include pjColorWithMapExt($pj-text-entry-style, $status, $part);
+        }
+      }
+
+      & input::placeholder {
+        @include pjColorWithMapExt($pj-text-entry-style, $status, placeholder);
+      }
+    }
+  }
+
+  &.noborder {
+    @each $status in (filled, error, focused, disabled) {
+      &.#{$status} {
+        @include pjColorWithMapExt($pj-text-entry-style, noborder, $status);
+
+        @each $part in (inputArea, innerLabel) {
+          & .#{$part} {
+            @include pjColorWithMapExt($pj-text-entry-style, noborder, $status, $part);
+          }
+        }
+
+        & input::placeholder {
+          @include pjColorWithMapExt($pj-text-entry-style, noborder, $status, placeholder);
+        }
+      }
+    }
+  }
+}
+
+
+
+@each $part in (inputArea, label, innerLabel, assistiveText) {
+  .pj-text-entry {
+    & .#{$part} {
+      font: map-get($pj-text-entry-font, $part);
+    }
+
+    & input::placeholder {
+      font: map-get($pj-text-entry-font, placeholder);
+    }
+  }
+}
+
+@each $size in $pj-text-entry-size {
+  .pj-text-entry.#{$size} {
+    & .pj-text-entry-box {
+      @include pjMeasurementWithMapExt($pj-text-entry-measurement, $size);
+    }
+  }
+
+  .assistiveText.#{$size} {
+    padding-left: map-get-ext($pj-text-entry-measurement, $size, assistiveText);
+  }
+}

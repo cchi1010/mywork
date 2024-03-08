@@ -1,0 +1,5 @@
+<!-- 只显示某个业务模型的数据值 -->
+<div class="pj-data-value flex flex-col">
+  <div *ngIf="hasTitle()" class="title">{{ title }}</div>
+  <div *ngFor="let value of values" class="value">{{ value }}</div>
+</div>

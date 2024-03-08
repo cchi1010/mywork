@@ -1,0 +1,8 @@
+<div class="pj-step flex flex-col" pjDefaultSize="lg">
+  <div class="pj-step-item-title flex flex-row mb-4" [ngClass]="getGapClass()">
+    <pj-step-item class="flex-grow" *ngFor="let stepData of stepsData; index as i" [stepSerial]="i + 1"
+      [stepData]="stepData" (click)="onStepHeaderClick(i)" pjSize="{{ pjSize }}">
+    </pj-step-item>
+  </div>
+  <ng-content *ngTemplateOutlet="getCurrentStepContent()"></ng-content>
+</div>

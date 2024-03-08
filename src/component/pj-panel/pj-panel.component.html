@@ -1,0 +1,6 @@
+<div class="pj-panel flex flex-col gap-3" [ngClass]="getPanelClass()" [ngStyle]="getPanelStyle()" pjDefaultSize="lg">
+  <div class="title" *ngIf="hasTitle()">{{ getTitle() }}</div>
+  <div style="width: 100%; height: 100%;">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="pj-chip-filter flex flex-row items-center object-contain gap-2" pjPressable [ngClass]="getChipClass()"
+  (click)="onClick($event)">
+  <pj-image class="avatar" *ngIf="hasImage()" [imageData]="getImageData()">
+  </pj-image>
+  <div class="flex-grow flex-shrink-0 flex flex-row justify-center items-center gap-1">
+    <div class="label text-center">{{ label }}</div>
+    <div *ngIf="hasQuantity() && !hasClose()" class="quantity">
+      {{ quantity }}
+    </div>
+  </div>
+  <pj-icon class="icon" *ngIf="hasClose()" [iconName]="'close'"></pj-icon>
+</div>

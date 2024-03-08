@@ -1,0 +1,356 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-button-icon-size: (sm, md, lg, xl);
+
+$pj-button-icon-type: (text, filled, outlined, elevated);
+
+$pj-button-icon-color: (neutral, secondary, error, whiteBtn);
+
+$pj-button-icon-icon-size: (sm: 16px, md: 20px,lg: 22px,xl: 24px);
+
+$pj-button-icon-measurement: (
+  sm: (
+    width: fit-content,
+    height: 24px,
+    radius: 24px,
+    icon: (padding: 4px),
+    badge: (padding: 3px),
+  ),
+  md: (
+    width: fit-content,
+    height: 32px,
+    radius: 32px,
+    icon: (padding: 6px),
+    badge: (padding: 6px),
+  ),
+  lg: (
+    width: fit-content,
+    height: 40px,
+    radius: 40px,
+    icon: (padding: 9px),
+    badge: (padding: 9px),
+  ),
+  xl: (
+    width: fit-content,
+    height: 48px,
+    radius: 48px,
+    icon: (padding: 12px),
+    badge: (padding: 12px),
+  ),
+);
+
+$pj-button-icon-style: (
+  text: (
+    neutral: (
+      hover: (bg: map-get($pj-neutral, 50)),
+      focused: (bg: map-get($pj-neutral, 50)),
+      pressed: (bg: map-get($pj-neutral, 100)),
+      icon: (
+        fg: map-get($pj-neutral, 600),
+        hover: (fg: map-get($pj-neutral, 600)),
+        focused: (fg: map-get($pj-neutral, 600)),
+        pressed: (fg: map-get($pj-neutral, 600)),
+        disabled: (fg: map-get($pj-neutral, 150)),
+      ),
+    ),
+    secondary: (
+      hover: (bg: map-get($pj-secondary, 100)),
+      focused: (bg: map-get($pj-secondary, 100)),
+      pressed: (bg: map-get($pj-secondary, 150)),
+      icon: (
+        fg: map-get($pj-secondary, 600),
+        hover: (fg: map-get($pj-secondary, 600)),
+        focused: (fg: map-get($pj-secondary, 600)),
+        pressed: (fg: map-get($pj-secondary, 600)),
+        disabled: (fg: map-get($pj-secondary, 150)),
+      ),
+    ),
+    error: (
+      hover: (bg: map-get($pj-error, 50)),
+      focused: (bg: map-get($pj-error, 50)),
+      pressed: (bg: map-get($pj-error, 100)),
+      icon: (
+        fg: map-get($pj-error, 600),
+        hover: (fg: map-get($pj-error, 600)),
+        focused: (fg: map-get($pj-error, 600)),
+        pressed: (fg: map-get($pj-error, 600)),
+        disabled: (fg: map-get($pj-error, 150)),
+      ),
+    ),
+    whiteBtn: (
+      hover: (bd: $pj-white),
+      focused: (bg: $pj-white, bd: $pj-white),
+      pressed: (bg: $pj-white, bd: $pj-white),
+      icon: (
+        fg: $pj-white,
+        hover: (fg: $pj-white),
+        focused: (fg: map-get($pj-neutral, 800)),
+        pressed: (fg: map-get($pj-neutral, 800)),
+        disabled: (fg: $pj-white),
+      ),
+    ),
+  ),
+  outlined: (
+    neutral: (
+      bd: map-get($pj-neutral, 100),
+      hover: (bd: map-get($pj-neutral, 600)),
+      focused: (bd: map-get($pj-neutral, 800),bg: map-get($pj-neutral, 800)),
+      pressed: (bd: map-get($pj-neutral, 600),bg: map-get($pj-neutral, 50)),
+      disabled: (bd: map-get($pj-neutral, 100)),
+      icon: (
+        fg: map-get($pj-neutral, 600),
+        hover: (fg: map-get($pj-neutral, 600)),
+        focused: (fg: $pj-white),
+        pressed: (fg: map-get($pj-neutral, 600)),
+        disabled: (fg: map-get($pj-neutral, 100)),
+      ),
+    ),
+    secondary: (
+      bd: map-get($pj-secondary, 150),
+      hover: (bd: map-get($pj-secondary, 600)),
+      focused: (bd: map-get($pj-secondary, 500),bg: map-get($pj-secondary, 500)),
+      pressed: (bd: map-get($pj-secondary, 600),bg: map-get($pj-secondary, 100)),
+      disabled: (bd: map-get($pj-secondary, 150)),
+      icon: (
+        fg: map-get($pj-secondary, 600),
+        hover: (fg: map-get($pj-secondary, 600)),
+        focused: (fg: $pj-white),
+        pressed: (fg: map-get($pj-secondary, 600)),
+        disabled: (fg: map-get($pj-secondary, 150)),
+      ),
+    ),
+    error: (
+      bd: map-get($pj-error, 100),
+      hover: (bd: map-get($pj-error, 600)),
+      focused: (bd: map-get($pj-error, 500),bg: map-get($pj-error, 500)),
+      pressed: (bd: map-get($pj-error, 600),bg: map-get($pj-error, 50)),
+      disabled: (bd: map-get($pj-error, 100)),
+      icon: (
+        fg: map-get($pj-error, 600),
+        hover: (fg: map-get($pj-error, 600)),
+        focused: (fg: $pj-white),
+        pressed: (fg: map-get($pj-error, 600)),
+        disabled: (fg: map-get($pj-error, 150)),
+      ),
+    ),
+    whiteBtn: (
+      bd: $pj-white,
+      hover: (bd: $pj-white, bg: $pj-white),
+      focused: (bd: $pj-white,bg: $pj-white),
+      pressed: (bd: map-get($pj-neutral, 100),bg: map-get($pj-neutral, 100)),
+      disabled: (bd: map-get($pj-neutral, 150)),
+      icon: (
+        fg: $pj-white,
+        hover: (fg: map-get($pj-neutral, 800)),
+        focused: (fg: map-get($pj-neutral, 800)),
+        pressed: (fg: map-get($pj-neutral, 800)),
+        disabled: (fg: map-get($pj-neutral, 150)),
+      ),
+    ),
+  ),
+  elevated: (
+    neutral: (
+      bg: $pj-white,
+      sdA: map-get($pj-neutral-shadow, 2a),
+      sdB: map-get($pj-neutral-shadow, 2b),
+      hover: (bg: map-get($pj-neutral, 50)),
+      focused: (bg: map-get($pj-neutral, 800)),
+      pressed: (bg: map-get($pj-neutral, 100)),
+      disabled: (bg: $pj-white),
+      icon: (
+        fg: map-get($pj-neutral, 800),
+        hover: (fg: map-get($pj-neutral, 800)),
+        focused: (fg: $pj-white),
+        pressed: (fg: map-get($pj-neutral, 800)),
+        disabled: (fg: map-get($pj-neutral, 150)),
+      ),
+    ),
+    secondary: (
+      bg: map-get($pj-secondary, 500),
+      sdA: map-get($pj-secondary-shadow, 2a),
+      sdB: map-get($pj-secondary-shadow, 2b),
+      hover: (bg: map-get($pj-secondary, 600)),
+      focused: (bg: map-get($pj-secondary, 700)),
+      pressed: (bg: map-get($pj-secondary, 700)),
+      disabled: (bg: map-get($pj-secondary, 50)),
+      icon: (
+        fg: $pj-white,
+        hover: (fg: $pj-white),
+        focused: (fg: $pj-white),
+        pressed: (fg: $pj-white),
+        disabled: (fg: map-get($pj-secondary, 150)),
+      ),
+    ),
+    error: (
+      bg: map-get($pj-error, 500),
+      sdA: map-get($pj-neutral-shadow, 2a),
+      sdB: map-get($pj-neutral-shadow, 2b),
+      hover: (bg: map-get($pj-error, 600)),
+      focused: (bg: map-get($pj-error, 700)),
+      pressed: (bg: map-get($pj-error, 700)),
+      disabled: (bg: map-get($pj-error, 10)),
+      icon: (
+        fg: $pj-white,
+        hover: (fg: $pj-white),
+        focused: (fg: $pj-white),
+        pressed: (fg: $pj-white),
+        disabled: (fg: map-get($pj-error, 150)),
+      ),
+    ),
+    whiteBtn: (
+      bg: $pj-white,
+      sdA: map-get($pj-neutral-shadow, 2a),
+      sdB: map-get($pj-neutral-shadow, 2b),
+      hover: (bd: $pj-white, bg: map-get($pj-neutral, 50)),
+      focused: (bd: map-get($pj-neutral, 900), bg: map-get($pj-neutral, 900)),
+      pressed: (bd: map-get($pj-neutral, 900), bg: map-get($pj-neutral, 900)),
+      disabled: (bd: $pj-white, bg: $pj-white),
+      icon: (
+        fg: map-get($pj-neutral, 800),
+        hover: (fg: map-get($pj-neutral, 800)),
+        focused: (fg: $pj-white),
+        pressed: (fg: $pj-white),
+        disabled: (fg: map-get($pj-neutral, 200)),
+      ),
+    ),
+  ),
+  filled: (
+    neutral: (
+      bg: map-get($pj-neutral, 50),
+      hover: (bg: map-get($pj-neutral, 100)),
+      focused: (bg: map-get($pj-neutral, 800)),
+      pressed: (bg: map-get($pj-neutral, 150)),
+      disabled: (bg: map-get($pj-neutral, 50)),
+      icon: (
+        fg: map-get($pj-neutral, 600),
+        hover: (fg: map-get($pj-neutral, 600)),
+        focused: (fg: $pj-white),
+        pressed: (fg: map-get($pj-neutral, 600)),
+        disabled: (fg: map-get($pj-neutral, 150)),
+      ),
+    ),
+    secondary: (
+      bg: map-get($pj-secondary, 500),
+      hover: (bg: map-get($pj-secondary, 600)),
+      focused: (bg: map-get($pj-secondary, 700)),
+      pressed: (bg: map-get($pj-secondary, 700)),
+      disabled: (bg: map-get($pj-secondary, 50)),
+      icon: (
+        fg: $pj-white,
+        hover: (fg: $pj-white),
+        focused: (fg: $pj-white),
+        pressed: (fg: $pj-white),
+        disabled: (fg: map-get($pj-secondary, 150)),
+      ),
+    ),
+    error: (
+      bg: map-get($pj-error, 500),
+      hover: (bg: map-get($pj-error, 600)),
+      focused: (bg: map-get($pj-error, 700)),
+      pressed: (bg: map-get($pj-error, 700)),
+      disabled: (bg: map-get($pj-error, 10)),
+      icon: (
+        fg: $pj-white,
+        hover: (fg: $pj-white),
+        focused: (fg: $pj-white),
+        pressed: (fg: $pj-white),
+        disabled: (fg: map-get($pj-error, 150)),
+      ),
+    ),
+    whiteBtn: (
+      bg: $pj-white,
+      hover: (bd: $pj-white, bg: transparent),
+      focused: (bd: map-get($pj-neutral, 800), bg: map-get($pj-neutral, 800)),
+      pressed: (bd: map-get($pj-neutral, 800), bg: map-get($pj-neutral, 800)),
+      disabled: (bd: $pj-white, bg: $pj-white),
+      icon: (
+        fg: map-get($pj-neutral, 800),
+        hover: (fg: $pj-white),
+        focused: (fg: $pj-white),
+        pressed: (fg: $pj-white),
+        disabled: (fg: map-get($pj-neutral, 200)),
+      ),
+    ),
+  ),
+);
+
+.pj-button-icon {
+  & .badge {
+    position: absolute;
+    right: -4px;
+    top: -4px;
+  }
+}
+@each $btnSize in $pj-button-icon-size {
+  @each $color in $pj-button-icon-color {
+    .pj-button-icon {
+      cursor: pointer;
+      &.outlined {
+        border-style: solid;
+        border-width: 1px;
+      }
+      &.#{$btnSize} {
+        @include pjMeasurementWithMapExt($pj-button-icon-measurement, $btnSize);
+        &.iconOnly {
+          @include pjMeasurementWithMapExt($pj-button-icon-measurement, $btnSize, icon);
+        }
+        &.withBadge {
+          @include pjMeasurementWithMapExt($pj-button-icon-measurement, $btnSize, badge);
+        }
+        & .icon {
+          font-size: map-get($pj-button-icon-icon-size, $btnSize);
+        }
+      }
+      @each $btnType in $pj-button-icon-type {
+        &.#{$color}.#{$btnType} {
+          @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color);
+          &:hover {
+            @if $color == whiteBtn {
+              @if $btnType == text {
+                  border-style: solid;
+                  border-width: 1px;
+              }
+              @if $btnType == filled {
+                border-style: solid;
+                border-width: 1px;
+            }
+          }
+            @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, hover);
+          }
+          &.disabled {
+            pointer-events: none;
+            @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, disabled);
+            @if $color == whiteBtn {
+              opacity: 50%;
+            }
+          }
+          &.pressed {
+            @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, pressed);
+          }
+          &.focused {
+            @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, focused);
+          }
+          @each $part in (icon) {
+            & .#{$part} {
+              @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, $part);
+            }
+            &:hover .#{$part} {
+              @include pjColorWithMapExt($pj-button-icon-style,$btnType,$color,$part,hover);
+            }
+            &.pressed .#{$part} {
+              @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, $part,pressed);
+            }
+            &.focused .#{$part} {
+              @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, $part,focused);
+            }
+            &.disabled .#{$part} {
+              @include pjColorWithMapExt($pj-button-icon-style, $btnType, $color, $part,disabled);
+            }
+          }
+        }
+      }
+    }
+  }
+}

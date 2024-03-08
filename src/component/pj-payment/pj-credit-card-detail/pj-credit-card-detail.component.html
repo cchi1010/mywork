@@ -1,0 +1,21 @@
+<div class="pj-credit-card flex flex-col justify-between" pjDefaultSize="lg"
+  style="background-image: url('{{ getCreditCardImage() }}');" [ngClass]="getExpiratedClass()">
+  <div class="flex flex-row items-center justify-between">
+    <div class="issuer">{{ creditInfo?.issuer }}</div>
+    <div class="type-image" style="background-image: url('{{ getIssuerImage() }}');"></div>
+  </div>
+  <div class="flex flex-row justify-between items-center">
+    <div class="idNumber">{{ creditInfo?.idNumber }}</div>
+    <pj-icon class="statusIcon" [ngClass]="getStatusClass()" [iconName]="getIconName()"></pj-icon>
+  </div>
+  <div class="flex flex-row justify-between items-center">
+    <div class="flex flex-col">
+      <div class="holderLabel">Card holder</div>
+      <div class="holder">{{ creditInfo?.holder }}</div>
+    </div>
+    <div class="flex flex-col">
+      <div class="holderLabel">Expiry date</div>
+      <div class="expiration">{{ creditInfo?.expiration }}</div>
+    </div>
+  </div>
+</div>

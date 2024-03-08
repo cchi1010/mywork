@@ -1,0 +1,35 @@
+@import "/src/scss/color";
+@import "/src/scss/typography";
+@import "/src/scss/customize";
+
+$pj-thumbnail-measurement: (
+  width: 48px,
+  height: 48px,
+  radius: 8px,
+  border: 2px,
+);
+
+$pj-thumbnail-style: (
+  bd: map-get($pj-secondary, 300),
+);
+
+.pj-thumbnail {
+  cursor: default;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 60%;
+  transition: background-color 0.5s;
+  border-style: none;
+  @include pjMeasurementWithMapExt($pj-thumbnail-measurement);
+  &:hover {
+    opacity: 100%;
+    border-style: solid;
+    @include pjColorWithMapExt($pj-thumbnail-style);
+  }
+  & .focused {
+    opacity: 100%;
+    border-style: solid;
+    @include pjColorWithMapExt($pj-thumbnail-style);
+  }
+}

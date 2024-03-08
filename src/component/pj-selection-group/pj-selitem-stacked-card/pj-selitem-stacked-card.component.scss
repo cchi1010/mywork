@@ -1,0 +1,88 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+
+$pj-selitem-stacked-card-size: (sm, md, lg);
+$pj-selitem-stacked-card-font: (
+  sm: (
+    subTitle: $pj-label-md,
+    title: $pj-label-lg,
+    description: $pj-small,
+    value: $pj-label-md,
+    check-icon: 20px,
+    icon: 24px,
+  ),
+  md: (
+    subTitle: $pj-label-md,
+    title: $pj-label-xl,
+    description: $pj-small,
+    value: $pj-label-lg,
+    check-icon: 20px,
+    icon: 24px,
+  ),
+  lg: (
+    subTitle: $pj-label-lg,
+    title: $pj-label-2xl,
+    description: $pj-body-2,
+    value: $pj-label-xl,
+    check-icon: 24px,
+    icon: 32px,
+  ),
+);
+
+$pj-selitem-stacked-card-measurement: (
+  padding: 12px 16px 12px 16px,
+  radius: 12px,
+  sm: (illustration: (width: 48px, height: 48px, radius: 12px, padding: 12px)),
+  md: (illustration: (width: 48px, height: 48px, radius: 12px, padding: 12px)),
+  lg: (illustration: (width: 64px, height: 64px, radius: 12px, padding: 16px)),
+);
+
+$pj-selitem-stacked-card-style: (
+  check-icon: (fg: map-get($pj-neutral, 150)),
+  tisubtitletle: (fg: map-get($pj-neutral, 300)),
+  title: (fg: map-get($pj-neutral, 800)),
+  description: (fg: map-get($pj-neutral, 600)),
+  illustration: (bg: map-get($pj-neutral, 10)),
+  focused: (check-icon: (fg: map-get($pj-secondary, 500)))
+);
+
+.pj-selitem-stacked-card {
+  @include pjMeasurementWithMapExt($pj-selitem-stacked-card-measurement);
+  &.focused {
+    & .check-icon {
+      @include pjColorWithMapExt($pj-selitem-stacked-card-style, focused, check-icon);
+    }
+  }
+  & .check-icon {
+    @include pjColorWithMapExt($pj-selitem-stacked-card-style, check-icon);
+  }
+  & .illustration {
+    @include pjColorWithMapExt($pj-selitem-stacked-card-style, illustration);
+  }
+  @each $size in $pj-selitem-stacked-card-size {
+    &.#{$size} {
+      & .illustration {
+        @include pjMeasurementWithMapExt($pj-selitem-stacked-card-measurement, $size, illustration);
+      }
+      & .icon {
+        font-size: map-get-ext($pj-selitem-stacked-card-font, $size, icon);
+      }
+      & .check-icon {
+        font-size: map-get-ext($pj-selitem-stacked-card-font, $size, check-icon);
+      }
+    }
+  }
+  @each $part in (subtitle, title, value, description) {
+    @each $size in $pj-selitem-stacked-card-size {
+      &.#{$size} {
+        & .#{$part} {
+          font: map-get($pj-selitem-stacked-card-font, $size, $part);
+        }
+      }
+    }
+    & .#{$part} {
+      @include pjColorWithMapExt($pj-selitem-stacked-card-style, $part);
+    }
+  }
+}

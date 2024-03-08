@@ -1,0 +1,37 @@
+@import "/src/scss/customize";
+@import "/src/scss/color";
+@import "/src/scss/typography";
+$pj-linked-payment-detail-font: (
+  issuer: $pj-strong-1,
+  idNumber: $pj-body-2,
+);
+
+$pj-linked-payment-detail-measurement: (
+  type-image: (
+    width: 48px,
+    height: 48px,
+  ),
+);
+$pj-linked-payment-detail-style: (
+  issuer: (
+    fg: map-get($pj-primary, 800),
+  ),
+  idNumber: (
+    fg: map-get($pj-primary, 600),
+  ),
+);
+.pj-linked-payment-detail {
+  & .type-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    @include pjMeasurementWithMapExt($pj-linked-payment-detail-measurement, type-image);
+  }
+
+  @each $part in (issuer, idNumber) {
+    & .#{$part} {
+      font: map-get($pj-linked-payment-detail-font, $part);
+      @include pjColorWithMapExt($pj-linked-payment-detail-style, $part);
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<div class="pj-empty-status flex flex-col justify-center items-center" [ngStyle]="getCompStyle()"
+    [ngClass]="getCompClass()" pjPressable>
+    <pj-icon *ngIf="hasIcon()" class="icon" [ngStyle]="getIconSizeStyle()" [iconName]="getIconName()"></pj-icon>
+    <div *ngIf="hasLabel()" class="label">{{getLabel()}}</div>
+</div>

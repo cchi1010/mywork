@@ -1,0 +1,13 @@
+<div class="pj-choice-group" *ngIf="hasItem()">
+  <div *ngIf="!hasChoiceItem()" [ngClass]="getGroupClass()">
+    <div *ngFor="let item of items">
+      <pj-radio *ngIf="isRadio()" [label]="item.label||''" [checked]="item.checked" [disabled]="item.disabled" (click)="onItemClick(item)">
+      </pj-radio>
+      <pj-checkbox *ngIf="isCheckbox()" [label]="item.label||''" [checked]="item.checked" (click)="onItemClick(item)">
+      </pj-checkbox>
+    </div>
+  </div>
+  <div *ngIf="hasChoiceItem()" [ngClass]="getGroupClass()">
+    <ng-content></ng-content>
+  </div>
+</div>
