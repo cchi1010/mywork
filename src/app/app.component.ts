@@ -8,7 +8,14 @@ import { DropdownModule } from 'primeng/dropdown';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ButtonModule, DropdownModule, FormsModule],
+  imports: [
+    RouterOutlet, 
+    CommonModule, 
+    ButtonModule, 
+    DropdownModule, 
+    FormsModule, 
+    // PjButtonModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
