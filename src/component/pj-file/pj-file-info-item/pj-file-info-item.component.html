@@ -1,7 +1,0 @@
-<pj-image [imageData]="getImageData()"></pj-image>
-<div class="flex-grow flex flex-col items-start">
-  <div class="fileName">{{getFileName()}}</div>
-  <div class="fileDesc">{{getFileDesc()}}</div>
-</div>
-<pj-button-cta *ngIf="hasAction()" pjSize="md" [label]="getActionLabel()" (click)="onActionClick()"></pj-button-cta>
-<div class="fileSize" *ngIf="!hasAction()">{{getFileSize()}}</div>

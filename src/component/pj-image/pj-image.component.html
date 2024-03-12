@@ -1,8 +1,0 @@
-<div class="pj-image flex flex-col relative" pjPressable [ngStyle]="getImageStyle()" [ngClass]="getLabelPositionClass()"
-  style="background-image: url('{{ getImageSrc() }}'), url('assets/image/white.png'); background-repeat: no-repeat; background-size: contain;"
-  (click)="onImageClick()">
-  <div class="label truncate-text-line-1" *ngIf="hasLabel()">{{ getLabel() }}</div>
-  <pj-badge *ngIf="hasBadge()" class="badge" [label]="getBadgeLabel()" pjColor="blackBtn" [pjSize]="getBadgeSize()">
-  </pj-badge>
-  <pj-icon *ngIf="hasImageIcon()" class="imageIcon" [iconName]="'camera_alt'" pjSize="lg"></pj-icon>
-</div>

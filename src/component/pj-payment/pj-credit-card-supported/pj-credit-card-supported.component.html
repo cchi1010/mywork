@@ -1,9 +1,0 @@
-<div class="pj-credit-card-supported flex flex-col">
-  <div class="title text-center mb-2">{{ getTitle() }}</div>
-  <div class="flex flex-row flex-wrap justify-center items-center gap-2">
-    <pj-image
-      *ngFor="let cardName of acceptedCardNames"
-      [imageData]="getCardImage(cardName)"
-    ></pj-image>
-  </div>
-</div>

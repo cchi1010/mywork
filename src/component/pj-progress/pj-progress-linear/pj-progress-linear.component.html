@@ -1,9 +1,0 @@
-<div class="pj-progress-linear flex flex-row items-center gap-2" [ngClass]="getProgressClass()" pjPressable
-  (click)="changeStatu(true, $event)">
-  <div class="label" *ngIf="hasLabel()">{{ getLabel() }}</div>
-  <pj-progress-bar class="flex-grow" [progress]="getProgress()" pjColor="secondary"></pj-progress-bar>
-  <div class="percent" *ngIf="hasPercent()">{{ getPercent() }}</div>
-  <pj-button-icon pjSize="sm" pjColor="secondary" *ngIf="isFocused()" btnType="text" [iconName]="'close'"
-    (click)="changeStatu(false, $event)">
-  </pj-button-icon>
-</div>

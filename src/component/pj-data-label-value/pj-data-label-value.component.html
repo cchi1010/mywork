@@ -1,8 +1,0 @@
-<!-- 显示某个业务模型的字段说明和数据值 -->
-<div class="pj-data-label-value flex flex-col">
-  <div *ngIf="hasTitle()" class="title">{{ title }}</div>
-  <div *ngFor="let value of labelValues" class="flex flex-row justify-between">
-    <div class="label" [ngClass]="getEmphasisClass()">{{ value.label }}</div>
-    <div class="value" [ngClass]="getEmphasisClass()">{{ value.value }}</div>
-  </div>
-</div>

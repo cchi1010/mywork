@@ -1,11 +1,16 @@
-<div class="absolute left-0 top-0" style="width: 100%;" [dropdownElm]="">
-  <div class="stickyArea" #stickyArea >
-    <pj-header></pj-header>
-    <pj-toolbar></pj-toolbar>
+<div class="box">
+  <p-button label="prime-ng" styleClass="p-primng-success"></p-button>
+
+  <div class="flex justify-content-center">
+    <div>Select country</div>
+    <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country">
+      <ng-template pTemplate="selectedItem" let-selectedOption>
+        <div>{{ selectedOption.name }}</div>
+      </ng-template>
+
+      <ng-template let-country pTemplate="item">
+        <div>{{ country.name }}</div>
+      </ng-template>
+    </p-dropdown>
   </div>
-  <div class="relative content flex flex-col scrollbar-space" #contentArea>
-    <pj-content class="flex-grow"></pj-content>
-    <pj-footer></pj-footer>
-  </div>
-  <pj-navbar></pj-navbar>
 </div>

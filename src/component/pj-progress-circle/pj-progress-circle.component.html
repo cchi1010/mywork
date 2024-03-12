@@ -1,9 +1,0 @@
-  <div class="process-circle" aria-valuenow="getPercentage()" aria-valuemin="0" aria-valuemax="100"
-    style="--value:{{getPercentage()}}" [ngClass]="getStyle()" *ngIf="!isNone()">
-  </div>
-
-  <div class="process-circle-none" *ngIf="isNone()" [ngClass]="getStyle()">
-    <div class="circle"></div>
-    <div class="circle-center"></div>
-    <div class="center-word">N/A</div>
-  </div>

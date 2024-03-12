@@ -1,8 +1,0 @@
-<div *ngIf="isCard()" class="pj-new-payment flex flex-col justify-center items-center" [ngClass]="paymentMethod">
-    <pj-icon class="icon" [iconName]="'add'"></pj-icon>
-    <div class="label">Add a card</div>
-</div>
-
-<div *ngIf="!isCard()" class="pj-new-payment flex flex-col justify-end" [ngClass]="paymentMethod">
-    <pj-alert pjColor="info" [alertData]="getAlertData()"></pj-alert>
-</div>

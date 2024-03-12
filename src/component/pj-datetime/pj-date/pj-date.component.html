@@ -1,6 +1,0 @@
-<div class="pj-date relative" [ngClass]="getSize()">
-  <pj-text-entry [entryConfig]="getDateEntryConfig()" [pjSize]="getSize()" [noInput]="noInput"
-    [formControl]="getFormControl()" [onDate]="true" [onCard]="onCard"></pj-text-entry>
-  <pj-icon *ngIf="isExpireDate()" class="cardIcon" iconName="calendar_today"></pj-icon>
-  <pj-date-picker *ngIf="!isExpireDate()" class="icon" (pickedDate)="pickDate($event)"></pj-date-picker>
-</div>

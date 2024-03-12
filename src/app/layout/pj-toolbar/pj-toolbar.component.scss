@@ -1,9 +1,0 @@
-@import '/src/scss/color';
-@import '/src/scss/typography';
-
-.pj-toolbar {
-    position: relative;
-    width: 100%;
-    background-color: $pj-white;
-    box-shadow: map-get($pj-primary-shadow, 2a), map-get($pj-primary-shadow, 2b);
-}

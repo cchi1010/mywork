@@ -1,8 +1,0 @@
-<div class="pj-avatar relative flex flex-col place-content-center items-center">
-  <pj-image *ngIf="hasImage()" [imageData]="getAvatarImageData()"></pj-image>
-  <div *ngIf="!hasImage()" class="initial-label">{{ getInitial() }}</div>
-  <pj-icon *ngIf="hasNotification" class="icon notification" [ngClass]="getNotificationClass()"
-    [iconName]="'brightness_1'"></pj-icon>
-  <pj-icon *ngIf="hasOnlineIcon()" class="icon onlineFlag" [ngClass]="getStatusClass()" [iconName]="'circle'"></pj-icon>
-  <pj-icon *ngIf="hasImageIcon()" class="icon onlineFlag imageIcon" [iconName]="'camera_alt'"></pj-icon>
-</div>

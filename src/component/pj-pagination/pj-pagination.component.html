@@ -1,8 +1,0 @@
-<div class="flex flex-row justify-start items-center space-x-2">
-  <pj-pagination-item [iconName]="leftItem.iconName" [disabled]="leftItem.disabled" (click)="onLeftClick()">
-  </pj-pagination-item>
-  <pj-pagination-item #itemElm *ngFor="let item of pageItems" [label]="item.label" [iconName]="item.iconName"
-    [focused]="item.focused" [disabled]="item.disabled" (click)="onPageItemClick(itemElm)"></pj-pagination-item>
-  <pj-pagination-item [iconName]="rightItem.iconName" [disabled]="rightItem.disabled" (click)="onRightClick()">
-  </pj-pagination-item>
-</div>
